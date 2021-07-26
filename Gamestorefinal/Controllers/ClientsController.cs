@@ -32,24 +32,24 @@ namespace Gamestorefinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login([Bind("Id,Email,Password")] Client client)
         {
-            if (ModelState.IsValid)
-            {
+          
                 var q = from u in _context.Client
                         where u.Email == client.Email && u.Password == client.Password
                         select u;
-                if (q.Count() >0)
+
+                if (q.Count()>0)
                 {
                     
-
                     return RedirectToAction(nameof(Index), "Home");
                 }
                 else
                 {
-                    ViewData["Error"] = "Username and/or password are incorrect.";
+                    ViewData["Error"] = "This Email is already exist, please enter another email.";
                 }
-            }
+            
             return View(client);
         }
+
 
         // GET: Clients/Register
         public IActionResult Register()

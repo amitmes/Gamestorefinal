@@ -21,6 +21,7 @@ namespace GamesStore.Models
         public string Systemrequiremnts { get; set; }
         [Required]
         [Display(Name = "Release date")]
+        [DataType(DataType.Date)]
         public DateTime Releasedate { get; set; }
         [DataType(DataType.Currency)]
         [Required]

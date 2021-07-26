@@ -22,6 +22,9 @@ namespace Gamestorefinal.Controllers
         // GET: Games
         public async Task<IActionResult> Index()
         {
+
+  
+
             return View(await _context.Games.ToListAsync());
         }
 
@@ -46,6 +49,9 @@ namespace Gamestorefinal.Controllers
         // GET: Games/Create
         public IActionResult Create()
         {
+            ViewData["categories"] = new SelectList(_context.Category, nameof(Category.Id), nameof(Category.Name));
+            ViewData["suppliers"] = new SelectList(_context.Supplier, nameof(Supplier.Id), nameof(Supplier.Name));
+
             return View();
         }
 
@@ -54,10 +60,15 @@ namespace Gamestorefinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Image,Onstock")] Games games)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Image,Onstock")] Games games,int[] Categories, int[] suppliers)
         {
             if (ModelState.IsValid)
             {
+                games.Category = new List<Category>();
+                games.Category.AddRange(_context.Category.Where(x => Categories.Contains(x.Id)));
+
+                games.Suppliers = new List<Supplier>();
+                games.Suppliers.AddRange(_context.Supplier.Where(x => suppliers.Contains(x.Id)));
                 _context.Add(games);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

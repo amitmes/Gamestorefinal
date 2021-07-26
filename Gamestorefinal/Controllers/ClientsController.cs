@@ -7,6 +7,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GamesStore.Models;
 using Gamestorefinal.Data;
+using Microsoft.AspNetCore.Http;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Gamestorefinal.Controllers
 {
@@ -19,8 +23,22 @@ namespace Gamestorefinal.Controllers
             _context = context;
         }
 
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction("Login");
+        }
+
+
+
+
         // GET: Clients/Login
         public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult AccessDenied()
         {
             return View();
         }
@@ -39,6 +57,9 @@ namespace Gamestorefinal.Controllers
 
                 if (q.Count()>0)
                 {
+                //HttpContext.Session.SetString("Email", q.First().Email);
+
+                Signin(q.First());
                     
                     return RedirectToAction(nameof(Index), "Home");
                 }
@@ -49,6 +70,33 @@ namespace Gamestorefinal.Controllers
             
             return View(client);
         }
+
+
+
+        private async void Signin(Client account)
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, account.Email),
+                new Claim(ClaimTypes.Role, account.Type.ToString()),
+            };
+
+            var claimsIdentity = new ClaimsIdentity(
+                claims, CookieAuthenticationDefaults.AuthenticationScheme);
+
+            var authProperties = new AuthenticationProperties
+            {
+                //ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(10)
+            };
+            await HttpContext.SignInAsync(
+                CookieAuthenticationDefaults.AuthenticationScheme,
+                new ClaimsPrincipal(claimsIdentity),
+                authProperties);
+        }
+
+
+
+
 
 
         // GET: Clients/Register
@@ -71,6 +119,10 @@ namespace Gamestorefinal.Controllers
                 {
                     _context.Add(client);
                     await _context.SaveChangesAsync();
+
+                    var u = _context.Client.FirstOrDefault(u => u.Email == client.Email && u.Password == client.Password);
+                    Signin(u);
+
                     return RedirectToAction(nameof(Index), "Home");
                 }
                 else
@@ -80,6 +132,9 @@ namespace Gamestorefinal.Controllers
             }
             return View(client);
         }
+
+
+
         //// GET: Clients
         //public async Task<IActionResult> Index()
         //{

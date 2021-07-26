@@ -1,4 +1,6 @@
 ﻿using Gamestorefinal.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -17,14 +19,20 @@ namespace Gamestorefinal.Controllers
         {
             _logger = logger;
         }
-
+       // [Authorize]
         public IActionResult Index()
         {
             return View();
         }
+        [Authorize(Roles = "Admin")]
 
         public IActionResult Privacy()
         {
+            //if(HttpContext.Session.GetString("Email") == null)
+            //{
+            //    return RedirectToAction("Login", "Clients");
+            //}
+
             return View();
         }
 

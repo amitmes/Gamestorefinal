@@ -58,10 +58,11 @@ namespace Gamestorefinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Phone,Email")] Supplier supplier,int[]games)
         {
+            supplier.Games = new List<Games>();
+            supplier.Games.AddRange(_context.Games.Where(x => games.Contains(x.Id)));
             if (ModelState.IsValid)
             {
-                supplier.Games = new List<Games>();
-                supplier.Games.AddRange(_context.Games.Where(x => games.Contains(x.Id)));
+                
 
                 _context.Add(supplier);
                 await _context.SaveChangesAsync();

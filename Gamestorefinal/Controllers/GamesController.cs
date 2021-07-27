@@ -67,13 +67,14 @@ namespace Gamestorefinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Image,Onstock")] Games games,int[] Categories, int[] suppliers)
         {
+
+            games.Category = new List<Category>();
+            games.Category.AddRange(_context.Category.Where(x => Categories.Contains(x.Id)));
+
+            games.Suppliers = new List<Supplier>();
+            games.Suppliers.AddRange(_context.Supplier.Where(x => suppliers.Contains(x.Id)));
             if (ModelState.IsValid)
             {
-                games.Category = new List<Category>();
-                games.Category.AddRange(_context.Category.Where(x => Categories.Contains(x.Id)));
-
-                games.Suppliers = new List<Supplier>();
-                games.Suppliers.AddRange(_context.Supplier.Where(x => suppliers.Contains(x.Id)));
                 _context.Add(games);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

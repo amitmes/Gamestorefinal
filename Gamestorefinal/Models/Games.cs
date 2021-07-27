@@ -11,7 +11,7 @@ namespace GamesStore.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        [Required]
+       
         public List<Category> Category { get; set; }
         [Required]
         [DataType(DataType.Text)]
@@ -35,7 +35,7 @@ namespace GamesStore.Models
         [Required]
         [Display(Name = "On stock")]
         public int Onstock { get; set; }
-        [Required]
+     
         public List<Supplier> Suppliers { get; set; }
     }
 }

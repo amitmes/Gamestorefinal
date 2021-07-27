@@ -69,10 +69,11 @@ namespace Gamestorefinal.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Create([Bind("Id,Name,image")] Category category, int[] games)
         {
+            category.Games = new List<Games>();
+            category.Games.AddRange(_context.Games.Where(x => games.Contains(x.Id)));
             if (ModelState.IsValid)
             {
-                category.Games = new List<Games>();
-                category.Games.AddRange(_context.Games.Where(x => games.Contains(x.Id)));
+               
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

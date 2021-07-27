@@ -11,24 +11,29 @@
         <a asp-action="Create">Create New</a>
     </p>
 }
-    <table class="table">
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <div class="card" style="width: 18rem;">
-                    <img src=@item.image class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Name</h5>
-                        <a href="#" class="btn btn-primary">@item.Name</a>
-                    </div>
+<form asp-action="Search">
+    <input name="query" placeholder="Enter category to search" />
+    <input type="submit" value="Search" class="btn btn-primary" />
+</form>
+
+<table class="table">
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <div class="card" style="width: 18rem;">
+                <img src=@item.image class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <a href="#" class="btn btn-primary">More games</a>
                 </div>
+            </div>
 
-                @*<td>
-                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                    </td>*@
+            @*<td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>*@
 
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>

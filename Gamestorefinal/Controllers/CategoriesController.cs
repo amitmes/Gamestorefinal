@@ -26,6 +26,14 @@ namespace Gamestorefinal.Controllers
             return View(await _context.Category.ToListAsync());
         }
 
+        public async Task<IActionResult> Search(string query)
+        {
+            var m2MwithSearchContext = _context.Category.Where(a => a.Name.Contains(query)||query==null);
+            return View("Index", await m2MwithSearchContext.ToListAsync());
+
+        }
+
+
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -147,7 +155,7 @@ namespace Gamestorefinal.Controllers
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
+         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var category = await _context.Category.FindAsync(id);

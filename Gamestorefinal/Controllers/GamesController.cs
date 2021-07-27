@@ -24,8 +24,14 @@ namespace Gamestorefinal.Controllers
         {
             return View(await _context.Games.ToListAsync());
         }
-        
-       
+        public async Task<IActionResult> Gametype(Category cat)
+        {
+
+            var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(a=>a.Category.Contains(cat));
+            return View("Index", await m2MwithSearchContext.ToListAsync());
+        }
+
+
 
         // GET: Games/Details/5
         public async Task<IActionResult> Details(int? id)

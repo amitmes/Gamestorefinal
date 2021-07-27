@@ -5,7 +5,7 @@
 }
 
 <h1>Categories</h1>
-@if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0&&Context.User.)
+@if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0&& Context.User.IsInRole("Admin"))
 {
     <p>
         <a asp-action="Create">Create New</a>

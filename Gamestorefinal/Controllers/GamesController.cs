@@ -49,7 +49,7 @@ namespace Gamestorefinal.Controllers
         // GET: Games/Create
         public IActionResult Create()
         {
-            ViewData["categories"] = new SelectList(_context.Category, nameof(Category.Id), nameof(Category.Name));
+            ViewData["Categories"] = new SelectList(_context.Category, nameof(Category.Id), nameof(Category.Name));
             ViewData["suppliers"] = new SelectList(_context.Supplier, nameof(Supplier.Id), nameof(Supplier.Name));
 
             return View();

@@ -13,5 +13,7 @@ namespace GamesStore.Models
         [Required]
         public string Name { get; set; }
         public List<Games> Games { get; set; }
+        [Required]
+        public string image { get; set; }
     }
 }

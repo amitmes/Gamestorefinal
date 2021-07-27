@@ -62,8 +62,6 @@ namespace Gamestorefinal.Controllers
             supplier.Games.AddRange(_context.Games.Where(x => games.Contains(x.Id)));
             if (ModelState.IsValid)
             {
-                
-
                 _context.Add(supplier);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

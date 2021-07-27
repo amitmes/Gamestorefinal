@@ -40,38 +40,22 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Systemrequiremnts)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Releasedate)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Trailer)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Onstock)
-            </td>
-            <td>
+        @foreach (var item in Model)
+        {
+            <div class="card" style="width: 18rem;">
+                <img src=@item.Image class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Name</h5>
+                    <a asp-controller="Games" asp-action="Gametype" asp-route-id=@item class="btn btn-primary">More games</a>
+                </div>
+            </div>
+
+            @*<td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                 <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
+            </td>*@
+
+        }
     </tbody>
 </table>

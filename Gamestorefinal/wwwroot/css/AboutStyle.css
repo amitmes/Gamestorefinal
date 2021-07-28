@@ -69,3 +69,7 @@ About.button:hover {
         display: block;
     }
 }
+
+.body {
+    background-color: lightsalmon;
+}

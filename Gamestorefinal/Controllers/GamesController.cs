@@ -22,12 +22,23 @@ namespace Gamestorefinal.Controllers
         // GET: Games
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Games.ToListAsync());
+
+            var m2MwithSearchContext = _context.Games.Include(a => a.Category);
+            return View(await m2MwithSearchContext.ToListAsync());
+
+
+
+
+          //  return View(await _context.Games.ToListAsync());
         }
-        public async Task<IActionResult> Gametype(Category cat)
+        public async Task<IActionResult> Gametype(int item)
         {
 
-            var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(a=>a.Category.Contains(cat));
+            var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(a => a.Id.Equals(item));
+          // var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(a => a.Category.Equals(item));
+
+
+          //  var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(a=>a.Category.Contains(item));
             return View("Index", await m2MwithSearchContext.ToListAsync());
         }
 

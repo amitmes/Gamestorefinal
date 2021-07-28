@@ -54,8 +54,8 @@ namespace Gamestorefinal.Controllers
         // GET: Games/Create
         public IActionResult Create()
         {
-            ViewData["categories"] = new SelectList(_context.Category, nameof(Category.Id), nameof(Category.Name));
-            ViewData["suppliers"] = new SelectList(_context.Supplier, nameof(Supplier.Id), nameof(Supplier.Name));
+            ViewData["Category"] = new MultiSelectList(_context.Category, nameof(Category.Id), nameof(Category.Name));
+            ViewData["Suppliers"] = new MultiSelectList(_context.Supplier, nameof(Supplier.Id), nameof(Supplier.Name));
 
             return View();
         }
@@ -65,14 +65,13 @@ namespace Gamestorefinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Image,Onstock")] Games games,int[] Categories, int[] suppliers)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Image,Onstock")] Games games,int[] Category, int[] Suppliers)
         {
 
-            games.Category = new List<Category>();
-            games.Category.AddRange(_context.Category.Where(x => Categories.Contains(x.Id)));
+            games.Category=_context.Category.Where(x => Category.Contains(x.Id)).ToList();
 
-            games.Suppliers = new List<Supplier>();
-            games.Suppliers.AddRange(_context.Supplier.Where(x => suppliers.Contains(x.Id)));
+            
+            games.Suppliers=_context.Supplier.Where(x => Suppliers.Contains(x.Id)).ToList();
             if (ModelState.IsValid)
             {
                 _context.Add(games);

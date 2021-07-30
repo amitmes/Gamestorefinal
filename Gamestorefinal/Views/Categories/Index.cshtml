@@ -24,7 +24,7 @@
                 <img src=@item.image class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">@item.Name</h5>
-                    <a asp-controller="Games" asp-action="Gametype" asp-route-id=@item class="btn btn-primary">More games</a>
+                    <a asp-controller="Games" asp-action="Gametype" asp-route-Item="@item.Name" class="btn btn-primary">More games</a>
                 </div>
             </div>
 

@@ -24,14 +24,27 @@ namespace Gamestorefinal.Controllers
         {
             return View(await _context.Games.ToListAsync());
         }
-        public async Task<IActionResult> Gametype(Category cat)
-        {
 
-            var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(a=>a.Category.Contains(cat));
+       
+        public async Task<IActionResult> Search(string query)
+        {
+            var m2MwithSearchContext = _context.Category.Include(a => a.Games).Where(a => a.Name.Equals(query)).Select(a=>a.Games.ToList());
+            return View("Index", await m2MwithSearchContext.ToListAsync());
+
+        }
+        public async Task<IActionResult> Gametype(String Item)
+        {
+            var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(Item));
+            //_context.Category.Include(a => a.Games).Where(a => a.Name.Equals(Item)).Select(a => a.Games);
+
             return View("Index", await m2MwithSearchContext.ToListAsync());
         }
-
-
+        public async Task<IActionResult> Gamesfilter(string matchingStr)
+        {
+            var x= _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(matchingStr));
+            var y = x;
+            return View("Index", await x.ToListAsync());
+        }
 
         // GET: Games/Details/5
         public async Task<IActionResult> Details(int? id)

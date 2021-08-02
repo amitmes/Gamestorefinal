@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -29,9 +31,10 @@ namespace GamesStore.Models
         [DataType(DataType.Url)]
         [Required]
         public string Trailer { get; set; }
-        [DataType(DataType.ImageUrl)]
-        [Required]
-        public string Image { get; set; }
+        
+        public byte[] Image { get; set; }
+        [NotMapped]
+        public IFormFile Imagefile { get; set; }
         [Required]
         [Display(Name = "On stock")]
         public int Onstock { get; set; }

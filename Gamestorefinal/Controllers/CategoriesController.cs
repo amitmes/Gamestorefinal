@@ -21,20 +21,12 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: Categories
+        
         public async Task<IActionResult> Index()
         {
+           
             return View(await _context.Category.ToListAsync());
         }
-
-     
-
-        public async Task<IActionResult> Search(string query)
-        {
-            var m2MwithSearchContext = _context.Category.Where(a => a.Name.Contains(query)||query==null);
-            return View("Index", await m2MwithSearchContext.ToListAsync());
-
-        }
-
 
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -68,14 +60,12 @@ namespace Gamestorefinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //[Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Create([Bind("Id,Name,image")] Category category, int[] games)
+        public async Task<IActionResult> Create([Bind("Id,Name")] Category category, int[] games)
         {
             category.Games = new List<Games>();
             category.Games.AddRange(_context.Games.Where(x => games.Contains(x.Id)));
             if (ModelState.IsValid)
             {
-               
                 _context.Add(category);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -84,7 +74,6 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: Categories/Edit/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -105,8 +94,7 @@ namespace Gamestorefinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,image")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Category category)
         {
             if (id != category.Id)
             {
@@ -137,7 +125,6 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: Categories/Delete/5
-        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -158,7 +145,6 @@ namespace Gamestorefinal.Controllers
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
             var category = await _context.Category.FindAsync(id);

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Gamestorefinal.Migrations
 {
     [DbContext(typeof(GamestorefinalContext))]
-    [Migration("20210728081330_gamesfixed")]
-    partial class gamesfixed
+    [Migration("20210802104827_newall")]
+    partial class newall
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -44,10 +44,6 @@ namespace Gamestorefinal.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("image")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -102,9 +98,9 @@ namespace Gamestorefinal.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
+                    b.Property<byte[]>("Image")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()

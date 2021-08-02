@@ -2,7 +2,7 @@
 
 namespace Gamestorefinal.Migrations
 {
-    public partial class gamesfixed : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

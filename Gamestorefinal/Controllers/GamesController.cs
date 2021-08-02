@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GamesStore.Models;
 using Gamestorefinal.Data;
+using System.IO;
 
 namespace Gamestorefinal.Controllers
 {
@@ -29,13 +30,13 @@ namespace Gamestorefinal.Controllers
 
 
 
-          //  return View(await _context.Games.ToListAsync());
+            //  return View(await _context.Games.ToListAsync());
         }
 
-       
+
         public async Task<IActionResult> Search(string query)
         {
-            var m2MwithSearchContext = _context.Category.Include(a => a.Games).Where(a => a.Name.Equals(query)).Select(a=>a.Games.ToList());
+            var m2MwithSearchContext = _context.Category.Include(a => a.Games).Where(a => a.Name.Equals(query)).Select(a => a.Games.ToList());
             return View("Index", await m2MwithSearchContext.ToListAsync());
 
         }
@@ -48,7 +49,7 @@ namespace Gamestorefinal.Controllers
         }
         public async Task<IActionResult> Gamesfilter(string matchingStr)
         {
-            var x= _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(matchingStr));
+            var x = _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(matchingStr));
             var y = x;
             return View("Index", await x.ToListAsync());
         }
@@ -85,15 +86,21 @@ namespace Gamestorefinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Image,Onstock")] Games games,int[] Category, int[] Suppliers)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Imagefile,Onstock")] Games games, int[] Category, int[] Suppliers)
         {
-
-            games.Category=_context.Category.Where(x => Category.Contains(x.Id)).ToList();
-
             
-            games.Suppliers=_context.Supplier.Where(x => Suppliers.Contains(x.Id)).ToList();
+            games.Category = new List<Category>();
+            games.Category.AddRange(_context.Category.Where(x => Category.Contains(x.Id)));
+
+            games.Suppliers = new List<Supplier>();
+            games.Suppliers.AddRange(_context.Supplier.Where(x => Suppliers.Contains(x.Id)));
             if (ModelState.IsValid)
             {
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    games.Imagefile.CopyTo(ms);
+                    games.Image = ms.ToArray();
+                }
                 _context.Add(games);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));

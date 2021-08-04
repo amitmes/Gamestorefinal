@@ -24,6 +24,11 @@ namespace Gamestorefinal.Controllers
         {
             return View(await _context.Supplier.ToListAsync());
         }
+        public async Task<IActionResult> Search(string query)
+        {
+            var m2MwithSearchContext = _context.Supplier.Where(a => a.Name.Contains(query) || query == null);
+            return Json(await m2MwithSearchContext.ToListAsync());
+        }
 
         // GET: Suppliers/Details/5
         public async Task<IActionResult> Details(int? id)

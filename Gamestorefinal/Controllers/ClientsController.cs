@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gamestorefinal.Controllers
 {
@@ -23,13 +24,21 @@ namespace Gamestorefinal.Controllers
             _context = context;
         }
 
+        public async Task<IActionResult> Search(string query)
+        {
+            var m2MwithSearchContext = _context.Client.Where(a => a.Email.Contains(query) || query == null);
+            return Json(await m2MwithSearchContext.ToListAsync());
+        }
         public async Task<IActionResult> Logout()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Login");
         }
-
-
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> Index()
+        {
+            return View(await _context.Client.ToListAsync());
+        }
 
 
         // GET: Clients/Login

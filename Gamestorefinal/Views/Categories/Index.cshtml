@@ -13,66 +13,40 @@
 }
 <form asp-action="Search">
     <input name="query" id="query" autocomplete="off" />
-    <input type="submit"/>
+    <input type="submit" />
 </form>
 
 <table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
     <tbody>
         @foreach (var item in Model)
         {
-        <tr>
-            <td>
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Name</h5>
-                        <a asp-controller="Games" asp-action="Gametype" asp-route-Item="@item.Name" class="btn btn-primary">More games</a>
-                    </div>
-                </div>
-            </td>
-            @if (Context.User.IsInRole("Admin"))
-            {
+            <tr>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+                            <a id="gamesbycat" name="@item.Name"  asp-route-Item="@item.Name" class="btn btn-primary">More games</a>
+                        </div>
+                    </div>
                 </td>
-            }
-        </tr>
+                @if (Context.User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
+            </tr>
         }
     </tbody>
 </table>
-@*<table  class="table">
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <div class="card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">@item.Name</h5>
-                    <a asp-controller="Games" asp-action="Gametype" asp-route-Item="@item.Name" class="btn btn-primary">More games</a>
-                </div>
-            </div>
-
-            <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-
-        }
-    </tbody>
-</table>*@
 
 
-@section Scripts{ 
+
+@section Scripts{
     <script src="~/js/categoriessearch.js"></script>
+    <script src="~/js/catdet.js"></script>
     <script type="text/html" id="hidden-template">
         <tr>
             <td>
@@ -84,16 +58,35 @@
                 </div>
             </td>
 
-         
-                <td>
 
-            
-                    <a href="/Categories/Edit/{id}">Edit</a>
-                    <a href="/Categories/Details/{id}">Details</a>
-                    <a href="/Categories/Delete/{id}">Delete</a>
-            
-                </td>
-          
+            <td>
+
+
+                <a href="/Categories/Edit/{id}">Edit</a>
+                <a href="/Categories/Details/{id}">Details</a>
+                <a href="/Categories/Delete/{id}">Delete</a>
+
+            </td>
+
+
+        </tr>
+    </script>
+    <script type="text/html" id="orderedgames">
+        <tr>
+            <td>
+               {name}
+            </td>
+
+
+            <td>
+
+
+                <a href="/Categories/Edit/{id}">Edit</a>
+                <a href="/Categories/Details/{id}">Details</a>
+                <a href="/Categories/Delete/{id}">Delete</a>
+
+            </td>
+
 
         </tr>
     </script>

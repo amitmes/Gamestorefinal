@@ -1,14 +1,16 @@
-﻿$(function () {
-    $('form').submit(function (e) {
-        e.preventDefault();
-        var query = $('#query').val();
+﻿
 
+$(function () {
+    $('#gamesbycat').click(function (e) {
+        e.preventDefault();
+        var query = $('#gamesbycat').attr("name").valueOf();
+        console.log(query);
         $.ajax({
-            url: '/Categories/Search',
+            url: '/Games/Gametype',
             data: { 'query': query }
         }).done(function (data) {
             $('tbody').html('');
-            var template = $('#hidden-template').html();
+            var template = $('#orderedgames').html();
             $.each(data, function (i, val) {
                 var temp = template;
 
@@ -18,7 +20,6 @@
                 $('tbody').append(temp);
             });
         });
-       
+
     });
 });
-

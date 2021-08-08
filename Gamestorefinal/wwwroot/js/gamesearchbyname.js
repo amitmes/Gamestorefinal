@@ -4,7 +4,7 @@
         var query = $('#query').val();
 
         $.ajax({
-            url: '/Categories/Search',
+            url: '/Games/Search',
             data: { 'query': query }
         }).done(function (data) {
             $('tbody').html('');

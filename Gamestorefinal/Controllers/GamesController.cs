@@ -36,16 +36,16 @@ namespace Gamestorefinal.Controllers
 
         public async Task<IActionResult> Search(string query)
         {
-            var m2MwithSearchContext = _context.Category.Include(a => a.Games).Where(a => a.Name.Equals(query)).Select(a => a.Games.ToList());
-            return View("Index", await m2MwithSearchContext.ToListAsync());
+            var m2MwithSearchContext = _context.Games.Where(a => a.Name.Contains(query) || query == null);
+            return Json(await m2MwithSearchContext.ToListAsync());
 
         }
-        public async Task<IActionResult> Gametype(String Item)
+        public async Task<IActionResult> Gametype(string query)
         {
-            var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(Item));
+            var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(query));
             //_context.Category.Include(a => a.Games).Where(a => a.Name.Equals(Item)).Select(a => a.Games);
 
-            return View("Index", await m2MwithSearchContext.ToListAsync());
+            return Json(await m2MwithSearchContext.ToListAsync());
         }
         public async Task<IActionResult> Gamesfilter(string matchingStr)
         {

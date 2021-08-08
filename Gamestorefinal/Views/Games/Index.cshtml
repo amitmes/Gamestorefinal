@@ -25,29 +25,31 @@
         @foreach (var item in Model)
         {
 
-            <tr>
-                <td>
-                      <div class="card" style="width: 18rem;">
-                           @if (item.Image != null)
-                           {
-                               string img = Convert.ToBase64String(item.Image);
-                                 <img src="data:/image/jpg;base64,@img" class="card-img-top" alt="...">
-                           }
-                      <div class="card-body">
-                          <h5 class="card-title">@item.Name</h5>
-                          @*<a asp-controller="Games" asp-action="Gametype" asp-route-id=@item.Id class="btn btn-primary">More games</a>*@
-                          <a asp-controller="Games" asp-action="Details" asp-route-id=@item.Id class="btn btn-primary">Game details</a>
-                      </div>
-                
-                       </div>
-                </td>
-            </tr>
+        <tr>
+            <td>
+                <div class="card" style="width: 18rem;">
+                    @if (item.Image != null)
+                    {
+                        string img = Convert.ToBase64String(item.Image);
+                        <img src="data:/image/jpg;base64,@img" class="card-img-top" alt="...">
+                    }
+                    <div class="card-body">
+                        <h5 class="card-title">@item.Name</h5>
+                        @*<a asp-controller="Games" asp-action="Gametype" asp-route-id=@item.Id class="btn btn-primary">More games</a>*@
+                        <a asp-controller="Games" asp-action="Details" asp-route-id=@item.Id class="btn btn-primary">Game details</a>
+                    </div>
 
-            @*<td>
+                </div>
+            </td>
+            @if (Context.User.IsInRole("Admin"))
+            {
+                <td>
                     <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>*@
+                </td>
+            }
+            </tr>
 
         }
     </tbody>
@@ -56,17 +58,31 @@
 @section Scripts {
     <script src="~/js/gamesearchbyname.js"></script>
     <script type="text/html" id="hidden-template">
-        <div class="card" style="width: 18rem;">
+        <tr>
+            <td>
+                <div class="card" style="width: 18rem;">
 
-           <img src="data:/image/jpg;base64,{image}" class="card-img-top" alt="...">
-            
-            <div class="card-body">
-                <h5 class="card-title">{name}</h5>
-                @*<a asp-controller="Games" asp-action="Gametype" asp-route-id=@item.Id class="btn btn-primary">More games</a>*@
-                <a asp-controller="Games" asp-action="Details" asp-route-id={id} class="btn btn-primary">Game details</a>
-            </div>
+                    <img src="data:/image/jpg;base64,{image}" class="card-img-top" alt="...">
 
-        </div>
-     </script>
+                    <div class="card-body">
+                        <h5 class="card-title">{name}</h5>
+                        @*<a asp-controller="Games" asp-action="Gametype" asp-route-id=@item.Id class="btn btn-primary">More games</a>*@
+                        <a asp-controller="Games" asp-action="Details" asp-route-id={id} class="btn btn-primary">Game details</a>
+                    </div>
+                </div>
+            </td>
+            @if (Context.User.IsInRole("Admin"))
+            {
+                <td>
+
+
+                    <a href="/Games/Edit/{id}">Edit</a>|
+                    <a href="/Games/Details/{id}">Details</a>|
+                    <a href="/Games/Delete/{id}">Delete</a>
+
+                </td>
+            }
+            </tr>
+</script>
 }
 

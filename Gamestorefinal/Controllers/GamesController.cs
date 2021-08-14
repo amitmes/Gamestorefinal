@@ -40,13 +40,7 @@ namespace Gamestorefinal.Controllers
             return Json(await m2MwithSearchContext.ToListAsync());
 
         }
-        public async Task<IActionResult> Gametype(string query)
-        {
-            var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(query));
-            //_context.Category.Include(a => a.Games).Where(a => a.Name.Equals(Item)).Select(a => a.Games);
-
-            return Json(await m2MwithSearchContext.ToListAsync());
-        }
+        
         public async Task<IActionResult> Gamesfilter(string matchingStr)
         {
             var x = _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(matchingStr));
@@ -62,14 +56,13 @@ namespace Gamestorefinal.Controllers
                 return NotFound();
             }
 
-            var games = await _context.Games
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var games = _context.Games.Where(m => m.Id == id);
             if (games == null)
             {
                 return NotFound();
             }
 
-            return View(games);
+            return Json(await games.ToListAsync());
         }
 
         // GET: Games/Create

@@ -33,6 +33,13 @@ namespace Gamestorefinal.Controllers
             var m2MwithSearchContext = _context.Category.Where(a => a.Name.Contains(query) || query == null);
             return Json(await m2MwithSearchContext.ToListAsync());
         }
+        public async Task<IActionResult> Gametype(string Item)
+        {
+            var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(Item));
+            
+
+            return Json(await m2MwithSearchContext.ToListAsync());
+        }
 
         // GET: Categories/Details/5
         public async Task<IActionResult> Details(int? id)

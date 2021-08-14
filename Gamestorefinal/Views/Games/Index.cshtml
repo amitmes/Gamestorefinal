@@ -15,40 +15,45 @@
     </p>
 }
 
-<form asp-action="Search">
+
+
+<form id="namesearch" asp-action="Search">
     <input name="query" id="query" autocomplete="off" />
-    <input type="submit" />
+    <input type="submit" id="submitname" />
 </form>
 
 <table class="table">
+
+    
+
     <tbody>
         @foreach (var item in Model)
         {
 
-        <tr>
-            <td>
-                <div class="card" style="width: 18rem;">
-                    @if (item.Image != null)
-                    {
-                        string img = Convert.ToBase64String(item.Image);
-                        <img src="data:/image/jpg;base64,@img" class="card-img-top" alt="...">
-                    }
-                    <div class="card-body">
-                        <h5 class="card-title">@item.Name</h5>
-                        @*<a asp-controller="Games" asp-action="Gametype" asp-route-id=@item.Id class="btn btn-primary">More games</a>*@
-                        <a asp-controller="Games" asp-action="Details" asp-route-id=@item.Id class="btn btn-primary">Game details</a>
-                    </div>
-
-                </div>
-            </td>
-            @if (Context.User.IsInRole("Admin"))
-            {
+            <tr>
                 <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    <div class="card" style="width: 18rem;">
+                        @if (item.Image != null)
+                        {
+                            string img = Convert.ToBase64String(item.Image);
+                            <img src="data:/image/jpg;base64,@img" class="card-img-top" alt="...">
+                        }
+                        <div class="card-body">
+                            <h5 class="card-title">@item.Name</h5>
+
+                            <button name="@item.Id" asp-action="Details" asp-route-id="@item.Id" class="btn-primary">Game details</button>
+                        </div>
+
+                    </div>
                 </td>
-            }
+                @if (Context.User.IsInRole("Admin"))
+                {
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                }
             </tr>
 
         }
@@ -82,7 +87,69 @@
 
                 </td>
             }
-            </tr>
-</script>
+        </tr>
+    </script>
+    <script src="~/js/gamedetail.js"></script>
+    <script type="text/html" id="detailsbody">
+    <tr>
+        <td>
+            <dl class="row">
+                <dt class="col-sm-2">
+                    Name:
+                </dt>
+                <dd class="col-sm-10">
+                    {name}
+                </dd>
+                <dt class="col-sm-2">
+                    Description:
+                </dt>
+                <dd class="col-sm-10">
+                    {description}
+                </dd>
+                <dt class="col-sm-2">
+                    System requiremnts:
+                </dt>
+                <dd class="col-sm-10">
+                    {systemrequiremnts}
+                </dd>
+                <dt class="col-sm-2">
+                    Release date:
+                </dt>
+                <dd class="col-sm-10">
+                    {releasedate}
+                </dd>
+                <dt class="col-sm-2">
+                    Price:
+                </dt>
+                <dd class="col-sm-10">
+                    {price}
+                </dd>
+                <dt class="col-sm-2">
+                    Trailer:
+                </dt>
+                <dd class="col-sm-10">
+                    <iframe width="420" height="315"
+                            src="{trailer}">
+                    </iframe>
+
+                </dd>
+                <dt class="col-sm-2">
+                    Image:
+                </dt>
+                <dd class="col-sm-10">
+                        <img src="data:/image/jpg;base64,{image}" class="card-img-top" alt="...">
+                </dd>
+                <dt class="col-sm-2">
+                    On stock:
+                </dt>
+                <dd class="col-sm-10">
+                    {onstock}
+                </dd>
+            </dl>
+            
+        </td>
+    </tr>
+    
+    </script>
 }
 

@@ -25,7 +25,7 @@
                     <div class="card" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">@item.Name</h5>
-                            <a id="gamesbycat" name="@item.Name"  asp-route-Item="@item.Name" class="btn btn-primary">More games</a>
+                            <a  name="@item.Name"  asp-action="Gametype" asp-route-Item="@item.Name" class="btn btn-primary">More games</a>
                         </div>
                     </div>
                 </td>
@@ -53,7 +53,7 @@
                 <div class="card" style="width: 18rem;">
                     <div class="card-body">
                         <h5 class="card-title">{name}</h5>
-                        <a asp-controller="Games" asp-action="Gametype" asp-route-Item="{name}" class="btn btn-primary">More games</a>
+                        <button asp-controller="Games" asp-action="Gametype" asp-route-Item="{name}" class="btn-primary">More games</button>
                     </div>
                 </div>
             </td>

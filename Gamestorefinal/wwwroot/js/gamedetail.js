@@ -1,16 +1,16 @@
-﻿
-
-$(function () {
+﻿$(function () {
     $('button').click(function (e) {
+        $('#namesearch').hide();
         e.preventDefault();
-        var Item = $(this).attr("name").valueOf();
+        var id = $(this).attr("name").valueOf();
         
         $.ajax({
-            url: '/Categories/Gametype',
-            data: { 'Item': Item }
+            url: '/Games/Details',
+            data: { 'id': id }
         }).done(function (data) {
+            
             $('tbody').html('');
-            var template = $('#orderedgames').html();
+            var template = $('#detailsbody').html();
             $.each(data, function (i, val) {
                 var temp = template;
 
@@ -20,6 +20,7 @@ $(function () {
                 $('tbody').append(temp);
             });
         });
-
+       
     });
 });
+

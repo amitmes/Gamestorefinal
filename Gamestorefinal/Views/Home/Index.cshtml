@@ -1,7 +1,42 @@
-﻿@{
+﻿@model IEnumerable<GamesStore.Models.Games>
+
+@{
     ViewData["Title"] = "Home Page";
+
 }
 
-<div class="text-center">
-    
+<div class="w3-content w3-section" style="max-width:500px">
+    @foreach (var item in Model)
+    {
+        @if (item.Image != null)
+        {
+            string img = Convert.ToBase64String(item.Image);
+            <img class="mySlides" src="data:/image/jpg;base64,@img" style="width:100%"> // Convert bits to image
+        }
+    }
+
 </div>
+
+@section Scripts{
+    <script src="~/js/newestgames.js"></script>
+    <script>
+        var myIndex = 0;
+        carousel();
+
+        function carousel() {
+            var i;
+            var x = document.getElementsByClassName("mySlides");
+            for (i = 0; i < x.length; i++) {
+                x[i].style.display = "none";
+            }
+            myIndex++;
+            if (myIndex > x.length) { myIndex = 1 }
+            x[myIndex - 1].style.display = "block";
+            setTimeout(carousel, 2000); // Change image every 2 seconds
+        }
+    </script>
+
+
+}
+
+

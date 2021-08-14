@@ -1,7 +1,9 @@
-﻿using Gamestorefinal.Models;
+﻿using Gamestorefinal.Data;
+using Gamestorefinal.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -15,10 +17,14 @@ namespace Gamestorefinal.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        private readonly GamestorefinalContext _context;
+
+        public HomeController(ILogger<HomeController> logger, GamestorefinalContext context)
         {
             _logger = logger;
+            _context = context;
         }
+
        // [Authorize]
         public IActionResult Index()
         {
@@ -48,5 +54,18 @@ namespace Gamestorefinal.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        public async Task<IActionResult> NewestGames()
+        {
+            var variable = _context.Games.Where(a => a.Releasedate.Year >= 2020);
+
+            return Json(await variable.ToListAsync());
+        }
+
+
+
+
+
+
     }
 }

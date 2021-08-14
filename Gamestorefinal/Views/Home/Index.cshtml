@@ -4,18 +4,19 @@
     ViewData["Title"] = "Home Page";
 
 }
-
-<div class="w3-content w3-section" style="max-width:500px">
-    @foreach (var item in Model)
-    {
-        @if (item.Image != null)
+<body>
+    <div class="w3-content w3-section" style="max-width:500px">
+        @foreach (var item in Model)
         {
-            string img = Convert.ToBase64String(item.Image);
-            <img class="mySlides" src="data:/image/jpg;base64,@img" style="width:100%"> // Convert bits to image
-        }
-    }
+            @if (item.Image != null)
+            {
+                string img = Convert.ToBase64String(item.Image);
+                <img class="mySlides" src="data:/image/jpg;base64,@img" style="width:100%">// Convert bits to image
+            }
+        }s
 
-</div>
+    </div>
+</body>
 
 @section Scripts{
     <script src="~/js/newestgames.js"></script>

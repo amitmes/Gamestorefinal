@@ -7,28 +7,86 @@
 <link rel="stylesheet" href="~/css/home.css" />
 
 <body>
-    <div class="w3-content w3-section" style="max-width:500px">
-        @foreach (var item in ViewBag.Gameslist)
-        {
-            @if (item.Image != null)
+    @*<div class="w3-content w3-section" style="max-width:500px">
+            @foreach (var item in ViewBag.Gameslist)
             {
+                @if (item.Image != null)
+                {
 
 
-                string img = Convert.ToBase64String(item.Image);
-                <img class="mySlides" class="img-fluid" src="data:/image/jpg;base64,@img"  id="@item.Id" width="100%">// Convert bits to image
+                    string img = Convert.ToBase64String(item.Image);
+                    <img class="mySlides" class="img-fluid" src="data:/image/jpg;base64,@img"  id="@item.Id" width="100%">// Convert bits to image
+                }
+            }
+
+        </div>*@
+    <label class="newlabel">Newest Games</label>
+   <hr class="lines" />
+   
+   
+    <div class="slideshow-container">
+
+        @{ int count = 1;
+            foreach (var item in Model)
+            {
+                if (DateTime.Now.Year - item.Releasedate.Year < 3)
+                {
+                    string img = Convert.ToBase64String(item.Image);
+                    <div class="mySlides">
+                        <img class="newestgames" src="data:/image/jpg;base64,@img">
+                        <div class="text">@item.Name</div>
+                    </div>
+                    count++;
+                }
+
             }
         }
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
     </div>
-
+    <br />
+    <div style="text-align:center">
+        @for (int i = 1; i < count; i++)
+        {
+            <span class="dot" onclick="currentSlide(@i)"></span>
+        }
+    </div>
 
 
 
 </body>
 
 @section Scripts{
-
     <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides");
+            var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+    </script>
+    @*<script>
         var myIndex = 0;
         carousel();
 
@@ -43,7 +101,7 @@
             x[myIndex - 1].style.display = "block";
             setTimeout(carousel, 2000); // Change image every 2 seconds
         }
-    </script>
+    </script>*@
 
   
 

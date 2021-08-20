@@ -1,24 +1,25 @@
 ﻿$(function () {
-    $('img.mySlides').click(function (e) {
+    $('.a').click(function (e) {
+        $('#newlabel').hide();
         e.preventDefault();
-        var id = $(this).attr("id").valueOf();
-        
+        var id = $(this).attr("name").valueOf();
+        console.log(id);
         $.ajax({
             url: '/Games/Details',
-            data: { 'id': id }
+            data: { 'id': id}
         }).done(function (data) {
             
-            $('body').html('');
-        //    var template = $('#detailsbody').html();
-        //    $.each(data, function (i, val) {
-        //        var temp = template;
+            $('tbody').html('');
+            var template = $('#detailsbody').html();
+            $.each(data, function (i, val) {
+                var temp = template;
 
-        //        $.each(val, function (key, value) {
-        //            temp = temp.replaceAll('{' + key + '}', value);
-        //        });
-        //        $('tbody').append(temp);
-        //    });
-        //});
+                $.each(val, function (key, value) {
+                    temp = temp.replaceAll('{' + key + '}', value);
+                });
+                $('tbody').append(temp);
+            });
+        });
        
     });
 });

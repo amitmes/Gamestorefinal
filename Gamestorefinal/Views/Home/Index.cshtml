@@ -7,54 +7,47 @@
 <link rel="stylesheet" href="~/css/home.css" />
 
 <body>
-    @*<div class="w3-content w3-section" style="max-width:500px">
-            @foreach (var item in ViewBag.Gameslist)
-            {
-                @if (item.Image != null)
-                {
+    <table align="center">
+        <tbody>
+            <label id="newlabel" class="newlabel">Newest Games</label>
+            
+            <tr>
+                <td>
 
+                    <div class="slideshow-container">
 
-                    string img = Convert.ToBase64String(item.Image);
-                    <img class="mySlides" class="img-fluid" src="data:/image/jpg;base64,@img"  id="@item.Id" width="100%">// Convert bits to image
-                }
-            }
+                        @{ int count = 1;
+                            foreach (var item in Model)
+                            {
+                                if (DateTime.Now.Year - item.Releasedate.Year < 3)
+                                {
+                                    string img = Convert.ToBase64String(item.Image);
+                                    <div class="mySlides">
+                                        <a class="a1"  name="@item.Id" href="@Url.Action("Details", "Games", new { id = item.Id })">
+                                            <img class="newestgames" src="data:/image/jpg;base64,@img" onclick="">
+                                        </a>
+                                        <div class="text">@item.Name</div>
+                                    </div>
+                                    count++;
+                                }
 
-        </div>*@
-    <label class="newlabel">Newest Games</label>
-   <hr class="lines" />
-   
-   
-    <div class="slideshow-container">
+                            }
+                        }
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-        @{ int count = 1;
-            foreach (var item in Model)
-            {
-                if (DateTime.Now.Year - item.Releasedate.Year < 3)
-                {
-                    string img = Convert.ToBase64String(item.Image);
-                    <div class="mySlides">
-                        <img class="newestgames" src="data:/image/jpg;base64,@img">
-                        <div class="text">@item.Name</div>
                     </div>
-                    count++;
-                }
-
-            }
-        }
-        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-    </div>
-    <br />
-    <div style="text-align:center">
-        @for (int i = 1; i < count; i++)
-        {
-            <span class="dot" onclick="currentSlide(@i)"></span>
-        }
-    </div>
-
-
-
+                    <br />
+                    <div style="text-align:center">
+                        @for (int i = 1; i < count; i++)
+                        {
+                            <span class="dot" onclick="currentSlide(@i)"></span>
+                        }
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 @section Scripts{
@@ -86,24 +79,70 @@
             dots[slideIndex - 1].className += " active";
         }
     </script>
-    @*<script>
-        var myIndex = 0;
-        carousel();
+    <script src="~/js/gamedetailhome.js"></script>
+    <script type="text/html" id="detailsbody">
+        <tr>
+            <td>
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        Name:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {name}
+                    </dd>
+                    <dt class="col-sm-2">
+                        Description:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {description}
+                    </dd>
+                    <dt class="col-sm-2">
+                        System requiremnts:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {systemrequiremnts}
+                    </dd>
+                    <dt class="col-sm-2">
+                        Release date:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {releasedate}
+                    </dd>
+                    <dt class="col-sm-2">
+                        Price:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {price}
+                    </dd>
+                    <dt class="col-sm-2">
+                        Trailer:
+                    </dt>
+                    <dd class="col-sm-10">
+                        <iframe width="420" height="315"
+                                src="{trailer}">
+                        </iframe>
 
-        function carousel() {
-            var i;
-            var x = document.getElementsByClassName("mySlides"); document.get
-            for (i = 0; i < x.length; i++) {
-                x[i].style.display = "none";
-            }
-            myIndex++;
-            if (myIndex > x.length) { myIndex = 1 }
-            x[myIndex - 1].style.display = "block";
-            setTimeout(carousel, 2000); // Change image every 2 seconds
-        }
-    </script>*@
+                    </dd>
+                    <dt class="col-sm-2">
+                        Image:
+                    </dt>
+                    <dd class="col-sm-10">
+                        <img src="data:/image/jpg;base64,{image}" class="card-img-top" alt="...">
+                    </dd>
+                    <dt class="col-sm-2">
+                        On stock:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {onstock}
+                    </dd>
+                </dl>
 
-  
+            </td>
+        </tr>
+
+    </script>
+
+
 
 }
 

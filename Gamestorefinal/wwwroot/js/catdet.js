@@ -1,6 +1,4 @@
-﻿
-
-$(function () {
+﻿$(function () {
     $('button').click(function (e) {
         e.preventDefault();
         var Item = $(this).attr("name").valueOf();

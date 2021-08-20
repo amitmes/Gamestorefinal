@@ -1,12 +1,14 @@
 ﻿$(function () {
     $('button').click(function (e) {
-        $('#namesearch').hide();
+
+        $('form').attr("style","display:none");
+        
         e.preventDefault();
         var id = $(this).attr("name").valueOf();
         
         $.ajax({
             url: '/Games/Details',
-            data: { 'id': id }
+            data: { 'id': id}
         }).done(function (data) {
             
             $('tbody').html('');

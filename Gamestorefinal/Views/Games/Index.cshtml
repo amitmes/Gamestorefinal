@@ -15,16 +15,36 @@
     </p>
 }
 
+<div>
+    <form id="namesearch" asp-action="Search">
+        <input name="query" id="query" autocomplete="off" />
+        <input type="submit" id="submitname" />
+    </form>
+
+    <form id="filter" asp-action="Filter">
+        <h5 style="text-align:left">Category</h5>
+        @foreach (var cat in ViewBag.Category)
+        {
+            <input type="checkbox" value="@cat.Name" name="category" /> @cat.Name
+        }
+        <h5 style="text-align:left">Supplier</h5>
+        @foreach (var sup in ViewBag.Suppliers)
+        {
+            <input type="checkbox" value="@sup.Name" name="supplier" /> @sup.Name
+        }
+         <h5 style="text-align:left">Maximum price:</h5>
+        <input type="range" class="form-range" min="0" max="1000" step="1" value="0" oninput="priceval.value = this.value" name="price" /> <output id="priceval"></output>
+        <input type="submit" id="multifilter" value="search" />
+    </form>
+
+</div>
+<br />
 
 
-<form id="namesearch" asp-action="Search">
-    <input name="query" id="query" autocomplete="off" />
-    <input type="submit" id="submitname" />
-</form>
 
 <table class="table">
 
-    
+
 
     <tbody>
         @foreach (var item in Model)
@@ -71,7 +91,7 @@
 
                     <div class="card-body">
                         <h5 class="card-title">{name}</h5>
-                        @*<a asp-controller="Games" asp-action="Gametype" asp-route-id=@item.Id class="btn btn-primary">More games</a>*@
+
                         <a asp-controller="Games" asp-action="Details" asp-route-id={id} class="btn btn-primary">Game details</a>
                     </div>
                 </div>
@@ -91,65 +111,65 @@
     </script>
     <script src="~/js/gamedetail.js"></script>
     <script type="text/html" id="detailsbody">
-    <tr>
-        <td>
-            <dl class="row">
-                <dt class="col-sm-2">
-                    Name:
-                </dt>
-                <dd class="col-sm-10">
-                    {name}
-                </dd>
-                <dt class="col-sm-2">
-                    Description:
-                </dt>
-                <dd class="col-sm-10">
-                    {description}
-                </dd>
-                <dt class="col-sm-2">
-                    System requiremnts:
-                </dt>
-                <dd class="col-sm-10">
-                    {systemrequiremnts}
-                </dd>
-                <dt class="col-sm-2">
-                    Release date:
-                </dt>
-                <dd class="col-sm-10">
-                    {releasedate}
-                </dd>
-                <dt class="col-sm-2">
-                    Price:
-                </dt>
-                <dd class="col-sm-10">
-                    {price}
-                </dd>
-                <dt class="col-sm-2">
-                    Trailer:
-                </dt>
-                <dd class="col-sm-10">
-                    <iframe width="420" height="315"
-                            src="{trailer}">
-                    </iframe>
+        <tr>
+            <td>
+                <dl class="row">
+                    <dt class="col-sm-2">
+                        Name:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {name}
+                    </dd>
+                    <dt class="col-sm-2">
+                        Description:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {description}
+                    </dd>
+                    <dt class="col-sm-2">
+                        System requiremnts:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {systemrequiremnts}
+                    </dd>
+                    <dt class="col-sm-2">
+                        Release date:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {releasedate}
+                    </dd>
+                    <dt class="col-sm-2">
+                        Price:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {price}
+                    </dd>
+                    <dt class="col-sm-2">
+                        Trailer:
+                    </dt>
+                    <dd class="col-sm-10">
+                        <iframe width="420" height="315"
+                                src="{trailer}">
+                        </iframe>
 
-                </dd>
-                <dt class="col-sm-2">
-                    Image:
-                </dt>
-                <dd class="col-sm-10">
+                    </dd>
+                    <dt class="col-sm-2">
+                        Image:
+                    </dt>
+                    <dd class="col-sm-10">
                         <img src="data:/image/jpg;base64,{image}" class="card-img-top" alt="...">
-                </dd>
-                <dt class="col-sm-2">
-                    On stock:
-                </dt>
-                <dd class="col-sm-10">
-                    {onstock}
-                </dd>
-            </dl>
-            
-        </td>
-    </tr>
-    
+                    </dd>
+                    <dt class="col-sm-2">
+                        On stock:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {onstock}
+                    </dd>
+                </dl>
+
+            </td>
+        </tr>
+
     </script>
 }
 

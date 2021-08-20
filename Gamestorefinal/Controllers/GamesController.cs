@@ -23,6 +23,8 @@ namespace Gamestorefinal.Controllers
         // GET: Games
         public async Task<IActionResult> Index()
         {
+            ViewBag.Category = _context.Category;
+            ViewBag.Suppliers = _context.Supplier;
 
             var m2MwithSearchContext = _context.Games.Include(a => a.Category);
             return View(await m2MwithSearchContext.ToListAsync());
@@ -32,7 +34,58 @@ namespace Gamestorefinal.Controllers
 
             //  return View(await _context.Games.ToListAsync());
         }
+        public async Task<IActionResult> Gametype(string Item)
+        {
+            ViewBag.Category = _context.Category;
+            ViewBag.Suppliers = _context.Supplier;
+            var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(Item));
 
+            //var m2MwithSearchContext = _context.Category.Include(a => a.Games).Where(a => a.Name.Equals(Item)).Select(a => a.Games);
+            return View("Index",await m2MwithSearchContext.ToListAsync());
+        }
+        
+        public async Task<IActionResult> Filter(string[] category, string[] supplier,int price)
+        {
+            ViewBag.Category = _context.Category;
+            ViewBag.Suppliers = _context.Supplier;
+            List<Games> gameslist=new List<Games>();
+            foreach(var item in _context.Games.Include(a=>a.Category).Include(x=>x.Suppliers))
+            {
+                Boolean hascategory = true;
+                foreach(var cat in category)
+                {
+                    if (!(item.Category.Select(x => x.Name).Contains(cat)))
+                    {
+                        hascategory = false;
+                        break;
+                    }
+                }
+                if (hascategory == false)
+                {
+                    continue;
+                }
+                Boolean hassupplier = true;
+                foreach (var sup in supplier)
+                {
+                    if (!(item.Suppliers.Select(x => x.Name).Contains(sup)))
+                    {
+                        hassupplier = false;
+                        break;
+                    }
+                }
+                Boolean under = true;
+                if (item.Price > price)
+                {
+                    under = false;
+                }
+                if (hascategory && hassupplier&&under)
+                {
+                    gameslist.Add(item);
+                }
+            }
+           
+            return View("Index",gameslist);
+        }
 
         public async Task<IActionResult> Search(string query)
         {
@@ -41,12 +94,12 @@ namespace Gamestorefinal.Controllers
 
         }
         
-        public async Task<IActionResult> Gamesfilter(string matchingStr)
-        {
-            var x = _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(matchingStr));
-            var y = x;
-            return View("Index", await x.ToListAsync());
-        }
+        //public async Task<IActionResult> Gamesfilter(string matchingStr)
+        //{
+        //    var x = _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(matchingStr));
+        //    var y = x;
+        //    return View("Index", await x.ToListAsync());
+        //}
 
         // GET: Games/Details/5
         public async Task<IActionResult> Details(int? id)

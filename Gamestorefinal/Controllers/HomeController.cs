@@ -28,6 +28,7 @@ namespace Gamestorefinal.Controllers
        // [Authorize]
         public async Task<IActionResult> Index()
         {
+            ViewBag.Gameslist = _context.Games;
             return View(await _context.Games.ToListAsync());
         }
         [Authorize(Roles = "Admin")]

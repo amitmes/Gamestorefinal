@@ -48,50 +48,48 @@
             </tr>
         </tbody>
     </table>
-
-
-
-    <table align="center">
+    <label id="newlabel" class="newlabel">Less then 20$ Games</label>
+    <table>
         <tbody>
-            <label id="newlabel2" class="newlabel2">Less then 20$ Games</label>
+    <tr>
 
-            <tr>
-                <td>
+        <td>
 
-                    <div class="slideshow-container">
+            <div class="slideshow-container2">
 
-                        @{ int count2 = 1;
-                            foreach (var item in Model)
-                            {
-                                if (item.Price <= 100)
-                                {
-                                    string img = Convert.ToBase64String(item.Image);
-                                    <div class="mySlides2">
-                                        <a class="a1" name="@item.Id" href="@Url.Action("Details", "Games", new { id = item.Id })">
-                                            <img class="newestgames" src="data:/image/jpg;base64,@img" onclick="">
-                                        </a>
-                                        <div class="text">@item.Name</div>
-                                    </div>
-                                    count2++;
-                                }
-
-                            }
-                        }
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
-
-                    </div>
-                    <br />
-                    <div style="text-align:center">
-                        @for (int i = 1; i < count2; i++)
+                @{ int count2 = 1;
+                    foreach (var item in Model)
+                    {
+                        if (item.Price <= 100)
                         {
-                            <span class="dot" onclick="currentSlide(@i)"></span>
+                            string img = Convert.ToBase64String(item.Image);
+                            <div class="mySlides2">
+                                <a class="a1" name="@item.Id" href="@Url.Action("Details", "Games", new { id = item.Id })">
+                                    <img class="newestgames" src="data:/image/jpg;base64,@img" onclick="">
+                                </a>
+                                <div class="text">@item.Name</div>
+                            </div>
+                            count2++;
                         }
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+
+                    }
+                }
+                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+            </div>
+            <br />
+            <div style="text-align:center">
+                @for (int i = 1; i < count2; i++)
+                {
+                    <span class="dot2" onclick="currentSlide(@i)"></span>
+                }
+            </div>
+        </td>
+    </tr>
+    </tbody>
+   </table>
+
 </body>
 
 @section Scripts{
@@ -111,6 +109,34 @@
             var i;
             var slides = document.getElementsByClassName("mySlides");
             var dots = document.getElementsByClassName("dot");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+            for (i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+            for (i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            slides[slideIndex - 1].style.display = "block";
+            dots[slideIndex - 1].className += " active";
+        }
+    </script>
+    <script>
+        var slideIndex = 1;
+        showSlides(slideIndex);
+        // Next/previous controls
+        function plusSlides(n) {
+            showSlides(slideIndex += n);
+        }
+
+        // Thumbnail image controls
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+        function showSlides(n) {
+            var i;
+            var slides = document.getElementsByClassName("mySlides2");
+            var dots = document.getElementsByClassName("dot2");
             if (n > slides.length) { slideIndex = 1 }
             if (n < 1) { slideIndex = slides.length }
             for (i = 0; i < slides.length; i++) {

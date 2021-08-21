@@ -6,7 +6,7 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 /* Slideshow container */
-.slideshow-container {
+.slideshow-container, .slideshow-container2 {
     max-width: 500px;
     position: relative;
     margin: auto;
@@ -17,7 +17,7 @@ for details on configuring this project to bundle and minify static web assets. 
     display:flex;
 }
 
-.newlabel, .newlabel2 {
+.newlabel {
     font-family: 'Klee One', cursive;
     color: white;
     background-color: black;
@@ -65,6 +65,7 @@ for details on configuring this project to bundle and minify static web assets. 
     width: 100%;
     text-align: center;
 }
+
 .newestgames {
     width: 500px;
     height: 500px;
@@ -80,7 +81,7 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 /* The dots/bullets/indicators */
-.dot {
+.dot,.dot2 {
     cursor: pointer;
     height: 15px;
     width: 15px;

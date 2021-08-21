@@ -56,8 +56,8 @@ for details on configuring this project to bundle and minify static web assets. 
 
 /* Caption text */
 .text {
-    color: #fff;
-    background-color:black;
+    color: white;
+    background-color: black;
     font-size: 15px;
     padding: 8px 12px;
     position: absolute;

@@ -2,7 +2,7 @@
     $('a').click(function (e) {
         if ($(this).attr("class").valueOf().match("a1")) {
             $('.newlabel').hide();
-         
+            $('.car').hide();
         }
         
         e.preventDefault();

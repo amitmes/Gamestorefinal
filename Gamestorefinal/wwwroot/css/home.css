@@ -145,8 +145,8 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 .carousel {
-    height: 100%;
-    width: 100%;
+    height: 200px;
+    width: 200px;
     position: absolute;
     transform-style: preserve-3d;
     transition: transform 1s;
@@ -168,32 +168,37 @@ for details on configuring this project to bundle and minify static web assets. 
 
 .a {
     transform: rotateY(0deg) translateZ(250px);
-    background: #ed1c24;
+    background: none;
 }
 
 .b {
     transform: rotateY(60deg) translateZ(250px);
-    background: #0072bc;
+    background: none;
 }
 
 .c {
     transform: rotateY(120deg) translateZ(250px);
-    background: #39b54a;
+    background: none;
 }
 
 .d {
     transform: rotateY(180deg) translateZ(250px);
-    background: #f26522;
+    background: none;
 }
 
 .e {
     transform: rotateY(240deg) translateZ(250px);
-    background: #630460;
+    background: none;
 }
 
 .f {
     transform: rotateY(300deg) translateZ(250px);
-    background: #8c6239;
+    background: none;
+}
+
+.newestgames1{
+    height:200px;
+    width:200px;
 }
 
 .next_car, .prev_car {
@@ -201,8 +206,8 @@ for details on configuring this project to bundle and minify static web assets. 
     display: flex;
     justify-content: center;
     align-items: center;
-    width:50px;
-    display:inline-flex;
+    width: 50px;
+    display: inline-flex;
 }
 
     .next_car:hover, .prev_car:hover {

@@ -53,13 +53,25 @@
                <label id="newlabel2" class="newlabel">Less then 20$ Games</label>
                <br /> <br /> <br /> <br />
                <div class="container_car">
-                   <div class="carousel">
-                       <div class="item a">A</div>
-                       <div class="item b">B</div>
-                       <div class="item c">C</div>
-                       <div class="item d">D</div>
-                       <div class="item e">E</div>
-                       <div class="item f">F</div>
+
+                   <div class="carousel" >
+
+                       @{
+                           var listMin = Model.OrderBy(x => x.Onstock).Take(6).ToList();
+                           string img2 = Convert.ToBase64String(listMin[0].Image);
+                           <div class="item a" ><img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="" ></div>
+                           img2 = Convert.ToBase64String(listMin[1].Image);
+                           <div class="item b" ><img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="" ></div>
+                           img2 = Convert.ToBase64String(listMin[2].Image);
+                           <div class="item c" ><img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="" ></div>
+                           img2 = Convert.ToBase64String(listMin[3].Image);
+                           <div class="item d" ><img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="" ></div>
+                           img2 = Convert.ToBase64String(listMin[4].Image);
+                           <div class="item e" ><img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="" ></div>
+                           img2 = Convert.ToBase64String(listMin[5].Image);
+                           <div class="item f"><img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="" ></div>
+                       }
+        
                    </div>
                </div>
                <br /> <br />

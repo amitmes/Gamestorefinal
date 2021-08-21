@@ -89,30 +89,38 @@ for details on configuring this project to bundle and minify static web assets. 
         background-color: #717171;
     }
 
-/* Fading animation */
-/*.fade {
-  -webkit-animation-name: fade;
-  -webkit-animation-duration: 1.5s;
-  animation-name: fade;
-  animation-duration: 1.5s;
+.multi-item-carousel .carousel-inner > .item {
+    transition: 500ms ease-in-out left;
 }
 
-@-webkit-keyframes fade {
-    from {
-        opacity: .4
-    }
+.multi-item-carousel .carousel-inner .active.left {
+    left: -33%;
+}
 
-    to {
-        opacity: 1
+.multi-item-carousel .carousel-inner .active.right {
+    left: 33%;
+}
+
+.multi-item-carousel .carousel-inner .next {
+    left: 33%;
+}
+
+.multi-item-carousel .carousel-inner .prev {
+    left: -33%;
+}
+
+@media all and (transform-3d), (-webkit-transform-3d) {
+    .multi-item-carousel .carousel-inner > .item {
+        transition: 500ms ease-in-out left;
+        transition: 500ms ease-in-out all;
+        -webkit-backface-visibility: visible;
+        backface-visibility: visible;
+        transform: none !important;
     }
 }
 
-@keyframes fade {
-    from {
-        opacity: .4
-    }
+.multi-item-carousel .carouse-control.left,
+.multi-item-carousel .carouse-control.right {
+    background-image: none;
+}
 
-    to {
-        opacity: 1
-    }
-}*/

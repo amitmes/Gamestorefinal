@@ -13,38 +13,35 @@
         <a asp-action="Create">Create New</a>
     </p>
 }
-<form asp-action="Search">
-    <input name="query" id="query" autocomplete="off" />
-    <input type="submit" />
+<form asp-action="Search" >
+    <input name="query" id="query" autocomplete="off" placeholder="Search by name" />
+    <input class="btn btn-primary" type="submit" value="Search"/>
 </form>
 
 
-        <div class="row row-cols-4 row-cols-md-3 g-4">
-            @foreach (var item in Model)
-            {
-            <a class="btn btn-secondary categoryName col-3" name="@item.Name" asp-controller="Games" asp-action="Gametype" asp-route-Item="@item.Name" style="margin:20px;">
-                        
-                            <div class="card" style="background-color:transparent; padding:0px; border: transparent;">
-                                <div class="card-body">
-                                    <h3 class="card-title">@item.Name</h3>
-                                    
-                                </div>
-                            </div>
-                        
-            </a>
-                      
-                   
-                    @if (Context.User.IsInRole("Admin"))
-                    {
-                        
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit|</a>
-                            <a asp-action="Details" asp-route-id="@item.Id">Details|</a> 
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        
-                    }
-                
-            }
+<div class="row row-cols-4 row-cols-md-3 g-4">
+    @foreach (var item in Model)
+    {
+        <a class="btn btn-secondary categoryName col-3" name="@item.Name" asp-controller="Games" asp-action="Gametype" asp-route-Item="@item.Name" style="margin:20px;">
+
+            <div class="card" style="background-color:transparent; padding:0px; border: transparent;">
+                <div class="card-body">
+                    <h2 class="card-title">@item.Name</h2>
+
+                </div>
             </div>
+
+        </a>
+        @if (Context.User.IsInRole("Admin"))
+        {
+
+            <a asp-action="Edit" asp-route-id="@item.Id">Edit|</a>
+            <a asp-action="Details" asp-route-id="@item.Id">Details|</a>
+            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+
+        }
+    }
+</div>
 
 
 

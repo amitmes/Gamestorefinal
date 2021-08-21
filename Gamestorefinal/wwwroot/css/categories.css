@@ -14,7 +14,28 @@ for details on configuring this project to bundle and minify static web assets. 
     background-color:none;
 }
 
+
+@keyframes moveInLeft {
+    0% {
+        opacity: 0;
+        transform:translateX(-100px);
+    }
+
+    80% {
+        transform: translateX(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+}
+
 .title {
     font-family: 'Klee One', cursive;
     text-align:center;
+
+    animation-name: moveInLeft;
+    animation-duration: 1s;
+    animation-timing-function: ease-out;
 }

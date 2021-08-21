@@ -26,6 +26,7 @@ for details on configuring this project to bundle and minify static web assets. 
     height: 25px;
     text-align: center;
     text-underline-position: auto;
+    border-radius:20px;
 }
 /* Next & previous buttons */
 .prev, .next {
@@ -64,12 +65,13 @@ for details on configuring this project to bundle and minify static web assets. 
     bottom: 8px;
     width: 100%;
     text-align: center;
+    border-radius:0 0 10px 10px;
 }
 
 .newestgames {
     width: 500px;
     height: 500px;
-    
+    border-radius:20px;
 }
 
 
@@ -199,6 +201,7 @@ for details on configuring this project to bundle and minify static web assets. 
 .newestgames1{
     height:200px;
     width:200px;
+    border-radius:20px;
 }
 
 .next_car, .prev_car {

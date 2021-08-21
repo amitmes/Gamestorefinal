@@ -1,7 +1,8 @@
 ﻿$(function () {
     $('a').click(function (e) {
         if ($(this).attr("class").valueOf().match("a1")) {
-            $('#newlabel').hide();
+            $('.newlabel').hide();
+         
         }
         
         e.preventDefault();

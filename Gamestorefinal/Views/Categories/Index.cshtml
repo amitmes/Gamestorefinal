@@ -5,7 +5,8 @@
 }
 <link rel="stylesheet" href="~/css/categories.css" />
 
-<h1>Categories</h1>
+<div class="title"><h1>Categories</h1></div>
+
 @if (Context.User.IsInRole("Admin"))
 {
     <p>
@@ -21,9 +22,9 @@
         <div class="row row-cols-4 row-cols-md-3 g-4">
             @foreach (var item in Model)
             {
-            <a class="btn btn-secondary categoryName col-4" name="@item.Name" asp-controller="Games" asp-action="Gametype" asp-route-Item="@item.Name" style="margin:20px;">
+            <a class="btn btn-secondary categoryName col-3" name="@item.Name" asp-controller="Games" asp-action="Gametype" asp-route-Item="@item.Name" style="margin:20px;">
                         
-                            <div class="card" style="background-color:none; padding:0px;">
+                            <div class="card" style="background-color:transparent; padding:0px; border: transparent;">
                                 <div class="card-body">
                                     <h3 class="card-title">@item.Name</h3>
                                     

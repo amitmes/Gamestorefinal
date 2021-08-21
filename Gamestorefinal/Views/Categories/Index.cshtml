@@ -24,7 +24,7 @@
                     @foreach (var item in Model)
                     {
 
-                       
+
 
                     <div class="card col-3" style="background-color:transparent; padding:0px; border: transparent;">
                         <a class="btn btn-secondary categoryName " name="@item.Name" asp-controller="Games" asp-action="Gametype" asp-route-Item="@item.Name" style="margin:20px;">
@@ -43,8 +43,8 @@
                         </a>
                     </div>
 
-                      
-                      
+
+
 
                     }
 
@@ -54,8 +54,8 @@
     <script src="~/js/categoriessearch.js"></script>
 
     <script type="text/html" id="hidden-template">
-      
-        <a class="btn btn-secondary categoryName col-3" name="{name}" asp-controller="Games" asp-action="Gametype" asp-route-Item="{name}" style="margin:20px;">
+          
+        <a class="btn btn-secondary categoryName col-3"  name={name} asp-controller="Games" asp-action="Gametype" asp-route-Item={name} style="margin:20px;">
 
             <div class="card" style="background-color:transparent; padding:0px; border: transparent;">
                 <div class="card-body">
@@ -74,7 +74,6 @@
         </a>
 
 
-           
           
 </script>
     @*<script src="~/js/catdet.js"></script>*@

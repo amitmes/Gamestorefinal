@@ -10,7 +10,7 @@
     <table align="center">
         <tbody>
             <label id="newlabel" class="newlabel">Newest Games</label>
-            
+
             <tr>
                 <td>
 
@@ -23,7 +23,7 @@
                                 {
                                     string img = Convert.ToBase64String(item.Image);
                                     <div class="mySlides">
-                                        <a class="a1"  name="@item.Id" href="@Url.Action("Details", "Games", new { id = item.Id })">
+                                        <a class="a1" name="@item.Id" href="@Url.Action("Details", "Games", new { id = item.Id })">
                                             <img class="newestgames" src="data:/image/jpg;base64,@img" onclick="">
                                         </a>
                                         <div class="text">@item.Name</div>
@@ -40,6 +40,50 @@
                     <br />
                     <div style="text-align:center">
                         @for (int i = 1; i < count; i++)
+                        {
+                            <span class="dot" onclick="currentSlide(@i)"></span>
+                        }
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+    <table align="center">
+        <tbody>
+            <label id="newlabel2" class="newlabel2">Less then 20$ Games</label>
+
+            <tr>
+                <td>
+
+                    <div class="slideshow-container">
+
+                        @{ int count2 = 1;
+                            foreach (var item in Model)
+                            {
+                                if (item.Price <= 100)
+                                {
+                                    string img = Convert.ToBase64String(item.Image);
+                                    <div class="mySlides2">
+                                        <a class="a1" name="@item.Id" href="@Url.Action("Details", "Games", new { id = item.Id })">
+                                            <img class="newestgames" src="data:/image/jpg;base64,@img" onclick="">
+                                        </a>
+                                        <div class="text">@item.Name</div>
+                                    </div>
+                                    count2++;
+                                }
+
+                            }
+                        }
+                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+
+                    </div>
+                    <br />
+                    <div style="text-align:center">
+                        @for (int i = 1; i < count2; i++)
                         {
                             <span class="dot" onclick="currentSlide(@i)"></span>
                         }

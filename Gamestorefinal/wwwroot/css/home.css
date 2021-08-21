@@ -13,11 +13,11 @@ for details on configuring this project to bundle and minify static web assets. 
 }
 
 /* Hide the images by default */
-.mySlides {
-    display: none;
+.mySlides, .mySlides2 {
+    display:flex;
 }
 
-.newlabel {
+.newlabel, .newlabel2 {
     font-family: 'Klee One', cursive;
     color: white;
     background-color: black;

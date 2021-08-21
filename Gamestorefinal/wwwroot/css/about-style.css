@@ -1,0 +1,42 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+.about .body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    background-color: rgb(255, 255, 255);
+}
+
+.about .section {
+    padding: 40px;
+    text-align: center;
+    background-color: #474e5d;
+    color: white;
+}
+
+.about .column {
+    float: left;
+    width: 25%;
+    margin-bottom: 50px;
+    padding: 0 8px;
+}
+
+.about .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    margin: 8px;
+    margin-top: 20px;
+    border-radius: 10px;
+}
+
+@media screen and (max-width: 500px) {
+    .about .column {
+        width: 100%;
+        display: block;
+        border-radius: 10px;
+    }
+}
+
+
+.about .games-quote {
+    align-content: center;
+}

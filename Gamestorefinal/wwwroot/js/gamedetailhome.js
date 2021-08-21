@@ -1,9 +1,8 @@
 ﻿$(function () {
-    $('a').click(function (e) {
-        if ($(this).attr("class").valueOf().match("a1")) {
+    $('.a1').click(function (e) {
             $('.newlabel').hide();
             $('.car').hide();
-        }
+       
         
         e.preventDefault();
         var id = $(this).attr("name").valueOf();

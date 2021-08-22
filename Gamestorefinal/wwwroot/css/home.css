@@ -235,11 +235,12 @@ for details on configuring this project to bundle and minify static web assets. 
 .main-footer{
     background:#303036;
     color:white;
-    height:320px;
+    height:370px;
     position:relative;
     width:100%;
     left:0;
     right:0;
+    margin-top:100px;
 }
 
     .main-footer .footer-content{
@@ -295,6 +296,7 @@ for details on configuring this project to bundle and minify static web assets. 
         margin-bottom:10px;
         font-size:1.2em;
         transition:all .3s;
+        color: white;
     }
 
     .main-footer .footer-content .links ul a:hover{
@@ -305,7 +307,8 @@ for details on configuring this project to bundle and minify static web assets. 
 
         .main-footer .footer-content .contact-from .contact-input{
             background:#272727;
-            color:#bebdbd;
+            /*color:#bebdbd;*/
+            color:papayawhip;
             margin-bottom:10px;
             line-height:1.5rem;
             padding:.9rem 1.4rem;
@@ -315,24 +318,57 @@ for details on configuring this project to bundle and minify static web assets. 
             .main-footer .footer-content .contact-from .contact-input:focus{
                 background:#1a1a1a;
             }
+        .main-footer .footer-content .contact-from .contact-btn {
+            float: right;
+            font-size: 1.1em;
+            font-family: 'Klee One', cursive;
+        }
 
-    .main-footer .footer-bottom{
-        background: black;
-        color: white;
-        height: 50px;
-        width: 10%;
-        text-align: center;
-        position:fixed;
-        bottom: 0px;
-        left: 0px;
-        padding-top: 15px;
-        border: 1px solid red;
+        .main-footer .footer-bottom {
+            background: black;
+            color: white;
+            height: 50px;
+            width: 100%;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            padding-top: 15px;
+            border: 1px solid #006669;
+        }
+
+    .btn{
+        padding: .5rem 1rem;
+        background:#006669;
+        color:white;
+        border: 1px solid transparent;
+        border-radius: .25rem;
+        margin-bottom:5px;
     }
-
+    .btn:hover{
+        color:white !important;
+        background:#005255;
+    }
+.btn-big {
+    padding: .7rem 1.3rem;
+    line-height: 1.3rem;
+    margin-bottom: 5px;
+}
+.text-input {
+    padding: .7rem 1rem;
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    outline: none;
+    color: #444;
+    margin-bottom: 5px;
+}
 html, body{
     height: 100%;
     margin: 0px;
     padding: 0px;
+    min-height:500px;
 }
 
 

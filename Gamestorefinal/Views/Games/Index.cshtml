@@ -115,42 +115,63 @@
     <script type="text/html" id="detailsbody">
         <tr>
             <td>
-                <dl class="row">
-                    <div class="card grid">
-                        <div>
-                            <dd class="col-sm-10 gameTitle">
-                                {name}
-                            </dd>
-                            <dd class="col-sm-10 ">
-                                <img src="data:/image/jpg;base64,{image}" class="card-img-top" alt="..." style="width:80%; height:50%; border-radius: 20px;">
-                            </dd>
-                        </div>
-                        <div class="description">
-                            <dt class="col-sm-2">
-                                Description: {description}
-                            </dt>
-                        </div>
+
+                <div class="gameTitle">{name}</div>
+                <br />
+                <br />
+                <div class="d-flex" style="height:700px; ">
+
+
+                    <div class="col-5">
+                        <img src="data:/image/jpg;base64,{image}" class="card-img-top" alt="..." style="width:100%; height:90%; border-radius: 20px;"></img>
                     </div>
+                    <div class="col-7" style="background-color: darkgrey; border-radius: 20px; height: 90%;">
+                        <dt class="col-sm-2" style="padding-left:0;">
+                            Description:
+                        </dt> {description}
+                        <br />
+                        <div class="row">
+                            <dt class="col-sm-3">
+                                Release date:
+                            </dt>
+                            <dd class="col-sm-9">
+                                {releasedate}
+                            </dd>
+                        </div>
+
+                        <div class="row">
+                            <dt class="col-sm-3">
+                                On stock:
+                            </dt>
+                            <dd class="col-sm-9">
+                                {onstock}
+                            </dd>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <dt class="col-sm-3">
+                                Price:
+                            </dt>
+                            <dd class="col-sm-9">
+                                {price} $
+                            </dd>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row">
                     <dt class="col-sm-2">
                         System requiremnts:
                     </dt>
                     <dd class="col-sm-10">
                         {systemrequiremnts}
                     </dd>
-                    <dt class="col-sm-2">
-                        Release date:
-                    </dt>
-                    <dd class="col-sm-10">
-                        {releasedate}
-                    </dd>
-                    <div class="price">
-                        <dt class="col-sm-2">
-                            Price:
-                        </dt>
-                        <dd class="col-sm-10">
-                            {price}
-                        </dd>
-                    </div>
+                </div>
+
+
+
+                <div class="row">
                     <dt class="col-sm-2">
                         Trailer:
                     </dt>
@@ -160,15 +181,7 @@
                         </iframe>
 
                     </dd>
-
-
-                    <dt class="col-sm-2">
-                        On stock:
-                    </dt>
-                    <dd class="col-sm-10">
-                        {onstock}
-                    </dd>
-                </dl>
+                </div>
 
             </td>
         </tr>

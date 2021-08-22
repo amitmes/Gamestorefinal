@@ -12,16 +12,7 @@ for details on configuring this project to bundle and minify static web assets. 
     color: white;
 }
 
-.price {
-    margin-right:500px;
-    background-color:Highlight;
-    height: 100px;
-    width: 300px;
-    border-radius: 15px;
-
-}
 
 .description {
-    width: 50%;
-    float:right;
+    
 }

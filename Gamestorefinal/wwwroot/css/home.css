@@ -305,7 +305,8 @@ for details on configuring this project to bundle and minify static web assets. 
 
         .main-footer .footer-content .contact-from .contact-input{
             background:#272727;
-            color:#bebdbd;
+            /*color:#bebdbd;*/
+            color:papayawhip;
             margin-bottom:10px;
             line-height:1.5rem;
             padding:.9rem 1.4rem;
@@ -320,11 +321,12 @@ for details on configuring this project to bundle and minify static web assets. 
         background: black;
         color: white;
         height: 50px;
-        width: 10%;
+        width: 100%;
         text-align: center;
         position:fixed;
-        bottom: 0px;
-        left: 0px;
+        bottom: 0
+        ;
+        left: 0;
         padding-top: 15px;
         border: 1px solid red;
     }

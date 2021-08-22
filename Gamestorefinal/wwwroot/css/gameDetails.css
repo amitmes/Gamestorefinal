@@ -1,0 +1,27 @@
+﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
+
+
+
+.gameTitle {
+    text-align: center;
+    background-color: black;
+    width: 100%;
+    border-radius: 20px;
+    color: white;
+}
+
+.price {
+    margin-right:500px;
+    background-color:Highlight;
+    height: 100px;
+    width: 300px;
+    border-radius: 15px;
+
+}
+
+.description {
+    width: 50%;
+    float:right;
+}

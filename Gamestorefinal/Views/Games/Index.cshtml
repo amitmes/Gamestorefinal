@@ -24,18 +24,20 @@
     </form>
 
     <form id="filter" asp-action="Filter">
-        <h5 style="text-align:left">Category</h5>
-        @foreach (var cat in ViewBag.Category)
-        {
-            <input type="checkbox" value="@cat.Name" name="category" /> @cat.Name
-        }
+       
+            <h5 style="text-align:left">Category</h5>
+            @foreach (var cat in ViewBag.Category)
+            {
+                <input type="checkbox" value="@cat.Name" name="category" /> @cat.Name
+            }
+        
         <h5 style="text-align:left">Supplier</h5>
         @foreach (var sup in ViewBag.Suppliers)
         {
             <input type="checkbox" value="@sup.Name" name="supplier" /> @sup.Name
         }
         <h5 style="text-align:left">Maximum price:</h5>
-        <input type="range" class="form-range" min="0" max="1000" step="1" value="0" oninput="priceval.value = this.value" name="price" /> <output id="priceval"></output>
+        <input type="range" class="form-range" min="0" max="1000" step="1" value="1000" oninput="priceval.value = this.value" name="price" /> <output id="priceval"></output>
         <input type="submit" id="multifilter" value="search" />
     </form>
 
@@ -187,5 +189,7 @@
         </tr>
 
     </script>
+    
+ 
 }
 

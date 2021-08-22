@@ -229,3 +229,110 @@ for details on configuring this project to bundle and minify static web assets. 
 .prev_car {
     left: 5em;
 }
+
+
+/*Footer*/
+.main-footer{
+    background:#303036;
+    color:white;
+    height:320px;
+    position:relative;
+    width:100%;
+    left:0;
+    right:0;
+}
+
+    .main-footer .footer-content{
+        /*border: 1px solid red;*/
+        /* height: 100px;*/
+        display:flex;
+        margin-bottom:50px;
+        bottom:0px;
+    }
+
+    .main-footer .footer-content .footer-section{
+        flex:1;
+        padding:25px;
+        width:100%;
+    }
+
+    .main-footer .footer-content h1,
+    .main-footer .footer-content h2{
+        color:white;
+    }
+
+    .main-footer .footer-content .about h1 span{
+        color:#05f7ff;
+    }
+
+    .main-footer .footer-content .about .contact span{
+        display:block;
+        font-size:1.1em;
+        margin-bottom:8px;
+    }
+
+    .main-footer .footer-content .about .socials a{
+        border:1px solid gray;
+        width:45px;
+        height:41px;
+        padding-top:5px;
+        margin-right:5px;
+        text-align:center;
+        display:inline-block;
+        font-size:1.3em;
+        border-radius:5px;
+        transition:all .3s;
+    }
+
+    .main-footer .footer-content .about .socials a:hover{
+        border:1px solid white;
+        color:white;
+        transition:all .3s;
+    }
+
+    .main-footer .footer-content .links ul a{
+        display:block;
+        margin-bottom:10px;
+        font-size:1.2em;
+        transition:all .3s;
+    }
+
+    .main-footer .footer-content .links ul a:hover{
+        color:white;
+        margin-left:15px;
+        transition:all .3s;
+    }
+
+        .main-footer .footer-content .contact-from .contact-input{
+            background:#272727;
+            color:#bebdbd;
+            margin-bottom:10px;
+            line-height:1.5rem;
+            padding:.9rem 1.4rem;
+            border:none;
+        }
+
+            .main-footer .footer-content .contact-from .contact-input:focus{
+                background:#1a1a1a;
+            }
+
+    .main-footer .footer-bottom{
+        background: black;
+        color: white;
+        height: 50px;
+        width: 10%;
+        text-align: center;
+        position:fixed;
+        bottom: 0px;
+        left: 0px;
+        padding-top: 15px;
+        border: 1px solid red;
+    }
+
+html, body{
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+

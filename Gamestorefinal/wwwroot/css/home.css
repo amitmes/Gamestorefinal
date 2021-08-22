@@ -240,6 +240,7 @@ for details on configuring this project to bundle and minify static web assets. 
     width:100%;
     left:0;
     right:0;
+    margin-top:100px;
 }
 
     .main-footer .footer-content{
@@ -342,24 +343,27 @@ for details on configuring this project to bundle and minify static web assets. 
         color:white;
         border: 1px solid transparent;
         border-radius: .25rem;
+        margin-bottom:5px;
     }
     .btn:hover{
         color:white !important;
         background:#005255;
     }
-    .btn-big{
-        padding: .7rem 1.3rem;
-        line-height: 1.3rem;
-    }
-    .text-input{
-        padding: .7rem 1rem;
-        display: block;
-        width: 100%;
-        border-radius: 5px;
-        border: 1px solid #e0e0e0;
-        outline:none;
-        color: #444;
-    }
+.btn-big {
+    padding: .7rem 1.3rem;
+    line-height: 1.3rem;
+    margin-bottom: 5px;
+}
+.text-input {
+    padding: .7rem 1rem;
+    display: block;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #e0e0e0;
+    outline: none;
+    color: #444;
+    margin-bottom: 5px;
+}
 html, body{
     height: 100%;
     margin: 0px;

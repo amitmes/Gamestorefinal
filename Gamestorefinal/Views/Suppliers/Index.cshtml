@@ -3,75 +3,84 @@
 @{
     ViewData["Title"] = "Index";
 }
+<link rel="stylesheet" href="~/css/titleStyle.css" />
 
-<h1>Index</h1>
+
+<div class="supplierTitle"> <h1>Suppliers</h1></div>
 @if (Context.User.IsInRole("Admin"))
 {
     <p>
         <a asp-action="Create">Create New</a>
     </p>
 }
-    <form asp-action="Search">
-        Search by name <input name="query" id="query" autocomplete="off" />
-        <input type="submit" />
-    </form>
+<form asp-action="Search">
+    Search by name <input name="query" id="query" autocomplete="off" />
+    <input type="submit" value="Search" />
+</form>
+<br />
 
-    <table class="table">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
             <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Phone)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Email)
-                </th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Phone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                @if (Context.User.IsInRole("Admin"))
+                {
                     <td>
                         <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
                         <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
                         <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
                     </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+                }
+            </tr>
+        }
+    </tbody>
+</table>
 
-    @section Scripts{
-        <script src="~/js/suppliernamesearch.js"></script>
-        <script type="text/html" id="hidden-template">
-            <tr>
-                <td>
-                    {name}
-                </td>
-                <td>
-                    {phone}
-                </td>
-                <td>
-                    {email}
-                </td>
+@section Scripts{
+    <script src="~/js/suppliernamesearch.js"></script>
+    <script type="text/html" id="hidden-template">
+        <tr>
+            <td>
+                {name}
+            </td>
+            <td>
+                {phone}
+            </td>
+            <td>
+                {email}
+            </td>
+            @if (Context.User.IsInRole("Admin"))
+            {
                 <td>
                     <a href="/Suppliers/Edit/{id}">Edit</a>
                     <a href="/Suppliers/Details/{id}">Details</a>
                     <a href="/Suppliers/Delete/{id}">Delete</a>
                 </td>
-            </tr>
-        </script>
-    }
+            }
+        </tr>
+    </script>
+}

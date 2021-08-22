@@ -336,7 +336,7 @@ for details on configuring this project to bundle and minify static web assets. 
             padding-top: 15px;
             border: 1px solid #006669;
         }
-
+/*
     .btn{
         padding: .5rem 1rem;
         background:#006669;
@@ -344,7 +344,7 @@ for details on configuring this project to bundle and minify static web assets. 
         border: 1px solid transparent;
         border-radius: .25rem;
         margin-bottom:5px;
-    }
+    }*/
     .btn:hover{
         color:white !important;
         background:#005255;

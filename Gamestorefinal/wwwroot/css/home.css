@@ -235,7 +235,7 @@ for details on configuring this project to bundle and minify static web assets. 
 .main-footer{
     background:#303036;
     color:white;
-    height:320px;
+    height:370px;
     position:relative;
     width:100%;
     left:0;
@@ -317,8 +317,10 @@ for details on configuring this project to bundle and minify static web assets. 
             .main-footer .footer-content .contact-from .contact-input:focus{
                 background:#1a1a1a;
             }
-        .main-footer .footer-content .contact-from .contact-btn{
+        .main-footer .footer-content .contact-from .contact-btn {
             float: right;
+            font-size: 1.1em;
+            font-family: 'Klee One', cursive;
         }
 
         .main-footer .footer-bottom {
@@ -362,6 +364,7 @@ html, body{
     height: 100%;
     margin: 0px;
     padding: 0px;
+    min-height:500px;
 }
 
 

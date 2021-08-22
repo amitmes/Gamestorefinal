@@ -25,38 +25,36 @@
 
     <form id="filter" asp-action="Filter">
         <table>
-            <thead><tr>
-                    <th scope="col">Category</th>
-                    <th scope="col">Supplier</th>
-                    <th scope="col">Price</th>
-                </tr></thead>
-            <tbody>
-                <tr>
-                    <th scope="col"></th>
-                    @foreach (var cat in ViewBag.Category)
-                    {
-                        <td>
-                            <input type="checkbox" value="@cat.Name" name="category" /> @cat.Name
-                        </td>
-                    }
-                </tr>
-                <tr>
-                    <th scope="col"></th>
-                    @foreach (var sup in ViewBag.Suppliers)
-                    {
-                        <td>
-                            <input type="checkbox" value="@sup.Name" name="supplier" /> @sup.Name
-                        </td>
 
-                    }
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td>
+            <tbody>
+                <div class="d-flex">
+                    <div class="col-2">
+                        <div style="padding-left:0;"><h3>Category</h3></div><br />
+                        @foreach (var cat in ViewBag.Category)
+                        {
+                            <div class="row">
+                                <input type="checkbox" value="@cat.Name" name="category" /> @cat.Name
+                            </div>
+                        }
+                    </div>
+
+                    <div class="col-2">
+                        <div style="padding-left:0;"><h3>Supplier</h3></div><br />
+
+                        @foreach (var sup in ViewBag.Suppliers)
+                        {
+                            <div class="row">
+                                <input type="checkbox" value="@sup.Name" name="supplier" /> @sup.Name
+                            </div>
+                        }
+                    </div>
+                    <div class="col-2">
+                        <div style="padding-left:0;"><h3>Price</h3></div><br />
                         <input type="range" class="form-range" min="0" max="1000" step="1" value="1000" oninput="priceval.value = this.value" name="price" />
                         <output id="priceval"></output>
-                    </td>
-                </tr>
+                    </div>
+                </div>
+
             </tbody>
         </table>
             <input type="submit" id="multifilter" value="search" />

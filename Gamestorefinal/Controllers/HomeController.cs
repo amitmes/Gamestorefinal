@@ -42,7 +42,13 @@ namespace Gamestorefinal.Controllers
 
             return View();
         }
-        public IActionResult Graphs()
+        public JsonResult Datafromdb()
+        {
+    
+
+            return Json( _context.Games.ToList());
+        }
+        public async Task<IActionResult> Graphs()
         {
             //if(HttpContext.Session.GetString("Email") == null)
             //{

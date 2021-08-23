@@ -1,5 +1,21 @@
 ﻿
 
+$(function () {
+    $.ajax({
+        url: '/Home/Datafromdb'
+    }).done(function (data) {
+        $.each(data, function (i, val) {
+            $.each(val, function (key, value) {
+                if (key.valueOf().match("name")) {
+                    var name = value.valueOf();
+                }
+                if (key.valueOf().match("countofsell")) {
+                    var count = value.valueOf();
+                }
+            });
+        });
+    });
+});
 
 const data = [
     { name: 'John', score: 80 },
@@ -10,6 +26,7 @@ const data = [
     { name: 'Christina', score: 75 },
     { name: 'Michael', score: 86 },
 ];
+data.('gal', 10);
 
 const width = 900;
 const height = 450;

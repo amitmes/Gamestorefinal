@@ -1,4 +1,4 @@
-﻿
+﻿<!DOCTYPE html>
 @{
     ViewData["Title"] = "Graphs";
 }
@@ -6,3 +6,26 @@
 <link rel="stylesheet" href="~/css/home.css" />
 
 
+<html>
+<head>
+    <title>Graphs</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="~/css/graphs.css" />
+</head>
+
+<body class="graphs-ad">
+    <div class="graphs-section" style="text-align: center;" >
+        <h1>Statistic Graphs</h1>
+        <div id="d3-container"/>
+        <div class="names" name={name}></div>
+    </div>
+
+
+    
+</body>
+</html>
+
+@section Scripts{ 
+    <script src="~/js/graphs.js"></script>
+    <script src="~/js/gamedetail.js"></script>
+}

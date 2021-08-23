@@ -42,6 +42,15 @@ namespace Gamestorefinal.Controllers
 
             return View();
         }
+        public IActionResult Graphs()
+        {
+            //if(HttpContext.Session.GetString("Email") == null)
+            //{
+            //    return RedirectToAction("Login", "Clients");
+            //}
+
+            return View();
+        }
 
 
         public IActionResult About()

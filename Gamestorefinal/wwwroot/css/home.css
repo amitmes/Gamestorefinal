@@ -4,7 +4,13 @@ for details on configuring this project to bundle and minify static web assets. 
 * {
     box-sizing: border-box;
 }
-
+.gameTitle {
+    text-align: center;
+    background-color: black;
+    width: 100%;
+    border-radius: 20px;
+    color: white;
+}
 /* Slideshow container */
 .slideshow-container{
     max-width: 500px;

@@ -17,7 +17,7 @@ $(function () {
     });
 });
 
-const data = [
+let data = [
     { name: 'John', score: 80 },
     { name: 'Simon', score: 76 },
     { name: 'Samantha', score: 90 },
@@ -26,7 +26,7 @@ const data = [
     { name: 'Christina', score: 75 },
     { name: 'Michael', score: 86 },
 ];
-data.('gal', 10);
+data.push('gal', 10);
 
 const width = 900;
 const height = 450;

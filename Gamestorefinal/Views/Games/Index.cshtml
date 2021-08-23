@@ -20,19 +20,20 @@
 <div>
     <form id="namesearch" asp-action="Search">
         <input name="query" id="query" autocomplete="off" />
-        <input type="submit" id="submitname" />
+        <input type="submit" id="submitname" value="Search" />
     </form>
+    <br /><br />
 
     <form id="filter" asp-action="Filter">
         <table>
 
             <tbody>
-                <div class="d-flex">
+                <div class="d-flex" style="background-color: darkgrey; border-radius: 20px; height: 60%; width:70%;">
                     <div class="col-2">
                         <div style="padding-left:0;"><h3>Category</h3></div><br />
                         @foreach (var cat in ViewBag.Category)
                         {
-                            <div class="row">
+                            <div class="row" style="padding-left:15px;">
                                 <input type="checkbox" value="@cat.Name" name="category" /> @cat.Name
                             </div>
                         }
@@ -43,7 +44,7 @@
 
                         @foreach (var sup in ViewBag.Suppliers)
                         {
-                            <div class="row">
+                            <div class="row" style="padding-left:15px;">
                                 <input type="checkbox" value="@sup.Name" name="supplier" /> @sup.Name
                             </div>
                         }
@@ -53,11 +54,14 @@
                         <input type="range" class="form-range" min="0" max="1000" step="1" value="1000" oninput="priceval.value = this.value" name="price" />
                         <output id="priceval"></output>
                     </div>
+                    <div class="col-2" style="padding-top:180px;">
+                        <input type="submit" id="multifilter" value="Search" class="btn" style="padding-left:20px" />
+                    </div>
                 </div>
 
             </tbody>
         </table>
-            <input type="submit" id="multifilter" value="search" />
+            
         
     </form>
 

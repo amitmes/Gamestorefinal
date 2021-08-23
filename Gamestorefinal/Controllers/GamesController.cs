@@ -132,7 +132,7 @@ namespace Gamestorefinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Imagefile,Onstock")] Games games, int[] Category, int[] Suppliers)
+        public async Task<IActionResult> Create([Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Imagefile,Onstock,Countofsell")] Games games, int[] Category, int[] Suppliers)
         {
             
             games.Category = new List<Category>();
@@ -175,7 +175,7 @@ namespace Gamestorefinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Image,Onstock")] Games games)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Image,Onstock,Countofsell")] Games games)
         {
             if (id != games.Id)
             {

@@ -38,7 +38,8 @@ namespace GamesStore.Models
         [Required]
         [Display(Name = "On stock")]
         public int Onstock { get; set; }
-     
+        public int Countofsell { get; set; }
+
         public List<Supplier> Suppliers { get; set; }
     }
 }

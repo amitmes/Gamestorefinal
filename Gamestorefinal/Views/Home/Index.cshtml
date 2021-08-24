@@ -49,61 +49,62 @@
     </table>
 
     <br /> <br />
-    <div id="car" class="car">
-        <label id="newlabel2" class="newlabel">Last chance of buying</label>
-        <br /> <br /> <br /> <br />
-        <div class="container_car">
+           <div id="car" class="car">
+               <label id="newlabel2" class="newlabel">Last chance of buying</label>
+               <br /> <br /> <br /> <br />
+               <div class="container_car col text-center">
 
-            <div class="carousel">
+                   <div class="carousel">
 
-                @{
-                    var listMin = Model.OrderBy(x => x.Onstock).Take(6).ToList();
-                    string img2 = Convert.ToBase64String(listMin[0].Image);
-                    <div class="item a ">
-                        <a class="a1" name="@listMin[0].Id" href="@Url.Action("Details", "Games", new { id = listMin[0].Id })">
-                            <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
-                        </a>
-                    </div>
-                    img2 = Convert.ToBase64String(listMin[1].Image);
-                    <div class="item b">
-                        <a class="a1" name="@listMin[1].Id" href="@Url.Action("Details", "Games", new { id = listMin[1].Id })">
-                            <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
-                        </a>
-                    </div>
-                    img2 = Convert.ToBase64String(listMin[2].Image);
-                    <div class="item c">
-                        <a class="a1" name="@listMin[2].Id" href="@Url.Action("Details", "Games", new { id = listMin[2].Id })">
-                            <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
-                        </a>
-                    </div>
-                    img2 = Convert.ToBase64String(listMin[3].Image);
-                    <div class="item d">
-                        <a class="a1" name="@listMin[3].Id" href="@Url.Action("Details", "Games", new { id = listMin[3].Id })">
-                            <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
-                        </a>
-                    </div>
-                    img2 = Convert.ToBase64String(listMin[4].Image);
-                    <div class="item e">
-                        <a class="a1" name="@listMin[4].Id" href="@Url.Action("Details", "Games", new { id = listMin[4].Id  })">
-                            <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
-                        </a>
-                    </div>
-                    img2 = Convert.ToBase64String(listMin[5].Image);
-                    <div class="item f">
-                        <a class="a1" name="@listMin[5].Id" href="@Url.Action("Details", "Games", new { id = listMin[5].Id })">
-                            <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
-                        </a>
+                       @{
+                           var listMin = Model.OrderBy(x => x.Onstock).Take(6).ToList();
+                           string img2 = Convert.ToBase64String(listMin[0].Image);
+                           <div class="item a ">
+                               <a class="a1" name="@listMin[0].Id" href="@Url.Action("Details", "Games", new { id = listMin[0].Id })">
+                                   <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
+                               </a>
+                           </div>
+                           img2 = Convert.ToBase64String(listMin[1].Image);
+                           <div class="item b">
+                               <a class="a1" name="@listMin[1].Id" href="@Url.Action("Details", "Games", new { id = listMin[1].Id })">
+                                   <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
+                               </a>
+                           </div>
+                           img2 = Convert.ToBase64String(listMin[2].Image);
+                           <div class="item c">
+                               <a class="a1" name="@listMin[2].Id" href="@Url.Action("Details", "Games", new { id = listMin[2].Id })">
+                                   <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
+                               </a>
+                           </div>
+                           img2 = Convert.ToBase64String(listMin[3].Image);
+                           <div class="item d">
+                               <a class="a1" name="@listMin[3].Id" href="@Url.Action("Details", "Games", new { id = listMin[3].Id })">
+                                   <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
+                               </a>
+                           </div>
+                           img2 = Convert.ToBase64String(listMin[4].Image);
+                           <div class="item e">
+                               <a class="a1" name="@listMin[4].Id" href="@Url.Action("Details", "Games", new { id = listMin[4].Id  })">
+                                   <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
+                               </a>
+                           </div>
+                           img2 = Convert.ToBase64String(listMin[5].Image);
+                           <div class="item f">
+                               <a class="a1" name="@listMin[5].Id" href="@Url.Action("Details", "Games", new { id = listMin[5].Id })">
+                                   <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
+                               </a>
 
-                    </div>
-                }
+                           </div>
+                       }
 
-            </div>
-        </div>
-        <br /> <br />
-        <div class="btn btn-secondary prev_car">Prev</div>
-        <div class="btn btn-secondary next_car" align="right">Next</div>
-
-    </div>
+                   </div>
+               </div>
+               <br /> <br />
+               <div class="col text-center" style="margin:15px; ">
+                   <div class="btn btn-secondary prev_car">Prev</div>
+                   <div class="btn btn-secondary next_car" align="right">Next</div>
+               </div>
+           </div>
 
 </body>
 

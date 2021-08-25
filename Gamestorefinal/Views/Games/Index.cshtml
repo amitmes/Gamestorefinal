@@ -29,7 +29,7 @@
 
             <tbody>
                 <div class="d-flex" style="background-color: darkgrey; border-radius: 20px; height: 60%; width:70%;">
-                    <div class="col-2">
+                    <div class="col-3">
                         <div style="padding-left:0;"><h3>Category</h3></div><br />
                         @foreach (var cat in ViewBag.Category)
                         {
@@ -39,7 +39,7 @@
                         }
                     </div>
 
-                    <div class="col-2">
+                    <div class="col-3">
                         <div style="padding-left:0;"><h3>Supplier</h3></div><br />
 
                         @foreach (var sup in ViewBag.Suppliers)
@@ -49,13 +49,13 @@
                             </div>
                         }
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                         <div style="padding-left:0;"><h3>Price</h3></div><br />
                         <input type="range" class="form-range" min="0" max="1000" step="1" value="1000" oninput="priceval.value = this.value" name="price" />
                         <output id="priceval"></output>
                     </div>
-                    <div class="col-2" style="padding-top:180px;">
-                        <input type="submit" id="multifilter" value="Search" class="btn" style="padding-left:20px" />
+                    <div class="col-3" style="padding-top:180px;">
+                        <input type="submit" id="multifilter" value="Search" class="btn btn-primary" style="padding-left:20px" />
                     </div>
                 </div>
 

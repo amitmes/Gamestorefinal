@@ -27,5 +27,7 @@ namespace Gamestorefinal.Data
         public DbSet<GamesStore.Models.Supplier> Supplier { get; set; }
 
         public DbSet<GamesStore.Models.Wishlist> Wishlist { get; set; }
+
+        public DbSet<GamesStore.Models.Locations> Locations { get; set; }
     }
 }

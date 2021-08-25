@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@model GamesStore.Models.Locations
+<!DOCTYPE html>
 @{
     ViewData["Title"] = "About Page";
 }
@@ -29,20 +30,47 @@
 
 
         <div class="text-center" id="map" style="height:500px; width:700px;"></div>
-
-        <div class="container">
-            <form id="input">
-                <input type="text" id="city" placeholder="Enter City Name">
-                <input type="submit" value="Get Updates">
-            </form>
-            <div id="weatherContainer">
-                <marquee id="cityName">Patna</marquee>
-                <span id="temp">33°C</span>
-                <span id="main">Cloudy</span>
-                <marquee id="discription">few clouds</marquee>
-                <img id="image" src="https://openweathermap.org/img/wn/02n@2x.png">
+        <div>
+            <div class="row">
+                <div class="col-md-4">
+                    <form asp-action="Create" asp-controller="Locations">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Adress_name" class="control-label"></label>
+                            <input asp-for="Adress_name" class="form-control" />
+                            <span asp-validation-for="Adress_name" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Cor_x" class="control-label"></label>
+                            <input asp-for="Cor_x" class="form-control" />
+                            <span asp-validation-for="Cor_x" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Cor_y" class="control-label"></label>
+                            <input asp-for="Cor_y" class="form-control" />
+                            <span asp-validation-for="Cor_y" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
+
+        @*<div class="container">
+                <form id="input">
+                    <input type="text" id="city" placeholder="Enter City Name">
+                    <input type="submit" value="Get Updates">
+                </form>
+                <div id="weatherContainer">
+                    <marquee id="cityName">Patna</marquee>
+                    <span id="temp">33°C</span>
+                    <span id="main">Cloudy</span>
+                    <marquee id="discription">few clouds</marquee>
+                    <img id="image" src="https://openweathermap.org/img/wn/02n@2x.png">
+                </div>
+            </div>*@
 
     </div>
 

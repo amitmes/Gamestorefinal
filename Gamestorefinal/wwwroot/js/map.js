@@ -15,9 +15,10 @@ loadScript('https://maps.googleapis.com/maps/api/js?v=3&callback=initialize',
 function initialize() {
 
     var locations = [
-        ['Yagur 16, Tel Aviv-Yafo', 31.96989270779013, 34.77276574513613, 2],
-        ['Sheerit Yisra el St, Tel Aviv-Yafo ', 32.051947662729695, 34.76166756047575, 2],
-        ['Olei Zion St, Tel Aviv-Yafo ', 32.053351260681985, 34.756746703918, 2]
+
+        //['Yagur 16, Tel Aviv-Yafo', 31.96989270779013, 34.77276574513613, 2],
+        //['Sheerit Yisra el St, Tel Aviv-Yafo ', 32.051947662729695, 34.76166756047575, 2],
+        //['Olei Zion St, Tel Aviv-Yafo ', 32.053351260681985, 34.756746703918, 2]
     ];
 
     var map = new google.maps.Map(document.getElementById('map'),

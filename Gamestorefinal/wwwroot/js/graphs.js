@@ -1,6 +1,6 @@
 ﻿
-var data = [{ name: 'John', score: 80 }];
-
+var data = [{ name: 'Games', score: 0 }];
+var nam, count;
 
 
 $.ajax({
@@ -9,14 +9,14 @@ $.ajax({
     $.each(data1, function (i, val) {
         $.each(val, function (key, value) {
             if (key.valueOf().match("name")) {
-                var nam = value.valueOf();
+                nam = value.valueOf();
             }
             if (key.valueOf().match("countofsell")) {
-                var count = value.valueOf();
+                count = value.valueOf();
+                
             }
-            data.unshift({ name: nam, score: count });
-
         });
+        data.unshift({ name: nam, score: count });
     });
     var margin = { top: 20, right: 20, bottom: 30, left: 40 },
         width = 960 - margin.left - margin.right,

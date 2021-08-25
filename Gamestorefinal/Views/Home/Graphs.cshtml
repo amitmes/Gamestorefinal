@@ -17,31 +17,37 @@
     <div class="rect-graphs" style="text-align: center;">
         <h1>Statistic Graphs</h1>
         <div id="d3-container" />
-        <div class="names"></div>
+        <div class="graph1"></div>
+    </div>
+    <div class="rect-graphs" style="text-align: center;">
+        <h1>Statistic Graphs</h1>
+        <div id="d3-container" />
+        <div class="graph2"></div>
     </div>
 
     @*<div class="pie-graphs" style="text-align: center;">
-        <h1>Amount of games per Category</h1>
+            <h1>Amount of games per Category</h1>
 
-        <div id="piechart"></div>
-
-
+            <div id="piechart"></div>
 
 
-    </div>*@
 
-    
+
+        </div>*@
+
+
 
 </body>
 </html>
 
 @section Scripts{
     <script src="~/js/graphs.js"></script>
+    <script src="~/js/graphs2.js"></script>
 
 
-    @*<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-    <script type="text/javascript">
+    @*<script type="text/javascript">
         // Load google charts
         google.charts.load('current', { 'packages': ['corechart'] });
         google.charts.setOnLoadCallback(drawChart);

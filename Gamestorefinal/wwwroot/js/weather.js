@@ -37,4 +37,4 @@ weatherUpdate = (city) => {
     };
 };
 
-weatherUpdate("patna");
+weatherUpdate("Tel Aviv");

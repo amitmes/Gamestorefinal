@@ -31,7 +31,7 @@ for details on configuring this project to bundle and minify static web assets. 
     }
 }
 
-.categoryTitle, .loginTitle, .registerTitle, .supplierTitle {
+.categoryTitle, .loginTitle, .registerTitle, .supplierTitle, .graphTitle {
     font-family: 'Klee One', cursive;
     text-align: center;
     animation-name: moveInLeft;

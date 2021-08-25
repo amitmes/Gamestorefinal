@@ -7,6 +7,8 @@
     <title>@ViewData["Title"] - Gamestorefinal</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/home.css" />
+    <link rel="stylesheet" href="~/css/weather.css" />
+
 
 
 
@@ -36,9 +38,9 @@
                                 </button>
                                 <div class="dropdown-menu btn">
                                     @*@foreach (var item in Model)
-                    {
-                    <a class="dropdown-item" href="">@item.Name</a>
-                    }*@
+                                        {
+                                        <a class="dropdown-item" href="">@item.Name</a>
+                                        }*@
                                 </div>
                             </div>
                         </li>
@@ -47,11 +49,11 @@
                         </li>
 
                         @if (Context.User.IsInRole("Admin"))
-                         {
+                        {
                             <li class="nav-item">
                                 <a class="nav-link btn text-white btn" asp-area="" asp-controller="Home" asp-action="Graphs">Graphs</a>
                             </li>
-                         }
+                        }
 
                         @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
                         {
@@ -130,17 +132,31 @@
                 </form>
             </div>
 
+            <div class="container-weather footer-section">
+                <form id="input">
+                    <input type="text" id="city" placeholder="Enter City Name">
+                    <input type="submit" value="Get Updates">
+                </form>
+                <div id="weatherContainer" style="margin-left:438px; margin-top:20px;">
+                    <marquee id="cityName">Patna</marquee>
+                    <span id="temp">33°C</span>
+                    
+                    <marquee id="discription">few clouds</marquee>
+                </div>
+            </div>
+
         </div>
 
         <div class="footer-bottom">
             &copy; 2021-Gamestorefinal-<a class="text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-            
+
 
         </div>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/weather.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

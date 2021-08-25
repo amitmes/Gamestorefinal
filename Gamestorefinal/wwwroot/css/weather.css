@@ -29,11 +29,13 @@ input[type="submit"] {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background: rgb(158, 236, 158);
+/*    background: rgb(158, 236, 158);
+*/
+    background-image: url(/css/Pictures/weather.png);
     padding: 20px;
     border-radius: 15px;
     height: 150px;
-    width: 300px;
+    width: 250px;
     box-shadow: 0 0 20px 2px #5e5d5da9;
 }
 
@@ -45,6 +47,7 @@ input[type="submit"] {
     width: 290px;
     white-space: nowrap;
     overflow-x: scroll;
+    color: black;
 }
 
 #image {
@@ -63,14 +66,9 @@ input[type="submit"] {
     bottom: 20px;
     left: 10px;
     font-size: 5em;
+    color:black;
 }
 
-#main {
-    position: absolute;
-    bottom: 40px;
-    right: 10px;
-    font-size: 2em;
-}
 
 #discription {
     position: absolute;
@@ -79,4 +77,5 @@ input[type="submit"] {
     font-size: 1.1em;
     background: rgba(216, 250, 239, 0.555);
     border-radius: 0 0 10px 10px;
+    color:black;
 }

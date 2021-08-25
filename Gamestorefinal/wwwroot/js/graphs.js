@@ -1,7 +1,7 @@
 ﻿
-var data = [{ name: 'Games', score: 0 }];
+var data = [];
 var nam, count;
-
+var x = 1;
 
 $.ajax({
     url: '/Home/Datafromdb'

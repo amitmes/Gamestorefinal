@@ -8,6 +8,7 @@
 <head>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/about-style.css" />
+    <link rel="stylesheet" href="~/css/weather.css" />
 
 
 </head>
@@ -29,6 +30,20 @@
 
         <div class="text-center" id="map" style="height:500px; width:700px;"></div>
 
+        <div class="container">
+            <form id="input">
+                <input type="text" id="city" placeholder="Enter City Name">
+                <input type="submit" value="Get Updates">
+            </form>
+            <div id="weatherContainer">
+                <marquee id="cityName">Patna</marquee>
+                <span id="temp">33°C</span>
+                <span id="main">Cloudy</span>
+                <marquee id="discription">few clouds</marquee>
+                <img id="image" src="https://openweathermap.org/img/wn/02n@2x.png">
+            </div>
+        </div>
+
     </div>
 
 
@@ -39,4 +54,7 @@
 
 
 @section Scripts{
-    <script src="~/js/map.js"></script>}
+    <script src="~/js/map.js"></script>
+    <script src="~/js/weather.js"></script>
+}
+

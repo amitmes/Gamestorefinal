@@ -6,4 +6,6 @@ for details on configuring this project to bundle and minify static web assets. 
 .rectangle:hover {
     opacity: 0.66;
 }
-
+.bar {
+    fill: steelblue;
+}

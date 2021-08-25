@@ -6,7 +6,7 @@
     script.src = src;
 }
 
-loadScript('http://maps.googleapis.com/maps/api/js?v=3&callback=initialize',
+loadScript('https://maps.googleapis.com/maps/api/js?v=3&callback=initialize',
     function () {
         console.log('google-loader has been loaded, but not the maps-API ');
     });
@@ -16,17 +16,18 @@ function initialize() {
 
     var locations = [
         ['OUR INDIA ADDRESS', 31.96989270779013, 34.77276574513613, 2],
-        //['OUR INDIA ADDRESS 2', 12.976868, 80.209891, 2]
+        ['OUR INDIA ADDRESS 2', 32.051947662729695, 34.76166756047575, 2],
+        ['OUR INDIA ADDRESS 2', 32.053351260681985, 34.756746703918, 2]
     ];
 
     var map = new google.maps.Map(document.getElementById('map'),
         {
             zoom: 13,
-            scrollwheel: false,
+            scrollwheel: true,
             navigationControl: true,
-            mapTypeControl: false,
-            scaleControl: false,
-            draggable: false,
+            mapTypeControl: true,
+            scaleControl: true,
+            draggable: true,
             styles: [{
                 "stylers": [{
                     "hue": "#ff6501"
@@ -36,7 +37,7 @@ function initialize() {
                     gamma: 1
                 }]
             }],
-            center: new google.maps.LatLng(12.996868, 80.209891),
+            center: new google.maps.LatLng(31.96989270779013, 34.77276574513613,),
             mapTypeId: google.maps.MapTypeId.ROADMAP
         });
 

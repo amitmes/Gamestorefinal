@@ -25,6 +25,13 @@ namespace Gamestorefinal.Controllers
             return View(await _context.Locations.ToListAsync());
         }
 
+
+        public JsonResult Locationsfromdb()
+        {
+
+
+            return Json(_context.Locations.ToList());
+        }
         // GET: Locations/Details/5
         public async Task<IActionResult> Details(int? id)
         {

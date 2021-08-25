@@ -48,6 +48,8 @@ namespace Gamestorefinal.Controllers
 
             return Json( _context.Games.ToList());
         }
+
+       
         public async Task<IActionResult> Graphs()
         {
             //if(HttpContext.Session.GetString("Email") == null)

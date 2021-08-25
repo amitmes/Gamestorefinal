@@ -36,9 +36,9 @@
                                 </button>
                                 <div class="dropdown-menu btn">
                                     @*@foreach (var item in Model)
-                                        {
-                                        <a class="dropdown-item" href="">@item.Name</a>
-                                        }*@
+                    {
+                    <a class="dropdown-item" href="">@item.Name</a>
+                    }*@
                                 </div>
                             </div>
                         </li>
@@ -46,9 +46,12 @@
                             <a class="nav-link btn text-white btn" asp-area="" asp-controller="Home" asp-action="Cart">Cart</a>
                         </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link btn text-white btn" asp-area="" asp-controller="Home" asp-action="Graphs">Graphs</a>
-                        </li>
+                        @if (Context.User.IsInRole("Admin"))
+                         {
+                            <li class="nav-item">
+                                <a class="nav-link btn text-white btn" asp-area="" asp-controller="Home" asp-action="Graphs">Graphs</a>
+                            </li>
+                         }
 
                         @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
                         {
@@ -112,7 +115,7 @@
                     <a class="text-white" asp-controller="Home" asp-action="Team"><li>Team</li></a>
                     <a href="#"><li>Mentores</li></a>
                     <a href="#"><li>Gallery</li></a>
-                    <a href="#"><li>Terms and Conditions</li></a>
+                    <a class="text-white" asp-controller="Home" asp-action="TermsAndConditions"><li>Terms and Conditions</li></a>
                 </ul>
             </div>
             <div class="footer-section contact-from ">

@@ -52,3 +52,7 @@ for details on configuring this project to bundle and minify static web assets. 
    width:840px;
    height:743px;
 }
+.termsandconditions-section .termsandconditions-info {
+
+     font-size: larger;
+}

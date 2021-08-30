@@ -15,7 +15,7 @@
 
 
 </head>
-<body>
+<body class="body">
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light border-bottom box-shadow mb-3" style="background-color: black;">
             <div class="container">
@@ -39,15 +39,15 @@
                                 </button>
                                 <div class="dropdown-menu btn">
                                     @*@foreach (var item in Model)
-                                        {
-                                        <a class="dropdown-item" href="">@item.Name</a>
-                                        }*@
+                    {
+                    <a class="dropdown-item" href="">@item.Name</a>
+                    }*@
 
                                     @*@foreach (var cat in ViewBag.Category)
-                                    {
-                                        <a class="dropdown-item" href="@cat.Name"></a>
+                    {
+                        <a class="dropdown-item" href="@cat.Name"></a>
 
-                                    }*@
+                    }*@
 
                                 </div>
                             </div>
@@ -100,10 +100,10 @@
 
             <div class="footer-section about">
                 <h1 class="logo-text"><span>Our</span>web</h1>
-                <p>infotmation on our website</p>
+                <p>information on our website</p>
                 <div class="contact">
                     <span><i class="fas fa-phone"></i>&nbsp;050-456-345</span>
-                    <span><i class="fas fa-envelope"></i>&nbsp;info@gmail.com</span>
+                    <span><i class="fas fa-envelope"></i>&nbsp;GameStoreMGSK@gmail.com</span>
                 </div>
 
                 <div class="socials">
@@ -159,6 +159,11 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/weather.js"></script>
+
+
+
+
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

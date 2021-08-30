@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GamesStore.Models;
 using Gamestorefinal.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gamestorefinal.Controllers
 {
@@ -20,6 +21,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: Locations
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Locations.ToListAsync());
@@ -51,6 +53,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: Locations/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             return View();
@@ -73,6 +76,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: Locations/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -124,6 +128,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: Locations/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

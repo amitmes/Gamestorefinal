@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using GamesStore.Models;
 using Gamestorefinal.Data;
 using System.IO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gamestorefinal.Controllers
 {
@@ -119,6 +120,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: Games/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["Category"] = new MultiSelectList(_context.Category, nameof(Category.Id), nameof(Category.Name));

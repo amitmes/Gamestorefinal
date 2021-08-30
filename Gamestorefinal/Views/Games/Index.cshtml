@@ -19,8 +19,8 @@
 
 <div>
     <form id="namesearch" asp-action="Search">
-        <input name="query" id="query" autocomplete="off" />
-        <input type="submit" id="submitname" value="Search" />
+        <input name="query" id="query" autocomplete="off" placeholder="Search by name" />
+        <input class="btn btn-primary" type="submit" id="submitname" value="Search" />
     </form>
     <br /><br />
 
@@ -79,7 +79,7 @@
             @if (item.Image != null)
             {
                 string img = Convert.ToBase64String(item.Image);
-                <img src="data:/image/jpg;base64,@img" class="card-img-top" alt="...">
+                <img src="data:/image/jpg;base64,@img" class="card-img-top" alt="..." style="height: 300px;">
             }
         </div>
         <div class="ticket-container">

@@ -57,7 +57,7 @@ namespace Gamestorefinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ClientId,Creditcard,Totalprice,DateTime,City,Street,Buildingnumber,Apartmentnumber,Zipcode,Comment")] OrderClient orderClient)
+        public async Task<IActionResult> Create([Bind("Id,ClientId,Creditcard,Totalprice,DateTime,City,Street,Buildingnumber,Apartmentnumber,Zipcode,Comment,Status")] OrderClient orderClient)
         {
             if (ModelState.IsValid)
             {
@@ -91,7 +91,7 @@ namespace Gamestorefinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,ClientId,Creditcard,Totalprice,DateTime,City,Street,Buildingnumber,Apartmentnumber,Zipcode,Comment")] OrderClient orderClient)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,ClientId,Creditcard,Totalprice,DateTime,City,Street,Buildingnumber,Apartmentnumber,Zipcode,Comment,Status")] OrderClient orderClient)
         {
             if (id != orderClient.Id)
             {

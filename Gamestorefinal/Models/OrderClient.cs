@@ -51,7 +51,7 @@ namespace GamesStore.Models
         [DataType(DataType.Text)]
         public String Comment { get; set; }
 
-
+        public bool Status { get; set; }
 
     }
 }

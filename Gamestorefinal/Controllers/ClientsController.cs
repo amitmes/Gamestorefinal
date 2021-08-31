@@ -40,7 +40,14 @@ namespace Gamestorefinal.Controllers
             return View(await _context.Client.ToListAsync());
         }
 
-
+        public void Addtocart(string email, int gameid)
+        {
+             OrderClient o=(OrderClient)_context.Client.Where(a => a.Email.Equals(email)).Select(a => a.OrderClient.TakeLast(1));
+            if (o.Status == false)
+            {
+                (OrderClient)(_context.Client.Where(a => a.Email.Equals(email)).Select(a => a.OrderClient.TakeLast(1)));
+            }
+        }
         // GET: Clients/Login
         public IActionResult Login()
         {

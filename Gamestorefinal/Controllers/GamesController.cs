@@ -9,6 +9,8 @@ using GamesStore.Models;
 using Gamestorefinal.Data;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
+using GamesStore.Models;
+using GamesStore.Tweeter;
 
 namespace Gamestorefinal.Controllers
 {
@@ -153,6 +155,12 @@ namespace Gamestorefinal.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+
+
+            GamesStore.Tweeter.Twitter twitter = new Twitter(Twitter.APIkeycon, Twitter.APIsecretKeycon, Twitter.AccessToken,
+                        Twitter.AccessTokenSecret);
+            twitter.TweetText("Check out our new book!! -> " + book.BookName, string.Empty);
+
             return View(games);
         }
 

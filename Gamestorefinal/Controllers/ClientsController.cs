@@ -42,11 +42,30 @@ namespace Gamestorefinal.Controllers
 
         public void Addtocart(string email, int gameid)
         {
-             OrderClient o=(OrderClient)_context.Client.Where(a => a.Email.Equals(email)).Select(a => a.OrderClient.TakeLast(1));
-            if (o.Status == false)
+            var o = _context.Client.Where(a => a.Email.Equals(email));
+            List<Client> l = o.ToList<Client>();
+            List<OrderClient>oc=l.ElementAt(0).OrderClient;
+            if (oc.Count() == 0)
             {
-                (OrderClient)(_context.Client.Where(a => a.Email.Equals(email)).Select(a => a.OrderClient.TakeLast(1)));
+                OrderClient noc = new OrderClient();
+                noc.Comment = "blabla";
+                _context.Client.Where(a => a.Email.Equals(email)).ToList<Client>().ElementAt(0).OrderClient.Add(noc);
+                //l.ElementAt(0).OrderClient.Add(noc);
+                //_context.Client.Where(a => a.Email.Equals(email)).Include(x => x.OrderClient.Add(oc));
             }
+           
+            //Games g = (Games)_context.Games.Where(g => g.Id.Equals(gameid));
+            //Order newOrder = new Order();
+            //newOrder.Game = g;
+            //newOrder.Quantity = 1;
+            //if ((OrderClient)o.Status == false)
+            //{
+            //    o.Games.Add(newOrder);
+            //}
+            //else
+            //{
+            //    OrderClient neworderclient = new OrderClient();
+            //}
         }
         // GET: Clients/Login
         public IActionResult Login()

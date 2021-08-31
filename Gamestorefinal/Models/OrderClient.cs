@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,7 +16,9 @@ namespace GamesStore.Models
         [Required]
         public Client Client { get; set; }
         [Required]
-        public List<Order> Games { get; set; }
+        public List<Games> Games { get; set; }
+        [NotMapped]
+        public List<int> countofgames { get; set; }
 
         [DataType(DataType.CreditCard)]
         [Required]

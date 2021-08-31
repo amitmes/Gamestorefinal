@@ -63,6 +63,8 @@
                             </li>
                         }
 
+
+                    <aside style="margin-left:68%;">
                         @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
                         {
                             <li class="nav-item">
@@ -75,7 +77,7 @@
                                 <a class="nav-link text-white btn" asp-area="" asp-controller="Clients" asp-action="Login">Login</a>
                             </li>
                         }
-
+                    </aside>
 
                     </ul>
                 </div>
@@ -99,7 +101,7 @@
         <div class="footer-content col-12">
 
             <div class="footer-section about">
-                <h1 class="logo-text"><span>Our</span>web</h1>
+                <h1 class="logo-text" style="text-shadow: #474747 3px 5px 2px;"><span>Our</span>web</h1>
                 <p>Information on our website</p>
                 <div class="contact">
                     <span><i class="fas fa-phone"></i>&nbsp;050-456-345</span>
@@ -115,7 +117,7 @@
             </div>
 
             <div class="footer-section links ">
-                <h2> Quick links </h2>
+                <h2 style="text-shadow: #474747 3px 5px 2px;"> Quick links </h2>
                 <br />
                 <ul>
                     <a class="text-white" asp-controller="Home" asp-action="About"><li>About</li></a>

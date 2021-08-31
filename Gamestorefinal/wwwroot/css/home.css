@@ -23,8 +23,16 @@ for details on configuring this project to bundle and minify static web assets. 
     display:flex;
 }
 
+
+
 .newlabel {
-    font-family: 'Klee One', cursive;
+
+    @font-face {
+        font-family: myFont;
+        src: url('https://fonts.googleapis.com/css2?family=Oxygen:wght@700&family=Roboto:ital,wght@1,500&display=swap');
+    }
+
+    font-family: myFont;
     color: white;
     background-color: black;
     width: 100%;
@@ -32,7 +40,7 @@ for details on configuring this project to bundle and minify static web assets. 
     height: 25px;
     text-align: center;
     text-underline-position: auto;
-    border-radius:20px;
+    border-radius: 20px;
 }
 /* Next & previous buttons */
 .prev, .next {

@@ -159,7 +159,7 @@ namespace Gamestorefinal.Controllers
 
             GamesStore.Tweeter.Twitter twitter = new Twitter(Twitter.APIkeycon, Twitter.APIsecretKeycon, Twitter.AccessToken,
                         Twitter.AccessTokenSecret);
-            twitter.TweetText("Check out our new book!! -> " + book.BookName, string.Empty);
+            twitter.TweetText("Check out our new game!! -> " + games.Name, string.Empty);
 
             return View(games);
         }

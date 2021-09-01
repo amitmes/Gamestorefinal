@@ -399,3 +399,10 @@ html, body{
 }
 
 
+.form-group{
+    border-color: black;
+}
+
+.text-danger .field-validation-valid {
+    border-color: black;
+}

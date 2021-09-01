@@ -26,6 +26,7 @@ namespace Gamestorefinal.Tweeter
 
 
 
+
         readonly string _consumerKey = APIkeycon;
         readonly string _consumerKeySecret = APIsecretKeycon;
         readonly string _accessToken = AccessToken;

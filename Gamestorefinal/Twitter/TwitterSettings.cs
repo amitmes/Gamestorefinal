@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Gamestorefinal;
 
-namespace GamesStore.Tweeter
+namespace Gamestorefinal.Tweeter
 {
     public class TwitterSettings
     {

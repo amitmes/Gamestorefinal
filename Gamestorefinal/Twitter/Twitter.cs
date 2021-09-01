@@ -9,19 +9,21 @@ using Microsoft.Net.Http.Headers;
 using Newtonsoft.Json.Linq;
 using MediaTypeHeaderValue = System.Net.Http.Headers.MediaTypeHeaderValue;
 
-namespace GamesStore.Tweeter
+namespace Gamestorefinal.Tweeter
 {
     public class Twitter
     {
-        public static string APIkeycon = "arZbkL8c3tmQwxsRoPuYWYzoS";
+        public static string APIkeycon = "Pmg9jalHb0EMgnQ1jkYmTUebq";
 
-        public static string APIsecretKeycon = "5uVWII1wJDQORvGs7znpJ6wz3xWZQiPSswLrzhcvMdHaNhChDq";
+        public static string APIsecretKeycon = "4bZKGLcwTBqslXJZp7il9AWFWsOqzTo2s1ULTuGUGpTDYn6haF";
 
-        public static string BearerToken = "AAAAAAAAAAAAAAAAAAAAACBcQwEAAAAAhTFLHTTftpsFqNpROIjPbxDKVcA % 3DazfxUtmWvCJ0jDYdyNUJftphbyXjNW9VsoR4UgAAoOJZaOfBYW";
+        public static string BearerToken = "AAAAAAAAAAAAAAAAAAAAACsSTQEAAAAA2h0fQi6Zd89xjdLfSiKXq8p2zyM%3DWzW40tsF1RfXUIAVuEunVS1o7LkhuRaXAC8pF5iHxR6GRVn4Yt";
 
-        public static string AccessToken = "1392129490831265795-qOajshmgEpdWtKUZvyf1UQwMmE4DDo";
+        public static string AccessToken = "1433019868308197384-W6Hbq72feK7viT1rLkAZyEDwYdoYtw";
 
-        public static string AccessTokenSecret = "QEiwpqlsbb7o5tNU7tb3ZJglKWIRJ7OuudBwANcjRSRJl";
+        public static string AccessTokenSecret = "L2esVOgBkVQeOG9qazPGgAJQctbaHMBTsNtPP0vGYhCFj";
+
+
 
 
         readonly string _consumerKey = APIkeycon;

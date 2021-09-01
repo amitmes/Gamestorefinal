@@ -9,8 +9,8 @@ using GamesStore.Models;
 using Gamestorefinal.Data;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
-using GamesStore.Models;
-using GamesStore.Tweeter;
+using Gamestorefinal.Tweeter;
+
 
 namespace Gamestorefinal.Controllers
 {
@@ -157,9 +157,19 @@ namespace Gamestorefinal.Controllers
             }
 
 
-            GamesStore.Tweeter.Twitter twitter = new Twitter(Twitter.APIkeycon, Twitter.APIsecretKeycon, Twitter.AccessToken,
+            //Twitter twitter = new Twitter(Twitter.APIkeycon, Twitter.APIsecretKeycon, Twitter.AccessToken,
+            //            Twitter.AccessTokenSecret);
+            //twitter.TweetText("Check out our new game!!! -> " + games.Name, string.Empty);
+
+
+
+
+
+            Tweeter.Twitter twitter = new Twitter(Twitter.APIkeycon, Twitter.APIsecretKeycon, Twitter.AccessToken,
                         Twitter.AccessTokenSecret);
-            twitter.TweetText("Check out our new game!! -> " + games.Name, string.Empty);
+            twitter.TweetText("Check out our new game!!! -> " + games.Name, string.Empty);
+
+
 
             return View(games);
         }

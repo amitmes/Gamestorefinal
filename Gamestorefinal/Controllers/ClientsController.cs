@@ -40,32 +40,12 @@ namespace Gamestorefinal.Controllers
             return View(await _context.Client.ToListAsync());
         }
 
-        public void Addtocart(string email, int gameid)
+        public async void Addtocart(string email, int gameid)
         {
-            var o = _context.Client.Where(a => a.Email.Equals(email));
-            List<Client> l = o.ToList<Client>();
-            List<OrderClient>oc=l.ElementAt(0).OrderClient;
-            if (oc.Count() == 0)
-            {
-                OrderClient noc = new OrderClient();
-                noc.Comment = "blabla";
-                _context.Client.Where(a => a.Email.Equals(email)).ToList<Client>().ElementAt(0).OrderClient.Add(noc);
-                //l.ElementAt(0).OrderClient.Add(noc);
-                //_context.Client.Where(a => a.Email.Equals(email)).Include(x => x.OrderClient.Add(oc));
-            }
-           
-            //Games g = (Games)_context.Games.Where(g => g.Id.Equals(gameid));
-            //Order newOrder = new Order();
-            //newOrder.Game = g;
-            //newOrder.Quantity = 1;
-            //if ((OrderClient)o.Status == false)
-            //{
-            //    o.Games.Add(newOrder);
-            //}
-            //else
-            //{
-            //    OrderClient neworderclient = new OrderClient();
-            //}
+            var g = _context.Games.Include(x=>x.Category).Where(a => a.Id.Equals(gameid)).FirstOrDefault();
+            _context.Client.Include(x => x.Cart).Where(a => a.Email.Equals(email)).FirstOrDefault().Cart.Add(g);
+            _context.SaveChangesAsync();
+       
         }
         // GET: Clients/Login
         public IActionResult Login()

@@ -38,7 +38,7 @@ namespace GamesStore.Models
         public string phone { get; set; }
         public List<OrderClient> OrderClient { get; set; }
         public Wishlist WishList { get; set; }
-
+        public List<Games> Cart { get; set; }
         public UserType Type { get; set; } = UserType.Visitor;
 
     }

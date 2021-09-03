@@ -17,11 +17,7 @@
     </p>
 }
 
-@*@if (!Context.User.Identity.Name.Contains("null"))
-{
-    var q = Context.User.Identity.Name;
-    
-}*@
+
 <div>
     <form id="namesearch" asp-action="Search">
         <input name="query" id="query" autocomplete="off" placeholder="Search by name" />

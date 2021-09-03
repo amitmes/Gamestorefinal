@@ -46,7 +46,7 @@ namespace Gamestorefinal.Controllers
             //var m2MwithSearchContext = _context.Category.Include(a => a.Games).Where(a => a.Name.Equals(Item)).Select(a => a.Games);
             return View("Index",await m2MwithSearchContext.ToListAsync());
         }
-        
+       
         public async Task<IActionResult> Filter(string[] category, string[] supplier,int price)
         {
             ViewBag.Category = _context.Category;

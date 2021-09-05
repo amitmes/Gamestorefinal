@@ -59,18 +59,7 @@ namespace Gamestorefinal.Controllers
 
             return View();
         }
-        public async Task<IActionResult> Cart(string email)
-        {
-            //if(HttpContext.Session.GetString("Email") == null)
-            //{
-            //    return RedirectToAction("Login", "Clients");
-            //}
-            //var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(Item));
-            
-            var client = _context.Client.Include(x => x.Cart).ThenInclude(x => x.Category).Include(x => x.Cart).ThenInclude(x => x.Suppliers).Where(a => a.Email.Equals(email)).Select(x => x.Cart);
-            return View(await client.ToListAsync());
-        }
-
+        
 
         public IActionResult About()
         {

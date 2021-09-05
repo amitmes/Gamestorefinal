@@ -1,0 +1,164 @@
+﻿@model IEnumerable<GamesStore.Models.Games>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<link rel="stylesheet" href="~/css/gameDetails.css" />
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+
+
+
+
+
+<div class="hero-container row row-cols-4 row-cols-md-3 g-4">
+    @foreach (var item in Model)
+    {
+        <div class="main-container col-3">
+            <div class="poster-container">
+                @if (item.Image != null)
+                {
+                    string img = Convert.ToBase64String(item.Image);
+                    <img src="data:/image/jpg;base64,@img" class="card-img-top" alt="..." style="height: 280px; margin-top: 10px; border-radius: 10px;">
+                }
+            </div>
+            <div class="ticket-container">
+                <div class="ticket__content">
+                    <h4 class="ticket__movie-title">@item.Name</h4>
+                    <a asp-controller="Clients" asp-action="Addtocart" asp-route-email="@Context.User.Identity.Name" asp-route-gameid="@item.Id">Add to cart</a>
+                    <p class="ticket__current-price">Price: @item.Price $</p>
+
+                    @if (Context.User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    }
+
+                    <button class="ticket__buy-btn" name="@item.Id" asp-action="Details" asp-route-id="@item.Id">Details</button>
+
+
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+
+
+    }
+</div>
+
+@section Scripts {
+    <script src="~/js/gamesearchbyname.js"></script>
+    <script type="text/html" id="hidden-template">
+        <tr>
+            <td>
+                <div class="card" style="width: 18rem;">
+
+                    <img src="data:/image/jpg;base64,{image}" class="card-img-top" alt="...">
+
+                    <div class="card-body">
+                        <h5 class="card-title">{name}</h5>
+
+                        <a asp-controller="Games" asp-action="Details" asp-route-id={id} class="btn btn-primary">Game details</a>
+                    </div>
+                </div>
+            </td>
+            @if (Context.User.IsInRole("Admin"))
+            {
+                <td>
+
+
+                    <a href="/Games/Edit/{id}">Edit</a>|
+                    <a href="/Games/Details/{id}">Details</a>|
+                    <a href="/Games/Delete/{id}">Delete</a>
+
+                </td>
+            }
+        </tr>
+    </script>
+    <script src="~/js/gamedetail.js"></script>
+    <script type="text/html" id="detailsbody">
+        <tr>
+            <td>
+
+                <div class="gameTitle">{name}</div>
+                <br />
+                <br />
+                <div class="d-flex" style="height:700px; ">
+
+
+                    <div class="col-5">
+                        <img src="data:/image/jpg;base64,{image}" class="card-img-top" alt="..." style="width:100%; height:90%; border-radius: 20px;"></img>
+                    </div>
+                    <div class="col-7" style="background-color: darkgrey; border-radius: 20px; height: 90%;">
+                        <dt class="col-sm-2" style="padding-left:0;">
+                            Description:
+                        </dt> {description}
+                        <br />
+                        <div class="row">
+                            <dt class="col-sm-3">
+                                Release date:
+                            </dt>
+                            <dd class="col-sm-9">
+                                {releasedate}
+                            </dd>
+                        </div>
+
+                        <div class="row">
+                            <dt class="col-sm-3">
+                                On stock:
+                            </dt>
+                            <dd class="col-sm-9">
+                                {onstock}
+                            </dd>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <dt class="col-sm-3">
+                                Price:
+                            </dt>
+                            <dd class="col-sm-9">
+                                {price} $
+                            </dd>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="row">
+                    <dt class="col-sm-2">
+                        System requiremnts:
+                    </dt>
+                    <dd class="col-sm-10">
+                        {systemrequiremnts}
+                    </dd>
+                </div>
+
+
+
+                <div class="row">
+                    <dt class="col-sm-2">
+                        Trailer:
+                    </dt>
+                    <dd class="col-sm-10">
+                        <iframe width="420" height="315"
+                                src="{trailer}">
+                        </iframe>
+
+                    </dd>
+                </div>
+
+            </td>
+        </tr>
+
+    </script>
+
+
+}
+

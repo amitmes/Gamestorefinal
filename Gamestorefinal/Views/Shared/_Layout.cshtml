@@ -54,7 +54,7 @@
                             </div>
                         </li>
                         <li class="nav-item">
-                            <a id="cartbutton" class="nav-link btn text-white btn" asp-area="" asp-controller="Home" asp-action="Cart" asp-route-email="@Context.User.Identity.Name">Cart</a>
+                            <a name="@Context.User.Identity.Name" class="nav-link btn text-white btn cartdetails" asp-controller="Home" asp-action="Cart" asp-route-email="@Context.User.Identity.Name">Cart</a>
                         </li>
 
                         @if (Context.User.IsInRole("Admin"))
@@ -85,7 +85,7 @@
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container firsttry" id="mainbody">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -162,18 +162,10 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     <script src="~/js/weather.js"></script>
+ 
 
 
 
-
-
-    @await RenderSectionAsync("Scripts", required: false)
+        @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
-
-@section Scripts {
-<script src="~/js/cart.js"></script>
-<script type="text/html">
-
-</script>
-}

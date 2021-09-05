@@ -37,6 +37,7 @@ namespace Gamestorefinal.Controllers
 
             //  return View(await _context.Games.ToListAsync());
         }
+        
         public async Task<IActionResult> Gametype(string Item)
         {
             ViewBag.Category = _context.Category;

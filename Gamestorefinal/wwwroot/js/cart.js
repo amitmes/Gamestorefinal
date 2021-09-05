@@ -1,21 +1,29 @@
 ﻿$(function () {
-    $('#cartbutton').click(function (e) {
+    $('.cartdetails').click(function (e) {
         e.preventDefault();
-        var Item = $(this).attr("name").valueOf();
-        
+        var email = $(this).attr("name").valueOf();
+        console.log(email);
         $.ajax({
             url: '/Home/Cart',
             data: { 'email': email }
         }).done(function (data) {
-            $('tbody').html('');
-            var template = $('#orderedgames').html();
+            $('.firsttry').html('');
+            var template = $('.cartbody').html();
             $.each(data, function (i, val) {
                 var temp = template;
-
                 $.each(val, function (key, value) {
-                    temp = temp.replaceAll('{' + key + '}', value);
+                    console.log(key);
+                    console.log(value);
+                    if ((key.valueOf().match("name"))) {
+                        console.log("here name");
+                        temp = temp.replace('{' + key + '}', value);
+                    }
+                   
+                        //temp = temp.replaceAll('{' + key + '}', value);
+                        
+                    
                 });
-                $('tbody').append(temp);
+                $('.firsttry').append(temp);
             });
         });
 

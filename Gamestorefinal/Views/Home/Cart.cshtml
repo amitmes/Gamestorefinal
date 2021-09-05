@@ -1,13 +1,28 @@
-﻿@{
+﻿@model GamesStore.Models.Games
+<!DOCTYPE html>
+@{
     ViewData["Title"] = "Cart";
 }
-<h1>@ViewData["Title"]</h1>
+
+<link rel="stylesheet" href="~/css/home.css" />
+<link rel="stylesheet" href="~/css/titleStyle.css" />
 
 
-<table>
-    <tbody>
+<html>
+<head>
+</head>
 
-    </tbody>
+<body>
+    @{ foreach (var item in ViewBag.cartlist)
+        {
+
+            
+        }
+    }
+</body>
+</html>
+
+@section Scripts{
 
 
-</table>
+}

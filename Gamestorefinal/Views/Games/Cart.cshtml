@@ -25,7 +25,7 @@
             <div class="ticket-container">
                 <div class="ticket__content">
                     <h4 class="ticket__movie-title">@item.Name</h4>
-                    <a asp-controller="Clients" asp-action="Addtocart" asp-route-email="@Context.User.Identity.Name" asp-route-gameid="@item.Id">Add to cart</a>
+                    <a asp-controller="Clients" asp-action="Deletefromcart" asp-route-email="@Context.User.Identity.Name" asp-route-gameid="@item.Id">Delete from cart</a>
                     <p class="ticket__current-price">Price: @item.Price $</p>
 
                     @if (Context.User.IsInRole("Admin"))

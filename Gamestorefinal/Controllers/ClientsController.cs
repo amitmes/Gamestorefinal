@@ -47,6 +47,15 @@ namespace Gamestorefinal.Controllers
             _context.SaveChangesAsync();
        
         }
+
+        public async void Deletefromcart(string email, int gameid)
+        {
+            var g = _context.Games.Include(x => x.Category).Where(a => a.Id.Equals(gameid)).FirstOrDefault();
+            _context.Client.Include(x => x.Cart).Where(a => a.Email.Equals(email)).FirstOrDefault().Cart.Remove(g);
+            _context.SaveChangesAsync();
+
+        }
+
         // GET: Clients/Login
         public IActionResult Login()
         {

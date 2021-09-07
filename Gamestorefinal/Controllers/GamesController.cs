@@ -10,7 +10,7 @@ using Gamestorefinal.Data;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
 using Gamestorefinal.Tweeter;
-
+//using Gamestorefinal.Twitter;
 
 namespace Gamestorefinal.Controllers
 {
@@ -166,22 +166,15 @@ namespace Gamestorefinal.Controllers
                 }
                 _context.Add(games);
                 await _context.SaveChangesAsync();
+
+
+                Tweeter.Twitter twitter = new Twitter(Twitter.APIkeycon, Twitter.APIsecretKeycon, Twitter.AccessToken,
+                            Twitter.AccessTokenSecret);
+                twitter.TweetText("Check out our new game!!! -> " + games.Name, string.Empty);
+
+
                 return RedirectToAction(nameof(Index));
             }
-
-
-            //Twitter twitter = new Twitter(Twitter.APIkeycon, Twitter.APIsecretKeycon, Twitter.AccessToken,
-            //            Twitter.AccessTokenSecret);
-            //twitter.TweetText("Check out our new game!!! -> " + games.Name, string.Empty);
-
-
-
-
-
-            Tweeter.Twitter twitter = new Twitter(Twitter.APIkeycon, Twitter.APIsecretKeycon, Twitter.AccessToken,
-                        Twitter.AccessTokenSecret);
-            twitter.TweetText("Check out our new game!!! -> " + games.Name, string.Empty);
-
 
 
             return View(games);

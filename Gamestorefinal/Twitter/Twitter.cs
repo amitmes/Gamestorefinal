@@ -13,15 +13,15 @@ namespace Gamestorefinal.Tweeter
 {
     public class Twitter
     {
-        public static string APIkeycon = "Pmg9jalHb0EMgnQ1jkYmTUebq";
+        public static string APIkeycon = "DIhLuq7Bh8TUzEjc585RfUlJl";
 
-        public static string APIsecretKeycon = "4bZKGLcwTBqslXJZp7il9AWFWsOqzTo2s1ULTuGUGpTDYn6haF";
+        public static string APIsecretKeycon = "qQG1Gv4sjQ4cCfDi4gNxVA9GJ2UoSLuBg0eWUrkSc0u4xfgaM5";
 
-        public static string BearerToken = "AAAAAAAAAAAAAAAAAAAAACsSTQEAAAAA2h0fQi6Zd89xjdLfSiKXq8p2zyM%3DWzW40tsF1RfXUIAVuEunVS1o7LkhuRaXAC8pF5iHxR6GRVn4Yt";
+        public static string BearerToken = "AAAAAAAAAAAAAAAAAAAAACsSTQEAAAAAMpemAedmINsn%2Fxn81reFX97MOyA%3DU5RcUmm6hAToDkusrtf6wBocTYP5LaxecMkmyOm406k5IauiOQ";
 
-        public static string AccessToken = "1433019868308197384-W6Hbq72feK7viT1rLkAZyEDwYdoYtw";
+        public static string AccessToken = "1433019868308197384-xDgNICi4teB6tbGwMhOzmVuT0JPB2s";
 
-        public static string AccessTokenSecret = "L2esVOgBkVQeOG9qazPGgAJQctbaHMBTsNtPP0vGYhCFj";
+        public static string AccessTokenSecret = "9P4xKg3PpU72lY3bLg2LeHX141mwioyMSq4mvLRub24pY";
 
 
 

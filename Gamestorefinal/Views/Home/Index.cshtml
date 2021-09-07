@@ -10,101 +10,107 @@
     <table align="center">
         <tbody>
             <label id="newlabel" class="newlabel">Newest Games</label>
+
+
             <tr>
+
                 <td>
+                    <div>
 
-                    <div class="slideshow-container">
+                        <div class="slideshow-container">
 
-                        @{ int count = 1;
-                            foreach (var item in Model)
-                            {
-                                if (DateTime.Now.Year - item.Releasedate.Year < 3)
+                            @{ int count = 1;
+                                foreach (var item in Model)
                                 {
-                                    string img = Convert.ToBase64String(item.Image);
-                                    <div class="mySlides">
-                                        <a class="a1" name="@item.Id" href="@Url.Action("Details", "Games", new { id = item.Id })">
-                                            <img class="newestgames" src="data:/image/jpg;base64,@img" onclick="">
-                                        </a>
-                                        <div class="text">@item.Name</div>
-                                    </div>
-                                    count++;
+                                    if (DateTime.Now.Year - item.Releasedate.Year < 3)
+                                    {
+                                        string img = Convert.ToBase64String(item.Image);
+                                        <div class="mySlides">
+                                            <a class="a1" name="@item.Id" href="@Url.Action("Details", "Games", new { id = item.Id })">
+                                                <img class="newestgames" src="data:/image/jpg;base64,@img" onclick="">
+                                            </a>
+                                            <div class="text">@item.Name</div>
+                                        </div>
+                                        count++;
+                                    }
+
                                 }
-
                             }
-                        }
-                        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+                            <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+                            <a class="next" onclick="plusSlides(1)">&#10095;</a>
 
-                    </div>
-                    <br />
-                    <div style="text-align:center">
-                        @for (int i = 1; i < count; i++)
-                        {
-                            <span class="dot" onclick="currentSlide(@i)"></span>
-                        }
-                    </div>
+                        </div>
+                        <br />
+                        <div style="text-align:center">
+                            @for (int i = 1; i < count; i++)
+                            {
+                                <span class="dot" onclick="currentSlide(@i)"></span>
+                            }
+                        </div>
                 </td>
             </tr>
         </tbody>
     </table>
 
     <br /> <br />
-           <div id="car" class="car">
-               <label id="newlabel2" class="newlabel">Last chance of buying</label>
-               <br /> <br /> <br /> <br />
-               <div class="container_car col text-center">
+    <div id="car" class="car">
+        <label id="newlabel2" class="newlabel">Last chance of buying</label>
+        <br /> <br /> <br /> <br />
+        <div class="container_car col text-center">
 
-                   <div class="carousel">
+            <div class="carousel">
 
-                       @{
-                           var listMin = Model.OrderBy(x => x.Onstock).Take(6).ToList();
-                           string img2 = Convert.ToBase64String(listMin[0].Image);
-                           <div class="item a ">
-                               <a class="a1" name="@listMin[0].Id" href="@Url.Action("Details", "Games", new { id = listMin[0].Id })">
-                                   <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
-                               </a>
-                           </div>
-                           img2 = Convert.ToBase64String(listMin[1].Image);
-                           <div class="item b">
-                               <a class="a1" name="@listMin[1].Id" href="@Url.Action("Details", "Games", new { id = listMin[1].Id })">
-                                   <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
-                               </a>
-                           </div>
-                           img2 = Convert.ToBase64String(listMin[2].Image);
-                           <div class="item c">
-                               <a class="a1" name="@listMin[2].Id" href="@Url.Action("Details", "Games", new { id = listMin[2].Id })">
-                                   <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
-                               </a>
-                           </div>
-                           img2 = Convert.ToBase64String(listMin[3].Image);
-                           <div class="item d">
-                               <a class="a1" name="@listMin[3].Id" href="@Url.Action("Details", "Games", new { id = listMin[3].Id })">
-                                   <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
-                               </a>
-                           </div>
-                           img2 = Convert.ToBase64String(listMin[4].Image);
-                           <div class="item e">
-                               <a class="a1" name="@listMin[4].Id" href="@Url.Action("Details", "Games", new { id = listMin[4].Id  })">
-                                   <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
-                               </a>
-                           </div>
-                           img2 = Convert.ToBase64String(listMin[5].Image);
-                           <div class="item f">
-                               <a class="a1" name="@listMin[5].Id" href="@Url.Action("Details", "Games", new { id = listMin[5].Id })">
-                                   <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
-                               </a>
+                @{
+                    var listMin = Model.OrderBy(x => x.Onstock).Take(6).ToList();
+                    string img2 = Convert.ToBase64String(listMin[0].Image);
+                    <div class="item a ">
+                        <a class="a1" name="@listMin[0].Id" href="@Url.Action("Details", "Games", new { id = listMin[0].Id })">
+                            <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
+                        </a>
+                    </div>
+                    img2 = Convert.ToBase64String(listMin[1].Image);
+                    <div class="item b">
+                        <a class="a1" name="@listMin[1].Id" href="@Url.Action("Details", "Games", new { id = listMin[1].Id })">
+                            <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
+                        </a>
+                    </div>
+                    img2 = Convert.ToBase64String(listMin[2].Image);
+                    <div class="item c">
+                        <a class="a1" name="@listMin[2].Id" href="@Url.Action("Details", "Games", new { id = listMin[2].Id })">
+                            <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
+                        </a>
+                    </div>
+                    img2 = Convert.ToBase64String(listMin[3].Image);
+                    <div class="item d">
+                        <a class="a1" name="@listMin[3].Id" href="@Url.Action("Details", "Games", new { id = listMin[3].Id })">
+                            <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
+                        </a>
+                    </div>
+                    img2 = Convert.ToBase64String(listMin[4].Image);
+                    <div class="item e">
+                        <a class="a1" name="@listMin[4].Id" href="@Url.Action("Details", "Games", new { id = listMin[4].Id  })">
+                            <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
+                        </a>
+                    </div>
+                    img2 = Convert.ToBase64String(listMin[5].Image);
+                    <div class="item f">
+                        <a class="a1" name="@listMin[5].Id" href="@Url.Action("Details", "Games", new { id = listMin[5].Id })">
+                            <img class="newestgames1" src="data:/image/jpg;base64,@img2" onclick="">
+                        </a>
 
-                           </div>
-                       }
+                    </div>
+                }
 
-                   </div>
-               </div>
-               <br /> <br />
-               <div class="col text-center" style="margin:15px; ">
-                   <div class="btn btn-secondary prev_car">Prev</div>
-                   <div class="btn btn-secondary next_car" align="right">Next</div>
-               </div>
-           </div>
+            </div>
+        </div>
+        <br /> <br />
+        <div class="col text-center" style="margin:15px; ">
+            <div class="btn btn-secondary prev_car">Prev</div>
+            <div class="btn btn-secondary next_car" align="right">Next</div>
+        </div>
+    </div>
+    <canvas id=c style="height:190px; width:1110px; color:white; border-radius:15px; margin-top:0;"></canvas>
+
 
 </body>
 
@@ -257,6 +263,135 @@
                 });
             }
 
+        </script>
+
+        <script>
+            var w = c.width = window.innerWidth,
+                h = c.height = window.innerHeight,
+                ctx = c.getContext('2d'),
+
+                opts = {
+
+                    len: 20,
+                    count: 50,
+                    baseTime: 10,
+                    addedTime: 10,
+                    dieChance: .05,
+                    spawnChance: 1,
+                    sparkChance: .1,
+                    sparkDist: 10,
+                    sparkSize: 2,
+
+                    color: 'hsl(hue,100%,light%)',
+                    baseLight: 50,
+                    addedLight: 10, // [50-10,50+10]
+                    shadowToTimePropMult: 6,
+                    baseLightInputMultiplier: .01,
+                    addedLightInputMultiplier: .02,
+
+                    cx: w / 2,
+                    cy: h / 2,
+                    repaintAlpha: .04,
+                    hueChange: .1
+                },
+
+                tick = 0,
+                lines = [],
+                dieX = w / 2 / opts.len,
+                dieY = h / 2 / opts.len,
+
+                baseRad = Math.PI * 2 / 6;
+
+            ctx.fillStyle = 'black';
+            ctx.fillRect(0, 0, w, h);
+
+            function loop() {
+
+                window.requestAnimationFrame(loop);
+
+                ++tick;
+
+                ctx.globalCompositeOperation = 'source-over';
+                ctx.shadowBlur = 0;
+                ctx.fillStyle = 'rgba(0,0,0,alp)'.replace('alp', opts.repaintAlpha);
+                ctx.fillRect(0, 0, w, h);
+                ctx.globalCompositeOperation = 'lighter';
+
+                if (lines.length < opts.count && Math.random() < opts.spawnChance)
+                    lines.push(new Line);
+
+                lines.map(function (line) { line.step(); });
+            }
+            function Line() {
+
+                this.reset();
+            }
+            Line.prototype.reset = function () {
+
+                this.x = 0;
+                this.y = 0;
+                this.addedX = 0;
+                this.addedY = 0;
+
+                this.rad = 0;
+
+                this.lightInputMultiplier = opts.baseLightInputMultiplier + opts.addedLightInputMultiplier * Math.random();
+
+                this.color = opts.color.replace('hue', tick * opts.hueChange);
+                this.cumulativeTime = 0;
+
+                this.beginPhase();
+            }
+            Line.prototype.beginPhase = function () {
+
+                this.x += this.addedX;
+                this.y += this.addedY;
+
+                this.time = 0;
+                this.targetTime = (opts.baseTime + opts.addedTime * Math.random()) | 0;
+
+                this.rad += baseRad * (Math.random() < .5 ? 1 : -1);
+                this.addedX = Math.cos(this.rad);
+                this.addedY = Math.sin(this.rad);
+
+                if (Math.random() < opts.dieChance || this.x > dieX || this.x < -dieX || this.y > dieY || this.y < -dieY)
+                    this.reset();
+            }
+            Line.prototype.step = function () {
+
+                ++this.time;
+                ++this.cumulativeTime;
+
+                if (this.time >= this.targetTime)
+                    this.beginPhase();
+
+                var prop = this.time / this.targetTime,
+                    wave = Math.sin(prop * Math.PI / 2),
+                    x = this.addedX * wave,
+                    y = this.addedY * wave;
+
+                ctx.shadowBlur = prop * opts.shadowToTimePropMult;
+                ctx.fillStyle = ctx.shadowColor = this.color.replace('light', opts.baseLight + opts.addedLight * Math.sin(this.cumulativeTime * this.lightInputMultiplier));
+                ctx.fillRect(opts.cx + (this.x + x) * opts.len, opts.cy + (this.y + y) * opts.len, 2, 2);
+
+                if (Math.random() < opts.sparkChance)
+                    ctx.fillRect(opts.cx + (this.x + x) * opts.len + Math.random() * opts.sparkDist * (Math.random() < .5 ? 1 : -1) - opts.sparkSize / 2, opts.cy + (this.y + y) * opts.len + Math.random() * opts.sparkDist * (Math.random() < .5 ? 1 : -1) - opts.sparkSize / 2, opts.sparkSize, opts.sparkSize)
+            }
+            loop();
+
+            window.addEventListener('resize', function () {
+
+                w = c.width = window.innerWidth;
+                h = c.height = window.innerHeight;
+                ctx.fillStyle = 'black';
+                ctx.fillRect(0, 0, w, h);
+
+                opts.cx = w / 2;
+                opts.cy = h / 2;
+
+                dieX = w / 2 / opts.len;
+                dieY = h / 2 / opts.len;
+            });
         </script>
 
 

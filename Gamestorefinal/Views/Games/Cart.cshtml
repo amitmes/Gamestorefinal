@@ -25,17 +25,17 @@
             <div class="ticket-container">
                 <div class="ticket__content">
                     <h4 class="ticket__movie-title">@item.Name</h4>
-                    <a asp-controller="Clients" asp-action="Deletefromcart" asp-route-email="@Context.User.Identity.Name" asp-route-gameid="@item.Id">Delete from cart</a>
+                    <a class="deletingfromcart" asp-controller="Clients" asp-action="Deletefromcart" name="@Context.User.Identity.Name" data="@item.Id">Delete from cart</a>
                     <p class="ticket__current-price">Price: @item.Price $</p>
 
-                    @if (Context.User.IsInRole("Admin"))
-                    {
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        </td>
-                    }
+                    @*@if (Context.User.IsInRole("Admin"))
+                        {
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        }*@
 
                     <button class="ticket__buy-btn" name="@item.Id" asp-action="Details" asp-route-id="@item.Id">Details</button>
 
@@ -55,6 +55,25 @@
 </div>
 
 @section Scripts {
+    <script>
+        $(function () {
+            $('.deletingfromcart').click(function (e) {
+                e.preventDefault();
+                var email, gameid;
+                email = $(this).attr("name").valueOf();
+                gameid = $(this).attr("data").valueOf();
+                console.log(email);
+                $.ajax({
+                    url: '/Clients/Deletefromcart',
+                    data: ({
+                        'email': email, 'gameid': gameid
+                    })
+                }).done(function () {
+                    location.reload();
+                });
+            });
+        });
+    </script>
     <script src="~/js/gamesearchbyname.js"></script>
     <script type="text/html" id="hidden-template">
         <tr>

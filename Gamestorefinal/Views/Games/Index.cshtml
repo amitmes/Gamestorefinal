@@ -86,7 +86,7 @@
             <div class="ticket-container">
                 <div class="ticket__content">
                     <h4 class="ticket__movie-title">@item.Name</h4>
-                    <a class="addingtocart" asp-controller="Clients" asp-action="Addtocart" asp-route-email="@Context.User.Identity.Name" name="@Context.User.Identity.Name" asp-route-gameid="@item.Id" data="@item.Id">Add to cart</a>
+                    <a class="addingtocart" asp-controller="Clients" asp-action="Addtocart" name="@Context.User.Identity.Name" data="@item.Id">Add to cart</a>
                     <p class="ticket__current-price">Price: @item.Price $</p>
 
                     @if (Context.User.IsInRole("Admin"))
@@ -118,7 +118,7 @@
     <script>
         $(function () {
             $('.addingtocart').click(function (e) {
-                e.preventDefault()
+                e.preventDefault();
                 var email, gameid;
                 email = $(this).attr("name").valueOf();
                 gameid = $(this).attr("data").valueOf();

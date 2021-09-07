@@ -43,14 +43,15 @@
                 </div>
 
             </div>
+
+
         </div>
 
-
-
-
-
-
     }
+</div>
+
+<div class="text-center">
+    <a name="@Context.User.Identity.Name" class="btn btn-info" asp-controller="Games" asp-action="Makeanorder" asp-route-email="@Context.User.Identity.Name">Make an order</a>
 </div>
 
 @section Scripts {

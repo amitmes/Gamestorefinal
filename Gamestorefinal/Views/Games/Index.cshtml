@@ -86,7 +86,7 @@
             <div class="ticket-container">
                 <div class="ticket__content">
                     <h4 class="ticket__movie-title">@item.Name</h4>
-                    <a class="addingtocart" asp-controller="Clients" asp-action="Addtocart" asp-route-email="@Context.User.Identity.Name" asp-route-gameid="@item.Id">Add to cart</a>
+                    <a class="addingtocart" asp-controller="Clients" asp-action="Addtocart" asp-route-email="@Context.User.Identity.Name" name="@Context.User.Identity.Name" asp-route-gameid="@item.Id" data="@item.Id">Add to cart</a>
                     <p class="ticket__current-price">Price: @item.Price $</p>
 
                     @if (Context.User.IsInRole("Admin"))
@@ -115,26 +115,26 @@
 </div>
 
 @section Scripts {
-<script>
-    $(function () {
-        $('.addingtocart').click(function (e) {
-            e.preventDefault()
-            var email, gameid;
-            email = $(this).attr("name").valueOf();
-            gameid = $(this).attr("data").valueOf();
-            $(this).attr("asp-route-gameid", gameid);
-            console.log(email);
-            $.ajax({
-                url: '/Clients/Addtocart',
-                data: ({
-                    'email': email, 'gameid': gameid
-            })
-            }).done(function () {
-                location.reload();
+    <script>
+        $(function () {
+            $('.addingtocart').click(function (e) {
+                e.preventDefault()
+                var email, gameid;
+                email = $(this).attr("name").valueOf();
+                gameid = $(this).attr("data").valueOf();
+                $(this).attr("asp-route-gameid", gameid);
+                console.log(email);
+                $.ajax({
+                    url: '/Clients/Addtocart',
+                    data: ({
+                        'email': email, 'gameid': gameid
+                    })
+                }).done(function () {
+                    location.reload();
+                });
+            });
         });
-        });
-    });
-</script>
+    </script>
     <script src="~/js/gamesearchbyname.js"></script>
     <script type="text/html" id="hidden-template">
         <tr>
@@ -239,16 +239,6 @@
         </tr>
 
     </script>
-
-    <script>
-        $(function () {
-            $('.addingtocart').click(function (e) {
-                location.reload();
-                e.preventDefault();
-            });
-        });
-    </script>
-
 
 
 }

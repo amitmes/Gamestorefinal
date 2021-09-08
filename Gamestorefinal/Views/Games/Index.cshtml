@@ -148,15 +148,17 @@
             <div class="ticket-container">
                 <div class="ticket__content">
                     <h4 class="ticket__movie-title">@item.Name</h4>
-                    @if (item.Onstock == 0)
-                    {
-                        <label style="color:red">Out of stock</label>
-                    }
-                    else
-                    {
-                        <a class="addingtocart" asp-controller="Clients" asp-action="Addtocart" name="@Context.User.Identity.Name" data="@item.Id">Add to cart</a>
-                    }
-                    <a class="addingtowishlist" asp-controller="Clients" asp-action="Addtowishlist" name="@Context.User.Identity.Name" data="@item.Id">Add to wishlist</a>
+                    <div class="text-center">
+                        @if (item.Onstock == 0)
+                        {
+                            <label style="color:red">Out of stock</label>
+                        }
+                        else
+                        {
+                            <a class="addingtocart row" asp-controller="Clients" asp-action="Addtocart" name="@Context.User.Identity.Name" data="@item.Id" style="margin-left:80px;">Add to cart</a>
+                        }
+                        <a class="addingtowishlist row" asp-controller="Clients" asp-action="Addtowishlist" name="@Context.User.Identity.Name" data="@item.Id" style="margin-left:67px;">Add to wishlist</a>
+                    </div>
                     <p class="ticket__current-price">Price: @item.Price $</p>
 
                     @if (Context.User.IsInRole("Admin"))

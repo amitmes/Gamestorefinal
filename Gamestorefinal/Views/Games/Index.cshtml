@@ -23,48 +23,110 @@
         <input name="query" id="query" autocomplete="off" placeholder="Search by name" />
         <input class="btn btn-primary" type="submit" id="submitname" value="Search" />
     </form>
+
+    <a class="groupbyprice" asp-controller="Games" asp-action="Groupby">Group by</a>
+
     <br /><br />
 
-    <form id="filter" asp-action="Filter">
-        <table>
+    <div class="row">
+        <div class="col-6">
+            <form id="filter" asp-action="Filter">
+                <table>
 
-            <tbody>
-                <div class="d-flex" style="background-color: darkgrey; border-radius: 20px; height: 60%; width:80%;">
-                    <div class="col-4">
-                        <div style="padding-left:0;"><h3>Category</h3></div><br />
-                        @foreach (var cat in ViewBag.Category)
-                        {
-                            <div class="row" style="padding-left:15px;">
-                                <input type="checkbox" value="@cat.Name" name="category" /> @cat.Name
+                    <tbody>
+                        <div class="row" style="background-color: darkgrey; border-radius: 20px;">
+                            <div class="col-4">
+                                <div style="padding-left:0;"><h3>Category</h3></div><br />
+                                @foreach (var cat in ViewBag.Category)
+                                {
+                                    <div class="row" style="padding-left:15px;">
+                                        <input type="checkbox" value="@cat.Name" name="category" /> @cat.Name
+                                    </div>
+                                }
                             </div>
-                        }
-                    </div>
 
-                    <div class="col-4">
-                        <div style="padding-left:0;"><h3>Supplier</h3></div><br />
+                            <div class="col-4">
+                                <div style="padding-left:0;"><h3>Supplier</h3></div><br />
 
-                        @foreach (var sup in ViewBag.Suppliers)
-                        {
-                            <div class="row" style="padding-left:15px;">
-                                <input type="checkbox" value="@sup.Name" name="supplier" /> @sup.Name
+                                @foreach (var sup in ViewBag.Suppliers)
+                                {
+                                    <div class="row" style="padding-left:15px;">
+                                        <input type="checkbox" value="@sup.Name" name="supplier" /> @sup.Name
+                                    </div>
+                                }
                             </div>
-                        }
-                    </div>
-                    <div class="col-4">
-                        <div style="padding-left:0;"><h3>Price</h3></div><br />
-                        <input type="range" class="form-range" min="0" max="1000" step="1" value="1000" oninput="priceval.value = this.value" name="price" />
-                        <output id="priceval"></output>
-                    </div>
-                    <div class="col-3" style="padding-top:180px;">
-                        <input type="submit" id="multifilter" value="Search" class="btn btn-primary" style="padding-left:20px" />
-                    </div>
-                </div>
+                            <div class="col-4">
+                                <div style="padding-left:0;"><h3>Price</h3></div><br />
+                                <input type="range" class="form-range" min="0" max="1000" step="1" value="1000" oninput="priceval.value = this.value" name="price" />
+                                <output id="priceval"></output>
+                            </div>
+                            <div style="padding-top:20px; padding-bottom:10px; margin-left:470px;">
+                                <input type="submit" id="multifilter" value="Search" class="btn btn-primary" style="padding-left:20px" />
+                            </div>
+                        </div>
 
-            </tbody>
-        </table>
+                    </tbody>
+                </table>
 
 
-    </form>
+            </form>
+
+        </div>
+
+
+
+
+
+
+        <div class="col-6">
+            <form id="filter2" asp-action="Filter2">
+                <table>
+
+                    <tbody>
+                        <div class="row" style="background-color: darkgrey; border-radius: 20px;">
+                            <div class="col-4">
+                                <div style="padding-left:0;"><h3>Year</h3></div><br />
+
+                                <div class="row" style="padding-left:15px;">
+                                    <input type="range" class="form-range" min="1980" max="2021" step="1" value="2021" oninput="yearval.value = this.value" name="year" />
+                                    <output id="yearval"></output>
+                                </div>
+
+                            </div>
+
+                            <div class="col-4">
+                                <div style="padding-left:0;"><h3>Under 100$!</h3></div><br />
+                                <div class="row" style="padding-left:15px;">
+                                    <input type="checkbox" value="Under100$" name="under100" /> Under 100$
+                                </div>
+
+                            </div>
+                            <div class="col-4">
+                                <div style="padding-left:0;"><h3>On stock</h3></div><br />
+                                <div class="row" style="padding-left:15px;">
+                                    <input type="checkbox" value="Onstock" name="onstock" /> On stock
+                                </div>
+                            </div>
+                            <div style="padding-top:20px; padding-bottom:10px; margin-left:470px;">
+                                <input type="submit" id="multifilter" value="Search" class="btn btn-primary" style="padding-left:20px" />
+                            </div>
+                        </div>
+
+                    </tbody>
+                </table>
+
+
+            </form>
+        </div>
+
+    </div>
+
+
+
+
+
+
+
 
 </div>
 <br />

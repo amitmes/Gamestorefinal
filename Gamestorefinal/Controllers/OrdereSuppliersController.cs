@@ -49,6 +49,7 @@ namespace Gamestorefinal.Controllers
         public IActionResult Create()
         {
             ViewData["SupplierId"] = new SelectList(_context.Supplier, "Id", "Email");
+            ViewBag.Supplierslist = _context.Supplier.Include(x=>x.Games);
             return View();
         }
 

@@ -12,9 +12,10 @@
 
 @if (Context.User.IsInRole("Admin"))
 {
-    <p>
-        <a class="create-new-b" asp-action="Create">Create New</a>
-    </p>
+<p>
+    <a class="create-new-b" asp-action="Create">Create New</a>
+    <a class="createsuporder" asp-controller="OrdereSuppliers" asp-action="Create">Create new order from supplier </a>
+</p>
 }
 
 

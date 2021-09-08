@@ -51,7 +51,7 @@
 </div>
 
 <div class="text-center">
-    <a name="@Context.User.Identity.Name" class="btn btn-info" asp-controller="Games" asp-action="Makeanorder" asp-route-email="@Context.User.Identity.Name">Continue to Payment</a>
+    <a asp-controller="OrderClients" asp-action="Create" class="btn btn-info"  >Continue to Payment</a>
 </div>
 
 @section Scripts {

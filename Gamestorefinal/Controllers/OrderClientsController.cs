@@ -16,6 +16,7 @@ namespace Gamestorefinal.Controllers
 
         public OrderClientsController(GamestorefinalContext context)
         {
+          
             _context = context;
         }
 
@@ -23,6 +24,7 @@ namespace Gamestorefinal.Controllers
         public async Task<IActionResult> Index()
         {
             var gamestorefinalContext = _context.OrderClient.Include(o => o.Client);
+    
             return View(await gamestorefinalContext.ToListAsync());
         }
 
@@ -49,6 +51,7 @@ namespace Gamestorefinal.Controllers
         public IActionResult Create()
         {
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email");
+            ViewBag.clientdetail = _context.Client.Include(x=>x.Cart);
             return View();
         }
 

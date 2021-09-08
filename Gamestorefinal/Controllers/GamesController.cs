@@ -162,6 +162,17 @@ namespace Gamestorefinal.Controllers
 
 
 
+        public async Task<IActionResult> Groupby()
+        {
+            //var m2MwithSearchContext = _context.Games.GroupBy(a => a.Price).Select(g => new {})
+            var m2MwithSearchContext = (from m in _context.Games orderby m.Price
+                                            group m by m.Price into priceGroup
+                                            select priceGroup);
+            return  View("Index", m2MwithSearchContext.ToListAsync()); 
+
+        }
+
+
 
 
 

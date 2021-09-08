@@ -116,6 +116,57 @@ namespace Gamestorefinal.Controllers
             return View("Index",gameslist);
         }
 
+
+
+
+
+        public async Task<IActionResult> Filter2(string[] onstock, string[] under100, int year)
+        {
+            ViewBag.Category = _context.Category;
+            ViewBag.Suppliers = _context.Supplier;
+            List<Games> gameslist = new List<Games>();
+            foreach (var item in _context.Games.Include(a => a.Category).Include(x => x.Suppliers))
+            {
+           
+                Boolean hasonstock = true;
+                if(!(onstock.Length > 0 && item.Onstock >0))
+                {
+                    hasonstock = false;
+                }
+
+
+
+
+                Boolean hasunder100 = true;
+                if(under100.Length == 0)
+                {
+                    hasunder100 = false;
+                }
+               
+
+                Boolean yearB = true;
+                if (item.Releasedate.Year < year)
+                {
+                    yearB = false;
+                }
+                if (hasonstock && hasunder100 && yearB)
+                {
+                    gameslist.Add(item);
+                }
+            }
+
+            return View("Index", gameslist);
+        }
+
+
+
+
+
+
+
+
+
+
         public async Task<IActionResult> Search(string query)
         {
             var m2MwithSearchContext = _context.Games.Where(a => a.Name.Contains(query) || query == null);

@@ -35,19 +35,19 @@
                             <div class="btn-group">
                                 <a class=" nav-link btn text-white btn" asp-area="" asp-controller="Categories" asp-action="Index">Categories</a>
                                 @*<button type="button" class="btn dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <span class="sr-only">Toggle Dropdown</span>
-                                </button>*@
+                    <span class="sr-only">Toggle Dropdown</span>
+                </button>*@
                                 <div class="dropdown-menu btn">
                                     @*@foreach (var item in Model)
-                                        {
-                                        <a class="dropdown-item" href="">@item.Name</a>
-                                        }*@
+                    {
+                    <a class="dropdown-item" href="">@item.Name</a>
+                    }*@
 
                                     @*@foreach (var cat in ViewBag.Category)
-                                        {
-                                            <a class="dropdown-item" href="@cat.Name"></a>
+                    {
+                        <a class="dropdown-item" href="@cat.Name"></a>
 
-                                        }*@
+                    }*@
 
 
                                 </div>
@@ -64,7 +64,9 @@
                             </li>
                         }
 
-
+                        <li class="nav-item">
+                            <a class="nav-link btn text-white btn" asp-area="" asp-controller="Wishlists" asp-action="Index">WishList</a>
+                        </li>
                         <aside style="margin-left:68%;">
                             @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
                             {

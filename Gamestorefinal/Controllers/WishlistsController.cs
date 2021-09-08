@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GamesStore.Models;
 using Gamestorefinal.Data;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 
 namespace Gamestorefinal.Controllers
 {
@@ -141,6 +144,22 @@ namespace Gamestorefinal.Controllers
             return View(wishlist);
         }
 
+        public async void Addtowishlist(string email, int gameid)
+        {
+            var g = _context.Games.Include(x => x.Category).Where(a => a.Id.Equals(gameid)).FirstOrDefault();
+            _context.Client.Include(x=>x.WishList).ThenInclude(a=>a.Gameslist).Where(a => a.Email.Equals(email)).FirstOrDefault().WishList.Gameslist.Add(g);
+            _context.SaveChangesAsync();
+        }
+
+        public async void Deletefromwishlist(string email, int gameid)
+        {
+            var g = _context.Games.Include(x => x.Category).Where(a => a.Id.Equals(gameid)).FirstOrDefault();
+            _context.Client.Where(a => a.Email.Equals(email)).FirstOrDefault().WishList.Gameslist.Remove(g);
+            _context.SaveChangesAsync();
+        }
+
+
+
         // POST: Wishlists/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -156,5 +175,7 @@ namespace Gamestorefinal.Controllers
         {
             return _context.Wishlist.Any(e => e.Id == id);
         }
+
+
     }
 }

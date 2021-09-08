@@ -48,6 +48,7 @@ namespace Gamestorefinal.Controllers
        
         }
 
+
         public async void Deletefromcart(string email, int gameid)
         {
             var g = _context.Games.Include(x => x.Category).Where(a => a.Id.Equals(gameid)).FirstOrDefault();

@@ -154,8 +154,9 @@
                     }
                     else
                     {
-                    <a class="addingtocart" asp-controller="Clients" asp-action="Addtocart" name="@Context.User.Identity.Name" data="@item.Id">Add to cart</a>
+                        <a class="addingtocart" asp-controller="Clients" asp-action="Addtocart" name="@Context.User.Identity.Name" data="@item.Id">Add to cart</a>
                     }
+                    <a class="addingtowishlist" asp-controller="Wishlists" asp-action="Addtowishlist" name="@Context.User.Identity.Name" data="@item.Id">Add to wishlist</a>
                     <p class="ticket__current-price">Price: @item.Price $</p>
 
                     @if (Context.User.IsInRole("Admin"))
@@ -195,6 +196,26 @@
                 console.log(email);
                 $.ajax({
                     url: '/Clients/Addtocart',
+                    data: ({
+                        'email': email, 'gameid': gameid
+                    })
+                }).done(function () {
+                    location.reload();
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('.addingtowishlist').click(function (e) {
+                e.preventDefault();
+                var email, gameid;
+                email = $(this).attr("name").valueOf();
+                gameid = $(this).attr("data").valueOf();
+                $(this).attr("asp-route-gameid", gameid);
+                console.log(email);
+                $.ajax({
+                    url: '/Wishlists/Addtowishlist',
                     data: ({
                         'email': email, 'gameid': gameid
                     })

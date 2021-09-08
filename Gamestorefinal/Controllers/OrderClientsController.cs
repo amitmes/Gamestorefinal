@@ -77,6 +77,7 @@ namespace Gamestorefinal.Controllers
                 _context.Games.Where(x => x.Id == i).FirstOrDefault().Onstock -= 1;
                 count++;
             }
+            orderClient.Client = _context.Client.Include(x => x.OrderClient).Where(x => x.Email.Equals(user)).FirstOrDefault();
             _context.Client.Include(x=>x.OrderClient).Where(x => x.Email.Equals(user)).FirstOrDefault().OrderClient.Add(orderClient);
             _context.Client.Include(x => x.Cart).Where(x => x.Email.Equals(user)).FirstOrDefault().Cart.Clear();
             await _context.SaveChangesAsync();

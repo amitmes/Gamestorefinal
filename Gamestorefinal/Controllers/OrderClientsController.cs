@@ -87,7 +87,8 @@ namespace Gamestorefinal.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email", orderClient.ClientId);
-            return View(orderClient);
+            return View("~/Home/Index","Home");
+
         }
 
         // GET: OrderClients/Edit/5

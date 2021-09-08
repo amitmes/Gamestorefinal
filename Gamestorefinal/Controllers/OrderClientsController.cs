@@ -62,6 +62,7 @@ namespace Gamestorefinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,ClientId,Creditcard,Totalprice,DateTime,City,Street,Buildingnumber,Apartmentnumber,Zipcode,Comment,Status")] OrderClient orderClient,List<int>gamesid,List<int> counters, string user)
         {
+            orderClient.DateTime = DateTime.Now;
             ViewBag.clientdetail = _context.Client.Include(x => x.Cart);
             int count = 0;
             orderClient.Games = new List<Games>();
@@ -87,7 +88,7 @@ namespace Gamestorefinal.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email", orderClient.ClientId);
-            return View("~/Home/Index","Home");
+            return RedirectToAction("Index", "Home");
 
         }
 

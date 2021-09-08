@@ -23,8 +23,9 @@
                     }
                 }
             </div>
+            <input hidden name="user" value="@Context.User.Identity.Name"/> 
             <h5>your games: </h5>
-            @{ var totalprice = 0;}
+         
             @foreach (var item in ViewBag.clientdetail)
             {
                 if (item.Email == @Context.User.Identity.Name)
@@ -32,14 +33,20 @@
                     foreach (var g in item.Cart)
                     {
                         <label>@g.Name</label>
-                        <select class="prices" name="@g.Name">
+                       <input name="gamesid" value="@g.Id" hidden/>
+                        <select name="counters" class="prices" >
                             @for (var i = 1; i <= 10; i++)
                             {
-                                var p = i * g.Price;
-                                <option value="@p">@i</option>
+                                if (i <= g.Onstock)
+                                {
+                                    var p = i * g.Price;
+                                <option  value="@p" >@i</option>
+                                }
+                                else
+                                    break;
                             }
                         </select>
-
+                   
                     }
                 }
             }
@@ -51,7 +58,7 @@
             </div>
             <div class="form-group">
                 <label asp-for="Totalprice" class="control-label"></label>
-                <input id="Totalprice" asp-for="Totalprice" value="0" class="form-control" />
+                <input id="Totalprice" asp-for="Totalprice" readonly value="0" class="form-control" />
                 <span asp-validation-for="Totalprice" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -105,11 +112,13 @@
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
 <script>
     $(".prices").change(function () {
+        
         $("#Totalprice").val(0);
         var x = parseInt(0);
         $(".prices").each(function (){
             x += parseInt($(this).val());
         });  
+        
         $("#Totalprice").val(x);
     }).change();
 </script>

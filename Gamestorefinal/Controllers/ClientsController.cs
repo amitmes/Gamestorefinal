@@ -136,6 +136,7 @@ namespace Gamestorefinal.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register([Bind("Id,FirstName,LastName,Email,Password,phone")] Client client)
         {
+            client.OrderClient = new List<OrderClient>();
             if (ModelState.IsValid)
             {
                 var q = _context.Client.FirstOrDefault(u => u.Email == client.Email);

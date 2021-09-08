@@ -60,8 +60,26 @@ namespace Gamestorefinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,ClientId,Creditcard,Totalprice,DateTime,City,Street,Buildingnumber,Apartmentnumber,Zipcode,Comment,Status")] OrderClient orderClient)
+        public async Task<IActionResult> Create([Bind("Id,ClientId,Creditcard,Totalprice,DateTime,City,Street,Buildingnumber,Apartmentnumber,Zipcode,Comment,Status")] OrderClient orderClient,List<int>gamesid,List<int> counters, string user)
         {
+            ViewBag.clientdetail = _context.Client.Include(x => x.Cart);
+            int count = 0;
+            orderClient.Games = new List<Games>();
+            orderClient.countofgames = new List<int>();
+            foreach (var i in gamesid)
+            {
+                Games g = _context.Games.Where(x => x.Id == i).FirstOrDefault();
+                orderClient.Games.Add(g);
+                var c = counters[count] / g.Price;
+                orderClient.countofgames.Add((int)c);
+                _context.Games.Where(x => x.Id == i).FirstOrDefault().Countofsell += 1;
+                _context.Games.Where(x => x.Id == i).FirstOrDefault().Onstock -= 1;
+                count++;
+            }
+            _context.Client.Include(x=>x.OrderClient).Where(x => x.Email.Equals(user)).FirstOrDefault().OrderClient.Add(orderClient);
+            _context.Client.Include(x => x.Cart).Where(x => x.Email.Equals(user)).FirstOrDefault().Cart.Clear();
+            await _context.SaveChangesAsync();
+            
             if (ModelState.IsValid)
             {
                 _context.Add(orderClient);

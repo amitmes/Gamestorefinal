@@ -41,24 +41,20 @@ namespace Gamestorefinal.Controllers
         {
             ViewBag.Category = _context.Category;
             ViewBag.Suppliers = _context.Supplier;
-            //if(HttpContext.Session.GetString("Email") == null)
-            //{
-            //    return RedirectToAction("Login", "Clients");
-            //}
-            //var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(Item));
+   
             var client = _context.Client.Include(x=>x.Cart).Where(a => a.Email.Equals(email)).FirstOrDefault();
             return View( client.Cart.ToList());
         }
-
+        public async Task<IActionResult> Wishlist(string email)
+        {
+            var gamestorefinalContext = _context.Client.Include(x => x.WishList).ThenInclude(a => a.Gameslist).Where(a => a.Email.Equals(email)).FirstOrDefault().WishList;
+            return View(gamestorefinalContext.Gameslist.ToList());
+        }
         public async Task<IActionResult> Makeanorder(string email)
         {
             ViewBag.Category = _context.Category;
             ViewBag.Suppliers = _context.Supplier;
-            //if(HttpContext.Session.GetString("Email") == null)
-            //{
-            //    return RedirectToAction("Login", "Clients");
-            //}
-            //var m2MwithSearchContext = _context.Games.Include(a => a.Category).Where(g => g.Category.Select(x => x.Name).Contains(Item));
+
             var client = _context.Client.Include(x => x.Cart).Where(a => a.Email.Equals(email)).FirstOrDefault();
             return View(client.Cart.ToList());
         }

@@ -56,6 +56,19 @@ namespace Gamestorefinal.Controllers
             _context.SaveChangesAsync();
 
         }
+        public async void Addtowishlist(string email, int gameid)
+        {
+            var g = _context.Games.Include(x => x.Category).Where(a => a.Id.Equals(gameid)).FirstOrDefault();
+            _context.Client.Include(x => x.WishList).ThenInclude(a => a.Gameslist).Where(a => a.Email.Equals(email)).FirstOrDefault().WishList.Gameslist.Add(g);
+            _context.SaveChangesAsync();
+        }
+
+        public async void Deletefromwishlist(string email, int gameid)
+        {
+            var g = _context.Games.Include(x => x.Category).Where(a => a.Id.Equals(gameid)).FirstOrDefault();
+            _context.Client.Include(x => x.WishList).ThenInclude(a => a.Gameslist).Where(a => a.Email.Equals(email)).FirstOrDefault().WishList.Gameslist.Remove(g);
+            _context.SaveChangesAsync();
+        }
 
         // GET: Clients/Login
         public IActionResult Login()
@@ -138,6 +151,10 @@ namespace Gamestorefinal.Controllers
         public async Task<IActionResult> Register([Bind("Id,FirstName,LastName,Email,Password,phone")] Client client)
         {
             client.OrderClient = new List<OrderClient>();
+            client.WishList = new Wishlist();
+            client.WishList.Gameslist = new List<Games>();
+            client.WishList.ClientId = client.Id;
+            client.WishList.Client = client;
             if (ModelState.IsValid)
             {
                 var q = _context.Client.FirstOrDefault(u => u.Email == client.Email);

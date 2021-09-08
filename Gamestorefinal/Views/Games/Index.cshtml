@@ -156,7 +156,7 @@
                     {
                         <a class="addingtocart" asp-controller="Clients" asp-action="Addtocart" name="@Context.User.Identity.Name" data="@item.Id">Add to cart</a>
                     }
-                    <a class="addingtowishlist" asp-controller="Wishlists" asp-action="Addtowishlist" name="@Context.User.Identity.Name" data="@item.Id">Add to wishlist</a>
+                    <a class="addingtowishlist" asp-controller="Clients" asp-action="Addtowishlist" name="@Context.User.Identity.Name" data="@item.Id">Add to wishlist</a>
                     <p class="ticket__current-price">Price: @item.Price $</p>
 
                     @if (Context.User.IsInRole("Admin"))
@@ -215,7 +215,7 @@
                 $(this).attr("asp-route-gameid", gameid);
                 console.log(email);
                 $.ajax({
-                    url: '/Wishlists/Addtowishlist',
+                    url: '/Clients/Addtowishlist',
                     data: ({
                         'email': email, 'gameid': gameid
                     })

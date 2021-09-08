@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GamesStore.Models.Wishlist>
+﻿@model IEnumerable<GamesStore.Models.Games>
 
 @{
     ViewData["Title"] = "Index";
@@ -6,45 +6,10 @@
 
 <h1>Index</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Client)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Client.Email)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                </td>
-            </tr>
-        }
-    </tbody>
-</table>
-
-
-
-
 
 <div class="hero-container row row-cols-4 row-cols-md-3 g-4">
-    @foreach (var item in Model)
+    @foreach (var g in Model)
     {
-        @foreach (var g in item.Gameslist)
-        {
-
 
             <div class="main-container col-3">
                 <div class="poster-container">
@@ -57,7 +22,7 @@
                 <div class="ticket-container">
                     <div class="ticket__content">
                         <h4 class="ticket__movie-title">@g.Name</h4>
-                        <a class="deletingfromcwishlist" asp-controller="Wishlists" asp-action="Deletefromwishlist" name="@Context.User.Identity.Name" data="@g.Id">Delete from wishlist</a>
+                        <a class="deletingfromwishlist" asp-controller="Clients" asp-action="Deletefromwishlist" name="@Context.User.Identity.Name" data="@g.Id">Delete from wishlist</a>
                         <p class="ticket__current-price">Price: @g.Price $</p>
 
                         @*@if (Context.User.IsInRole("Admin"))
@@ -78,8 +43,6 @@
 
 
             </div>
-
-        }
     }
 </div>
 
@@ -93,7 +56,7 @@
                 gameid = $(this).attr("data").valueOf();
                 console.log(email);
                 $.ajax({
-                    url: '/Wishlists/Deletefromwishlist',
+                    url: '/Clients/Deletefromwishlist',
                     data: ({
                         'email': email, 'gameid': gameid
                     })

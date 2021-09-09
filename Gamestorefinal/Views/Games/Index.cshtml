@@ -235,31 +235,51 @@
     </script>
     <script src="~/js/gamesearchbyname.js"></script>
     <script type="text/html" id="hidden-template">
-        <tr>
-            <td>
-                <div class="card" style="width: 18rem;">
-
-                    <img src="data:/image/jpg;base64,{image}" class="card-img-top" alt="...">
-
-                    <div class="card-body">
-                        <h5 class="card-title">{name}</h5>
-
-                        <a asp-controller="Games" asp-action="Details" asp-route-id={id} class="btn btn-primary">Game details</a>
+        <div class="main-container col-3">
+            <div class="poster-container">
+               
+               
+                    
+                    <img src="data:/image/jpg;base64,{image}" class="card-img-top" alt="..." style="height: 280px; margin-top: 10px; border-radius: 10px;">
+                
+            </div>
+            <div class="ticket-container">
+                <div class="ticket__content">
+                    <h4 class="ticket__movie-title">{name}</h4>
+                    <div class="text-center">
+                        @{ var st = (int)onstock}
+                            @if ({onstock} == 0)
+                        {
+                            <label style="color:red">Out of stock</label>
+                        }
+                        else
+                        {
+                            <a class="addingtocart row" asp-controller="Clients" asp-action="Addtocart" name="@Context.User.Identity.Name" data="{id}" style="margin-left:80px;">Add to cart</a>
+                        }
+                        @if (Context.User.IsInRole("Admin"))
+                        {
+                            <a class="createsuporder" asp-controller="OrdereSuppliers" asp-action="Create" asp-route-gameid="{id}">Supplier order</a>
+                        }
+                        <a class="addingtowishlist row" asp-controller="Clients" asp-action="Addtowishlist" name="@Context.User.Identity.Name" data="{id}" style="margin-left:67px;">Add to wishlist</a>
                     </div>
+                    <p class="ticket__current-price">Price: {price} $</p>
+
+                    @if (Context.User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <a asp-action="Edit" asp-route-id="{id}">Edit</a> |
+                            <a asp-action="Details" asp-route-id="{id}">Details</a> |
+                            <a asp-action="Delete" asp-route-id="{id}">Delete</a>
+                        </td>
+                    }
+
+                    <button class="ticket__buy-btn" name="{id}" asp-action="Details" asp-route-id="{id}">Details</button>
+
+
                 </div>
-            </td>
-            @if (Context.User.IsInRole("Admin"))
-            {
-                <td>
 
-
-                    <a href="/Games/Edit/{id}">Edit</a>|
-                    <a href="/Games/Details/{id}">Details</a>|
-                    <a href="/Games/Delete/{id}">Delete</a>
-
-                </td>
-            }
-        </tr>
+            </div>
+        </div>
     </script>
     <script src="~/js/gamedetail.js"></script>
     <script type="text/html" id="detailsbody">

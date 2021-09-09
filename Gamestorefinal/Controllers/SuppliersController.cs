@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GamesStore.Models;
 using Gamestorefinal.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gamestorefinal.Controllers
 {
@@ -20,6 +21,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: Suppliers
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             return View(await _context.Supplier.ToListAsync());
@@ -31,6 +33,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: Suppliers/Details/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -49,6 +52,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: Suppliers/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["games"] = new SelectList(_context.Games, nameof(Games.Id), nameof(Games.Name));
@@ -75,6 +79,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: Suppliers/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -126,6 +131,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: Suppliers/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

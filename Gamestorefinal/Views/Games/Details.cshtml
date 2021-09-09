@@ -4,74 +4,138 @@
     ViewData["Title"] = "Details";
 }
 
+<tr>
+    <td>
+
+        <div class="gameTitle">@Model.Name</div>
+        <br />
+        <br />
+        <div class="d-flex" style="height:700px; ">
 
 
-<div>
-    
-    <hr />
-    <dl class="row">
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Systemrequiremnts)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Systemrequiremnts)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Releasedate)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Releasedate)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Price)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Trailer)
-        </dt>
-        <dd class="col-sm-10">
-            <iframe width="420" height="315"
-                    src="@Html.ViewData.Model.Trailer">
-            </iframe>
+            <div class="col-5">
+                @{ string img = Convert.ToBase64String(Model.Image); }
 
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
-        <dd class="col-sm-10">
-            @if (Html.ViewData.Model.Image != null)
-            {
-                string img = Convert.ToBase64String(Html.ViewData.Model.Image);
-                <img src="data:/image/jpg;base64,@img" class="card-img-top" alt="...">
-            }
-       
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.Onstock)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.Onstock)
-        </dd>
-    </dl>
-</div>
-<div>
-    @if (Context.User.IsInRole("Admin"))
-    {
-        <a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
-    }
-    <a asp-action="Index">Back to List</a>
-</div>
+                <img src="data:/image/jpg;base64,@img" class="card-img-top" alt="..." style="width:100%; height:90%; border-radius: 20px;"></img>
+            </div>
+            <div class="col-7" style="background-color: darkgrey; border-radius: 20px; height: 90%;">
+                <dt class="col-sm-2" style="padding-left:0;">
+                    Description:
+                </dt> @Model.Description
+                <br />
+                <div class="row">
+                    <dt class="col-sm-3">
+                        Release date:
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Model.Releasedate
+                    </dd>
+                </div>
+
+                <div class="row">
+                    <dt class="col-sm-3">
+                        On stock:
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Model.Onstock
+                    </dd>
+                </div>
+                <br />
+                <div class="row">
+                    <dt class="col-sm-3">
+                        Price:
+                    </dt>
+                    <dd class="col-sm-9">
+                        @Model.Price $
+                    </dd>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="row">
+            <dt class="col-sm-2">
+                System requiremnts:
+            </dt>
+            <dd class="col-sm-10">
+                @Model.Systemrequiremnts
+            </dd>
+        </div>
+
+
+
+        <div class="row">
+            <dt class="col-sm-2">
+                Trailer:
+            </dt>
+            <dd class="col-sm-10">
+                <iframe width="420" height="315"
+                        src="@Model.Trailer">
+                </iframe>
+
+            </dd>
+        </div>
+
+    </td>
+</tr>
+
+@if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
+{
+    <div class="text-center">
+        @if (Model.Onstock == 0)
+        {
+            <label style="color:red">Out of stock</label>
+        }
+        else
+        {
+            <a class="addingtocart row btn btn-info" asp-controller="Clients" asp-action="Addtocart" name="@Context.User.Identity.Name" data="@Model.Id" style="margin-left:80px;">Add to cart</a>
+        }
+        @if (Context.User.IsInRole("Admin"))
+        {
+            <a class="createsuporder" asp-controller="OrdereSuppliers" asp-action="Create" asp-route-gameid="@Model.Id">Supplier order</a>
+        }
+        <a class="addingtowishlist row btn btn-info" asp-controller="Clients" asp-action="Addtowishlist" name="@Context.User.Identity.Name" data="@Model.Id" style="margin-left:67px;">Add to wishlist</a>
+    </div>
+}
+@section Scripts {
+    <script>
+        $(function () {
+            $('.addingtocart').click(function (e) {
+                e.preventDefault();
+                var email, gameid;
+                email = $(this).attr("name").valueOf();
+                gameid = $(this).attr("data").valueOf();
+                $(this).attr("asp-route-gameid", gameid);
+                console.log(email);
+                $.ajax({
+                    url: '/Clients/Addtocart',
+                    data: ({
+                        'email': email, 'gameid': gameid
+                    })
+                }).done(function () {
+                    location.reload();
+                });
+            });
+        });
+    </script>
+    <script>
+        $(function () {
+            $('.addingtowishlist').click(function (e) {
+                e.preventDefault();
+                var email, gameid;
+                email = $(this).attr("name").valueOf();
+                gameid = $(this).attr("data").valueOf();
+                $(this).attr("asp-route-gameid", gameid);
+                console.log(email);
+                $.ajax({
+                    url: '/Clients/Addtowishlist',
+                    data: ({
+                        'email': email, 'gameid': gameid
+                    })
+                }).done(function () {
+                    location.reload();
+                });
+            });
+        });
+    </script>
+}

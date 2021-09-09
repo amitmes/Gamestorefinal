@@ -55,23 +55,23 @@
 
     <script type="text/html" id="hidden-template">
 
-        <a class="btn btn-secondary categoryName col-3" name={name} asp-controller="Games" asp-action="Gametype" asp-route-Item={name} style="margin:20px;">
+        <a class="btn btn-secondary categoryName col-3" href="~/Games/Gametype?Item={name}" style="margin:20px;">
 
-            <div class="card" style="background-color:transparent; padding:0px; border: transparent;">
-                <div class="card-body">
-                    <h2 class="card-title">{name}</h2>
+    <div class="card" style="background-color:transparent; padding:0px; border: transparent;">
+        <div class="card-body">
+            <h2 class="card-title">{name}</h2>
 
-                </div>
-            </div>
-            @if (Context.User.IsInRole("Admin"))
-            {
+        </div>
+    </div>
+    @if (Context.User.IsInRole("Admin"))
+    {
 
-                <a href="/Categories/Edit/{id}">Edit|</a>
-                <a href="/Categories/Details/{id}">Details|</a>
-                <a href="/Categories/Delete/{id}">Delete</a>
+        <a href="/Categories/Edit/{id}">Edit|</a>
+        <a href="/Categories/Details/{id}">Details|</a>
+        <a href="/Categories/Delete/{id}">Delete</a>
 
-            }
-        </a>
+    }
+</a>
 
 
 

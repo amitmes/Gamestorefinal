@@ -76,7 +76,7 @@
 
 
 
-
+        
 
 
         <div class="col-6">
@@ -135,61 +135,62 @@
 
 
 
-<div class="hero-container row row-cols-4 row-cols-md-3 g-4">
-    @foreach (var item in Model)
-    {
-        <div class="main-container col-3">
-            <div class="poster-container">
-                @if (item.Image != null)
-                {
-                    string img = Convert.ToBase64String(item.Image);
-                    <img src="data:/image/jpg;base64,@img" class="card-img-top" alt="..." style="height: 280px; margin-top: 10px; border-radius: 10px;">
-                }
-            </div>
-            <div class="ticket-container">
-                <div class="ticket__content">
-                    <h4 class="ticket__movie-title">@item.Name</h4>
-                    <div class="text-center">
-                        @if (item.Onstock == 0)
-                        {
-                            <label style="color:red">Out of stock</label>
-                        }
-                        else
-                        {
-                            <a class="addingtocart row" asp-controller="Clients" asp-action="Addtocart" name="@Context.User.Identity.Name" data="@item.Id" style="margin-left:80px;">Add to cart</a>
-                        }
-                        @if (Context.User.IsInRole("Admin"))
-                        {
-                            <a class="createsuporder" asp-controller="OrdereSuppliers" asp-action="Create" asp-route-gameid="@item.Id">Supplier order</a>
-                        }
+    <div class="hero-container row row-cols-4 row-cols-md-3 g-4 allbody">
+        @foreach (var item in Model)
+        {
+            <div class="main-container col-3">
+                <div class="poster-container">
+                    @if (item.Image != null)
+                    {
+                        string img = Convert.ToBase64String(item.Image);
+                        <img src="data:/image/jpg;base64,@img" class="card-img-top" alt="..." style="height: 280px; margin-top: 10px; border-radius: 10px;">
+                    }
+                </div>
+                <div class="ticket-container">
+                    <div class="ticket__content">
+                        <h4 class="ticket__movie-title">@item.Name</h4>
+                        <div class="text-center">
+                            @if (item.Onstock == 0)
+                            {
+                                <label style="color:red">Out of stock</label>
+                            }
+                            else
+                            {
+                                <a class="addingtocart row" asp-controller="Clients" asp-action="Addtocart" name="@Context.User.Identity.Name" data="@item.Id" style="margin-left:80px;">Add to cart</a>
+                            }
+                            @if (Context.User.IsInRole("Admin"))
+                            {
+                                <a class="createsuporder" asp-controller="OrdereSuppliers" asp-action="Create" asp-route-gameid="@item.Id">Supplier order</a>
+                            }
                             <a class="addingtowishlist row" asp-controller="Clients" asp-action="Addtowishlist" name="@Context.User.Identity.Name" data="@item.Id" style="margin-left:67px;">Add to wishlist</a>
                         </div>
-                    <p class="ticket__current-price">Price: @item.Price $</p>
+                        <p class="ticket__current-price">Price: @item.Price $</p>
 
-                    @if (Context.User.IsInRole("Admin"))
-                    {
-                        <td>
-                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                        </td>
-                    }
+                        @if (Context.User.IsInRole("Admin"))
+                        {
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        }
 
-                    <button class="ticket__buy-btn" name="@item.Id" asp-action="Details" asp-route-id="@item.Id">Details</button>
+                        <button class="ticket__buy-btn" name="@item.Id" asp-action="Details" asp-route-id="@item.Id">Details</button>
 
+
+                    </div>
 
                 </div>
-
             </div>
-        </div>
 
 
 
 
 
 
-    }
-</div>
+        }
+    </div>
+
 
 @section Scripts {
     <script>

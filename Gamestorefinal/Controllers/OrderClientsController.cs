@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GamesStore.Models;
 using Gamestorefinal.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gamestorefinal.Controllers
 {
@@ -21,6 +22,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: OrderClients
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var gamestorefinalContext = _context.OrderClient.Include(o => o.Client);
@@ -48,6 +50,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: OrderClients/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email");

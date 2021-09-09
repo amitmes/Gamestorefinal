@@ -21,6 +21,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: OrdereSuppliers
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Index()
         {
             var gamestorefinalContext = _context.OrdereSupplier.Include(o => o.Supplier);

@@ -98,7 +98,7 @@
             </div>
 
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input id="submitButton" type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -122,4 +122,12 @@
         $("#Totalprice").val(x);
     }).change();
 </script>
+<script>
+    $(document).ready(function () {
+        $("#submitButton").on("click", function () {
+            alert('Your order has been successfully placed');
+        });
+
+    });
+ </script>
 }

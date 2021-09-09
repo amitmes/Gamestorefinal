@@ -214,7 +214,20 @@ namespace Gamestorefinal.Controllers
 
             return Json(await games.ToListAsync());
         }
+        public async Task<IActionResult> Detailsreg(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            var games = await _context.Games.FirstOrDefaultAsync(m => m.Id == id);
+            if (games == null)
+            {
+                return NotFound();
+            }
 
+            return View("Details", games);
+        }
         // GET: Games/Create
         [Authorize(Roles = "Admin")]
         public IActionResult Create()

@@ -42,10 +42,12 @@ namespace Gamestorefinal.Controllers
 
         public async void Addtocart(string email, int gameid)
         {
-            var g = _context.Games.Include(x=>x.Category).Where(a => a.Id.Equals(gameid)).FirstOrDefault();
-            _context.Client.Include(x => x.Cart).Where(a => a.Email.Equals(email)).FirstOrDefault().Cart.Add(g);
-            _context.SaveChangesAsync();
-       
+            if (email != null)
+            {
+                var g = _context.Games.Include(x => x.Category).Where(a => a.Id.Equals(gameid)).FirstOrDefault();
+                _context.Client.Include(x => x.Cart).Where(a => a.Email.Equals(email)).FirstOrDefault().Cart.Add(g);
+                _context.SaveChangesAsync();
+            }
         }
 
 
@@ -58,9 +60,13 @@ namespace Gamestorefinal.Controllers
         }
         public async void Addtowishlist(string email, int gameid)
         {
-            var g = _context.Games.Include(x => x.Category).Where(a => a.Id.Equals(gameid)).FirstOrDefault();
-            _context.Client.Include(x => x.WishList).ThenInclude(a => a.Gameslist).Where(a => a.Email.Equals(email)).FirstOrDefault().WishList.Gameslist.Add(g);
-            _context.SaveChangesAsync();
+            if (email != null)
+            {
+                var g = _context.Games.Include(x => x.Category).Where(a => a.Id.Equals(gameid)).FirstOrDefault();
+                _context.Client.Include(x => x.WishList).ThenInclude(a => a.Gameslist).Where(a => a.Email.Equals(email)).FirstOrDefault().WishList.Gameslist.Add(g);
+                _context.SaveChangesAsync();
+            }
+       
         }
 
         public async void Deletefromwishlist(string email, int gameid)

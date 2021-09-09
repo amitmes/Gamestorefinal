@@ -41,14 +41,24 @@ namespace Gamestorefinal.Controllers
         {
             ViewBag.Category = _context.Category;
             ViewBag.Suppliers = _context.Supplier;
-   
-            var client = _context.Client.Include(x=>x.Cart).Where(a => a.Email.Equals(email)).FirstOrDefault();
-            return View( client.Cart.ToList());
+            if (email != null)
+            {
+                var client = _context.Client.Include(x => x.Cart).Where(a => a.Email.Equals(email)).FirstOrDefault();
+                return View(client.Cart.ToList());
+            }
+            else
+                return RedirectToAction("Login", "Clients");
         }
         public async Task<IActionResult> Wishlist(string email)
         {
-            var gamestorefinalContext = _context.Client.Include(x => x.WishList).ThenInclude(a => a.Gameslist).Where(a => a.Email.Equals(email)).FirstOrDefault().WishList;
-            return View(gamestorefinalContext.Gameslist.ToList());
+            if (email != null)
+            {
+                var gamestorefinalContext = _context.Client.Include(x => x.WishList).ThenInclude(a => a.Gameslist).Where(a => a.Email.Equals(email)).FirstOrDefault().WishList;
+                return View(gamestorefinalContext.Gameslist.ToList());
+            }
+            else
+                return RedirectToAction("Login", "Clients");
+
         }
         public async Task<IActionResult> Makeanorder(string email)
         {

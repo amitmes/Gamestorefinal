@@ -6,7 +6,7 @@
 
 <h1>Create</h1>
 
-<h4>OrdereSupplier</h4>
+<h4>Order Supplier - @ViewBag.gname.Name</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,34 +14,27 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="SupplierId" class="control-label"></label>
-                <select asp-for="SupplierId" id="supid" class="form-control" asp-items="ViewBag.SupplierId"></select>
-            </div>
-      
-                <select name="counters" class="prices">
-                    @foreach (var item in ViewBag.Supplierslist)
+                <select asp-for="SupplierId" id="supid" class="form-control">
+                    @foreach (var item in ViewBag.supor)
                     {
-                        <h5>@item.Name</h5>
-                        if (item.Name == "Moshe ")
-                        {
-                            foreach (var g in item.Games)
-                            {
-                                <option>@g.Name </option>
-
-                            }
-                        }
+                        <option value="@item.Id">@item.Email</option>
                     }
                 </select>
-
-                <div class="form-group">
-                    <label asp-for="Totalprice" class="control-label"></label>
-                    <input asp-for="Totalprice" class="form-control" />
-                    <span asp-validation-for="Totalprice" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <input type="submit" value="Create" class="btn btn-primary" />
-                </div>
-            </form>
-</div>
+            </div>
+            <input hidden name="gameidorder" id="gameidorder" value="@ViewBag.gname.Id" />
+            <label>enter number of game order</label> <input name="count" id="count" type="number" min="1" value="1" class="countoforder" />
+          @{ var p = ViewBag.gname.Price;}
+            <input id="gameprice" hidden value=@p />
+            <div class="form-group">
+                <label asp-for="Totalprice" class="control-label"></label>
+                <input readonly id="Totalprice" asp-for="Totalprice" value="0" class="form-control" />
+                <span asp-validation-for="Totalprice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
 </div>
 
 <div>
@@ -50,16 +43,12 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-<script>
-    $("#supid").change(function () {
+    <script>
+        $("#count").change(function () {
+            $("#Totalprice").val(0);
+            var sum = parseInt($("#gameprice").val()) * parseInt($("#count").val()); 
+            $("#Totalprice").val(sum);
+        }).change();
+    </script>
 
-        $("#Totalprice").val(0);
-        var x = parseInt(0);
-        $(".prices").each(function () {
-            x += parseInt($(this).val());
-        });
-
-        $("#Totalprice").val(x);
-    }).change();
-</script>
 }

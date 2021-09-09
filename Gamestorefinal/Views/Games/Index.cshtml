@@ -14,7 +14,7 @@
 {
 <p>
     <a class="create-new-b" asp-action="Create">Create New</a>
-    <a class="createsuporder" asp-controller="OrdereSuppliers" asp-action="Create">Create new order from supplier </a>
+   
 </p>
 }
 
@@ -158,8 +158,12 @@
                         {
                             <a class="addingtocart row" asp-controller="Clients" asp-action="Addtocart" name="@Context.User.Identity.Name" data="@item.Id" style="margin-left:80px;">Add to cart</a>
                         }
-                        <a class="addingtowishlist row" asp-controller="Clients" asp-action="Addtowishlist" name="@Context.User.Identity.Name" data="@item.Id" style="margin-left:67px;">Add to wishlist</a>
-                    </div>
+                        @if (Context.User.IsInRole("Admin"))
+                        {
+                            <a class="createsuporder" asp-controller="OrdereSuppliers" asp-action="Create" asp-route-gameid="@item.Id">Supplier order</a>
+                        }
+                            <a class="addingtowishlist row" asp-controller="Clients" asp-action="Addtowishlist" name="@Context.User.Identity.Name" data="@item.Id" style="margin-left:67px;">Add to wishlist</a>
+                        </div>
                     <p class="ticket__current-price">Price: @item.Price $</p>
 
                     @if (Context.User.IsInRole("Admin"))

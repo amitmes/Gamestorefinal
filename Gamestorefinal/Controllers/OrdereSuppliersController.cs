@@ -46,10 +46,13 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: OrdereSuppliers/Create
-        public IActionResult Create()
+        public IActionResult Create(int gameid)
         {
-            ViewData["SupplierId"] = new SelectList(_context.Supplier, "Id", "Email");
+            //ViewData["SupplierId"] = new SelectList(_context.Supplier, "Id", "Email");
             ViewBag.Supplierslist = _context.Supplier.Include(x=>x.Games);
+            ViewBag.gname = _context.Games.Where(x => x.Id.Equals(gameid)).FirstOrDefault();
+            ViewBag.sgame = _context.Games.Include(x=>x.Suppliers).Where(a=>a.Id.Equals(gameid));
+            ViewBag.supor = _context.Games.Include(x => x.Suppliers).Where(a => a.Id.Equals(gameid)).FirstOrDefault().Suppliers;
             return View();
         }
 
@@ -58,8 +61,15 @@ namespace Gamestorefinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,SupplierId,Totalprice")] OrdereSupplier ordereSupplier)
+        public async Task<IActionResult> Create([Bind("Id,SupplierId,Totalprice")] OrdereSupplier ordereSupplier,int gameidorder,int count)
         {
+            ordereSupplier.GamesforOrder = new List<Games>();
+            ordereSupplier.GamesforOrder.Add(_context.Games.Include(x => x.Category).Include(x => x.Suppliers).Where(a => a.Id.Equals(gameidorder)).FirstOrDefault());
+            ordereSupplier.countofgames = new List<int>();
+            ordereSupplier.countofgames.Add(count);
+            ordereSupplier.Supplier = _context.Supplier.Include(a => a.Games).Where(x => x.Id.Equals(ordereSupplier.SupplierId)).FirstOrDefault();
+            _context.Games.Where(x => x.Id == gameidorder).FirstOrDefault().Onstock += count;
+            await _context.SaveChangesAsync();
             if (ModelState.IsValid)
             {
                 _context.Add(ordereSupplier);
@@ -67,7 +77,7 @@ namespace Gamestorefinal.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["SupplierId"] = new SelectList(_context.Supplier, "Id", "Email", ordereSupplier.SupplierId);
-            return View(ordereSupplier);
+           return RedirectToAction("Index", "Games");
         }
 
         // GET: OrdereSuppliers/Edit/5

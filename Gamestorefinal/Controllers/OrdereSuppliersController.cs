@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using GamesStore.Models;
 using Gamestorefinal.Data;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gamestorefinal.Controllers
 {
@@ -44,11 +45,15 @@ namespace Gamestorefinal.Controllers
 
             return View(ordereSupplier);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: OrdereSuppliers/Create
         public IActionResult Create(int gameid)
         {
             //ViewData["SupplierId"] = new SelectList(_context.Supplier, "Id", "Email");
+            if (gameid == 0)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             ViewBag.Supplierslist = _context.Supplier.Include(x=>x.Games);
             ViewBag.gname = _context.Games.Where(x => x.Id.Equals(gameid)).FirstOrDefault();
             ViewBag.sgame = _context.Games.Include(x=>x.Suppliers).Where(a=>a.Id.Equals(gameid));

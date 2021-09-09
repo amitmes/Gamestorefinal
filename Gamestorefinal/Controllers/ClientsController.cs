@@ -103,7 +103,7 @@ namespace Gamestorefinal.Controllers
                 }
                 else
                 {
-                    ViewData["Error"] = "This Email is already exist, please enter another email.";
+                    ViewData["Error"] = "One or more of the details are wrong";
                 }
             
             return View(client);

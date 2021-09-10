@@ -81,21 +81,22 @@
 
 @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
 {
-    <div class="text-center">
-        @if (Model.Onstock == 0)
-        {
-            <label style="color:red">Out of stock</label>
-        }
-        else
-        {
-            <a class="addingtocart row btn btn-info" asp-controller="Clients" asp-action="Addtocart" name="@Context.User.Identity.Name" data="@Model.Id" style="margin-left:80px;">Add to cart</a>
-        }
-        @if (Context.User.IsInRole("Admin"))
-        {
-            <a class="createsuporder" asp-controller="OrdereSuppliers" asp-action="Create" asp-route-gameid="@Model.Id">Supplier order</a>
-        }
-        <a class="addingtowishlist row btn btn-info" asp-controller="Clients" asp-action="Addtowishlist" name="@Context.User.Identity.Name" data="@Model.Id" style="margin-left:67px;">Add to wishlist</a>
-    </div>
+<div class="text-center">
+    @if (Model.Onstock == 0)
+    {
+        <label style="color:red">Out of stock</label>
+    }
+    else
+    {
+        <a class="addingtocart col-2 btn btn-info" asp-controller="Clients" asp-action="Addtocart" name="@Context.User.Identity.Name" data="@Model.Id">Add to cart</a>
+    }
+    <a class="addingtowishlist col-2 btn btn-info" asp-controller="Clients" asp-action="Addtowishlist" name="@Context.User.Identity.Name" data="@Model.Id">Add to wishlist</a>
+    @if (Context.User.IsInRole("Admin"))
+    {
+        <a class="createsuporder col-2 btn btn-info" asp-controller="OrdereSuppliers" asp-action="Create" asp-route-gameid="@Model.Id">Supplier order</a>
+    }
+
+</div>
 }
 @section Scripts {
     <script>

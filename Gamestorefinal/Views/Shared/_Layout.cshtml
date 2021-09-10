@@ -67,7 +67,7 @@
                         <li class="nav-item">
                             <a class="nav-link btn text-white btn" asp-area="" asp-controller="Games" asp-action="Wishlist" asp-route-email="@Context.User.Identity.Name">WishList</a>
                         </li>
-                        <aside style="margin-left:68%;">
+                        <aside style="margin-left:60%;">
                             @if (Context.User != null && Context.User.Claims != null && Context.User.Claims.Count() > 0)
                             {
                                 <li class="nav-item">

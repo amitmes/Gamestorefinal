@@ -10,6 +10,7 @@ using Gamestorefinal.Data;
 using System.IO;
 using Microsoft.AspNetCore.Authorization;
 using Gamestorefinal.Tweeter;
+using Microsoft.AspNetCore.Http;
 //using Gamestorefinal.Twitter;
 
 namespace Gamestorefinal.Controllers
@@ -257,6 +258,7 @@ namespace Gamestorefinal.Controllers
                 {
                     games.Imagefile.CopyTo(ms);
                     games.Image = ms.ToArray();
+                    
                 }
                 _context.Add(games);
                 await _context.SaveChangesAsync();
@@ -284,7 +286,8 @@ namespace Gamestorefinal.Controllers
             }
 
             var games = await _context.Games.FindAsync(id);
-           // var games = await _context.Games.Include(x => x.Imagefile).FirstOrDefaultAsync(a => a.Id == id);
+   
+            //var games =  _context.Games.Include(x => x.Imagefile).Where(x => x.Id == id).FirstOrDefault();
             if (games == null)
             {
                 return NotFound();
@@ -303,7 +306,6 @@ namespace Gamestorefinal.Controllers
             {
                 return NotFound();
             }
-
             if (ModelState.IsValid)
             {
                 try
@@ -312,6 +314,7 @@ namespace Gamestorefinal.Controllers
                     {
                         games.Imagefile.CopyTo(ms);
                         games.Image = ms.ToArray();
+
                     }
                     _context.Update(games);
                     await _context.SaveChangesAsync();
@@ -327,6 +330,8 @@ namespace Gamestorefinal.Controllers
                         throw;
                     }
                 }
+   
+
                 return RedirectToAction(nameof(Index));
             }
             return View(games);

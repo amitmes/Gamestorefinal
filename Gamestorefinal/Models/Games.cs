@@ -20,6 +20,7 @@ namespace GamesStore.Models
         public string Description { get; set; }
         [DataType(DataType.Text)]
         [Display(Name = "System requiremnts")]
+        [Required]
         public string Systemrequiremnts { get; set; }
         [Required]
         [Display(Name = "Release date")]
@@ -34,6 +35,7 @@ namespace GamesStore.Models
         
         public byte[] Image { get; set; }
         [NotMapped]
+        [Required]
         public IFormFile Imagefile { get; set; }
         [Required]
         [Display(Name = "On stock")]

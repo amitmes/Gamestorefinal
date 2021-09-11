@@ -319,8 +319,8 @@ namespace Gamestorefinal.Controllers
             var client = await _context.Client.FindAsync(id);
 
 
-            //var orderClient = await _context.OrderClient.Where(x => x.ClientId == id);
-            //_context.OrderClient.Remove(orderClient);
+            //var orderClient = _context.OrderClient.Where(x => x.ClientId == id).ToList();
+            //_context.OrderClient.RemoveRange(orderClient);
 
             _context.Client.Remove(client);
             await _context.SaveChangesAsync();

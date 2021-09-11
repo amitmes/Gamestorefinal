@@ -4,13 +4,8 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
-@if(Context.User.IsInRole("Admin"))
-{
-    <p>
-        <a asp-action="Create">Create New</a>
-    </p>
-}
+<h1>Clients</h1>
+
 <form asp-action="Search">
     Search by email <input name="query" id="query" autocomplete="off" />
     <input type="submit" />

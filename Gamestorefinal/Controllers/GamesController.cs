@@ -285,6 +285,7 @@ namespace Gamestorefinal.Controllers
                 return NotFound();
             }
             ViewBag.cat = _context.Category.Include(x => x.Games);
+            ViewBag.sup = _context.Supplier.Include(x => x.Games);
             var games = await _context.Games.FindAsync(id);
    
             //var games =  _context.Games.Include(x => x.Imagefile).Where(x => x.Id == id).FirstOrDefault();
@@ -300,19 +301,12 @@ namespace Gamestorefinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Imagefile,Onstock,Countofsell")] Games games, int[] Category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Imagefile,Onstock,Countofsell")] Games games, int[] Category, int[] Suppliers)
         {
             games.Category = new List<Category>();
             games.Category.AddRange(_context.Category.Where(x => Category.Contains(x.Id)));
-            //games.Category.AddRange(_context.Games.Include(x=>x.Category).Where(x => Category.Contains()));
-            //var x = _context.Games.Include(x => x.Category).Where(x => x.Id == id).FirstOrDefault();
-            //for(int i = 0; i < x.Category.Count(); i++)
-            //{
-            //    if(_context.Games.Include(z => z.Category).Where(z => Category.Contains(x.Category.ElementAt(i).Id)).Count() == 0)
-            //    {
-            //        games.Category.Add(_context.Category.Include(a=>a.Games).Where(a => a.Id==id).FirstOrDefault());
-            //    }
-            //}
+            games.Suppliers = new List<Supplier>();
+            games.Suppliers.AddRange(_context.Supplier.Where(x => Suppliers.Contains(x.Id)));
             if (id != games.Id)
             {
                 return NotFound();

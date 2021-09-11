@@ -25,17 +25,6 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Systemrequiremnts" class="control-label"></label>
-                <input asp-for="Systemrequiremnts" class="form-control" />
-                <span asp-validation-for="Systemrequiremnts" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Releasedate" class="control-label"></label>
-                <input asp-for="Releasedate" class="form-control" />
-                <span asp-validation-for="Releasedate" class="text-danger"></span>
-            </div>
-         
-            <div class="form-group">
                 <label asp-for="Category" class="control-label"></label>
                 <select multiple asp-for="Category" class="form-control">
                     @foreach (var item in ViewBag.cat)
@@ -49,20 +38,53 @@
                                 break;
                             }
                         }
-                        if (exist == true)
-                        {
-                            <option selected value="@item.Id">@item.Name</option>
-}
-                        else
+                        if (exist == false)
                         {
                             <option value="@item.Id">@item.Name</option>
-}
+                        }
+
                     }
 
                     }
                 </select>
                 <span asp-validation-for="Category" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="Systemrequiremnts" class="control-label"></label>
+                <input asp-for="Systemrequiremnts" class="form-control" />
+                <span asp-validation-for="Systemrequiremnts" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Releasedate" class="control-label"></label>
+                <input asp-for="Releasedate" class="form-control" />
+                <span asp-validation-for="Releasedate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Suppliers" class="control-label"></label>
+                <select multiple asp-for="Suppliers" class="form-control">
+                    @foreach (var item in ViewBag.sup)
+                    {
+                        var exist = false;
+                        foreach (var g in item.Games)
+                        {
+                            if (g.Name == Model.Name)
+                            {
+                                exist = true;
+                                break;
+                            }
+                        }
+                        if (exist == false)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+
+                    }
+
+                    }
+                </select>
+                <span asp-validation-for="Suppliers" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="Price" class="control-label"></label>
                 <input asp-for="Price" type="number" min="1" class="form-control" />

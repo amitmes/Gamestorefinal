@@ -184,6 +184,18 @@ namespace Gamestorefinal.Controllers
 
 
 
+        public async Task<IActionResult> Join1()
+        {
+            var result = (from a in _context.Client
+                          join b in _context.Supplier on a.Email equals b.Email
+                          select a).Distinct();
+
+            return View(await result.ToListAsync());
+           
+        }
+
+
+
         //// GET: Clients
         //public async Task<IActionResult> Index()
         //{

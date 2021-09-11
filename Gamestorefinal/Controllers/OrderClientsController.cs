@@ -183,5 +183,17 @@ namespace Gamestorefinal.Controllers
         {
             return _context.OrderClient.Any(e => e.Id == id);
         }
+
+
+
+        public async Task<IActionResult> Join2()
+        {
+            var result = (from a in _context.Client
+                          join b in _context.OrderClient on a.Id equals b.ClientId
+                          select b).Distinct();
+
+            return View(await result.ToListAsync());
+
+        }
     }
 }

@@ -49,7 +49,7 @@ namespace Gamestorefinal.Controllers
             return Json( _context.Games.ToList());
         }
 
-       
+       [Authorize(Roles ="Admin")]
         public async Task<IActionResult> Graphs()
         {
             //if(HttpContext.Session.GetString("Email") == null)
@@ -89,7 +89,6 @@ namespace Gamestorefinal.Controllers
 
             return Json(await variable.ToListAsync());
         }
-
 
 
 

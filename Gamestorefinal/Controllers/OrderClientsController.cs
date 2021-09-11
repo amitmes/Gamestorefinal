@@ -195,5 +195,19 @@ namespace Gamestorefinal.Controllers
             return View(await result.ToListAsync());
 
         }
+
+        //public async Task<IActionResult> GroupbyLastDay()
+        //{
+        //    var groupBy = (from o in _context.OrderClient
+        //                   orderby o.DateTime
+        //                   group o by new { o.DateTime } into g
+        //                   select g).Take(DateTime.Now.Day);
+
+        //    return View(await groupBy.ToListAsync());
+
+        //}
+
+
+
     }
 }

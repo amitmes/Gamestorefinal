@@ -319,11 +319,16 @@ namespace Gamestorefinal.Controllers
             var client = await _context.Client.FindAsync(id);
 
 
-            //var orderClient = _context.OrderClient.Where(x => x.ClientId == id).ToList();
+            var orderClient = _context.OrderClient.Where(x => x.ClientId == id).ToList();
             //_context.OrderClient.RemoveRange(orderClient);
-
-            _context.Client.Remove(client);
-            await _context.SaveChangesAsync();
+            if (orderClient.Count() == 0)
+            {
+                _context.Client.Remove(client);
+                await _context.SaveChangesAsync();
+                
+                return RedirectToAction(nameof(Index));
+            }
+           
             return RedirectToAction(nameof(Index));
         }
 

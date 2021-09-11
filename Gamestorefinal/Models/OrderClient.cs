@@ -21,6 +21,7 @@ namespace GamesStore.Models
         public List<int> countofgames { get; set; }
 
         [DataType(DataType.CreditCard)]
+        [RegularExpression("^^[0000000000000000-9999999999999999]+$", ErrorMessage = "Credit card number should contain 16 digit numbers without spaces")]
         [Required]
         [Display(Name = "Credit card")]
         public string Creditcard { get; set; }

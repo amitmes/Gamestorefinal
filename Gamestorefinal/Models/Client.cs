@@ -21,10 +21,12 @@ namespace GamesStore.Models
 
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "The first name must contain only letters")]
         [Required]
+        [Display(Name = "First name")]
         public string FirstName { get; set; }
 
         [RegularExpression("^[a-zA-Z]+$", ErrorMessage = "The last name must contain only letters")]
         [Required]
+        [Display(Name = "Last name")]
         public string LastName { get; set; }
 
         [DataType(DataType.EmailAddress)]

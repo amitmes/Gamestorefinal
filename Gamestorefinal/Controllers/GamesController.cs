@@ -284,6 +284,7 @@ namespace Gamestorefinal.Controllers
             }
 
             var games = await _context.Games.FindAsync(id);
+           // var games = await _context.Games.Include(x => x.Imagefile).FirstOrDefaultAsync(a => a.Id == id);
             if (games == null)
             {
                 return NotFound();
@@ -296,7 +297,7 @@ namespace Gamestorefinal.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Image,Onstock,Countofsell")] Games games)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,Description,Systemrequiremnts,Releasedate,Price,Trailer,Imagefile,Onstock,Countofsell")] Games games)
         {
             if (id != games.Id)
             {
@@ -307,6 +308,11 @@ namespace Gamestorefinal.Controllers
             {
                 try
                 {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        games.Imagefile.CopyTo(ms);
+                        games.Image = ms.ToArray();
+                    }
                     _context.Update(games);
                     await _context.SaveChangesAsync();
                 }

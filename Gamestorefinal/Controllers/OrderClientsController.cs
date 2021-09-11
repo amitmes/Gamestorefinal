@@ -50,7 +50,7 @@ namespace Gamestorefinal.Controllers
         }
 
         // GET: OrderClients/Create
-        [Authorize(Roles = "Admin")]
+       
         public IActionResult Create()
         {
             ViewData["ClientId"] = new SelectList(_context.Client, "Id", "Email");

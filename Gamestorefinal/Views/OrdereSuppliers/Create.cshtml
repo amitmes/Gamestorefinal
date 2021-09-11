@@ -23,7 +23,7 @@
             </div>
             <input hidden name="gameidorder" id="gameidorder" value="@ViewBag.gname.Id" />
             <label>enter number of game order</label> <input name="count" id="count" type="number" min="1" value="1" class="countoforder" />
-          @{ var p = ViewBag.gname.Price;}
+            @{ var p = ViewBag.gname.Price;}
             <input id="gameprice" hidden value=@p />
             <div class="form-group">
                 <label asp-for="Totalprice" class="control-label"></label>
@@ -31,7 +31,7 @@
                 <span asp-validation-for="Totalprice" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" id="sub" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
@@ -46,9 +46,17 @@
     <script>
         $("#count").change(function () {
             $("#Totalprice").val(0);
-            var sum = parseInt($("#gameprice").val()) * parseInt($("#count").val()); 
+            var sum = parseInt($("#gameprice").val()) * parseInt($("#count").val());
             $("#Totalprice").val(sum);
         }).change();
     </script>
+    <script>
+        $(document).ready(function () {
+            $("#sub").on("click", function () {
+                if ($(count).val()<1)
+                alert('please enter a valid number');
+            });
 
+        });
+    </script>
 }
